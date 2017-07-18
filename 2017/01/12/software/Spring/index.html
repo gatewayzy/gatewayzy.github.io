@@ -1,0 +1,746 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Spring," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Spring配置使用。">
+<meta name="keywords" content="Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring">
+<meta property="og:url" content="http://bebetter.site/2017/01/12/software/Spring/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：Spring配置使用。">
+<meta property="og:updated_time" content="2017-01-12T05:58:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring">
+<meta name="twitter:description" content="说明：Spring配置使用。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/01/12/software/Spring/"/>
+
+  <title> Spring | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Spring
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T13:58:19+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Softwares/" itemprop="url" rel="index">
+                    <span itemprop="name">Softwares</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>Spring配置使用。<br><a id="more"></a></p>
+<hr>
+<h2 id="Spring简介"><a href="#Spring简介" class="headerlink" title="Spring简介"></a>Spring简介</h2><p>Struts是web框架（jsp/action/actionfrom），spring也提供了springMVC。<br>Hibernate是ORM（object relation mapping）框架，处于持久层。<br>Spring属于容器框架，用于配置bean，维护bean之间的关系。</p>
+<hr>
+<h2 id="Spring概念"><a href="#Spring概念" class="headerlink" title="Spring概念"></a>Spring概念</h2><p>Bean可以是java中的javabean/service/action/数据源/dao等等<br>IOC（控制反转，inverse of control）：将创建对象bean和维护对象的关系的权利从程序中转移动spring容器（applicationContext.xml），程序本身不再维护。<br>DI（dependency injection，依赖注入）：di和IOC实际相同，但开发者认为DI更能体现依赖关系，bean之间的关系用ref关系配置。</p>
+<hr>
+<h2 id="简单Spring项目"><a href="#简单Spring项目" class="headerlink" title="简单Spring项目"></a>简单Spring项目</h2><h3 id="最小配置包"><a href="#最小配置包" class="headerlink" title="最小配置包"></a>最小配置包</h3><p>Spring包括aop、beans、core、jdbc、web等等.<br>写日志包commons-logging.jar.</p>
+<h3 id="创建spring核心文件applicationContext-xml"><a href="#创建spring核心文件applicationContext-xml" class="headerlink" title="创建spring核心文件applicationContext.xml"></a>创建spring核心文件applicationContext.xml</h3><p>一般放置在src目录下，在maven中放到src/java/main下，此目录默认为classpath。Struts有核心struts-config.xml，hibernate有核心hibernate.cfg.xml。<br>applicationContext.xml路径设置方法：</p>
+<ol>
+<li>Spring配置文件在WEB-INF根目录下，可以不进行配置，因为spring会默认去加载，如果一定要配置呢，可以这样<br>contextConfigLocation为WEB-INF/applicationContext.xml</li>
+<li>Spring配置文件在WEB-INF下的某个文件夹下，比如config下，可以这样配置<br>contextConfigLocation为WEB-INF/config/applicationContext.xml</li>
+<li>Spring配置文件在src根目录下面，可以这样配置<br>contextConfigLocation为WEB-INF/classes/applicationContext.xml<br>或者contextConfigLocation为classpath:applicationContext.xml</li>
+<li>Spring配置文件在src下的某个包里，比如com.config，可以这样配置<br>contextConfigLocation为WEB-INF/classes/com/config/applicationContext.xml<br>或者contextConfigLocation为classpath:com/config/applicationContext.xml</li>
+</ol>
+<h3 id="配置bean"><a href="#配置bean" class="headerlink" title="配置bean"></a>配置bean</h3><p>Bean中以id为唯一值，在java中根据id获取。可以理解成将java程序在xml加载过程中进行实例化。依赖注入使用ref依赖bean的id表示。</p>
+<h3 id="Java反射"><a href="#Java反射" class="headerlink" title="Java反射"></a>Java反射</h3><p>Spring的xml在加载的时候利用反射机制，和实际运行java代码相似，然后将实例化对象放入内存，但是必须要给目标的对象设置setter和getter方法，spring才能实现。</p>
+<h3 id="spring代码demo"><a href="#spring代码demo" class="headerlink" title="spring代码demo"></a>spring代码demo</h3><p>S1.SayByeService.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">package com.service;</div><div class="line">public class SayByeService &#123;</div><div class="line">	private String name;</div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line">		public void sayBye() &#123;</div><div class="line">		System.out.println(&quot;Bye~ &quot; + name);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>S2.UserService.java 引用了SayByeService</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">package com.service;</div><div class="line">public class UserService &#123;</div><div class="line">	private String name;</div><div class="line">	private SayByeService sayByeService;</div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line">		public SayByeService getSayByeService() &#123;</div><div class="line">		return sayByeService;</div><div class="line">	&#125;</div><div class="line">	public void setSayByeService(SayByeService sayByeService) &#123;</div><div class="line">		this.sayByeService = sayByeService;</div><div class="line">	&#125;</div><div class="line">	public void sayHello() &#123;</div><div class="line">		System.out.println(&quot;Hello! &quot; + name);</div><div class="line">		sayByeService.sayBye();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>S3. applicationContext.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">	xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot;</div><div class="line">	xmlns:cache=&quot;http://www.springframework.org/schema/cache&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</div><div class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</div><div class="line">	xmlns:util=&quot;http://www.springframework.org/schema/util&quot; xmlns:task=&quot;http://www.springframework.org/schema/task&quot;</div><div class="line">	xmlns:oxm=&quot;http://www.springframework.org/schema/oxm&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;</div><div class="line">	xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">	xsi:schemaLocation=&quot;http://www.springframework.org/schema/mvc</div><div class="line">http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd</div><div class="line">http://www.springframework.org/schema/beans</div><div class="line">http://www.springframework.org/schema/beans/spring-beans-3.1.xsd</div><div class="line">http://www.springframework.org/schema/context</div><div class="line">http://www.springframework.org/schema/context/spring-context-3.1.xsd</div><div class="line">http://www.springframework.org/schema/task </div><div class="line">http://www.springframework.org/schema/task/spring-task-3.1.xsd</div><div class="line">http://www.springframework.org/schema/cache </div><div class="line">http://www.springframework.org/schema/cache/spring-cache-3.1.xsd</div><div class="line">http://www.springframework.org/schema/oxm </div><div class="line">http://www.springframework.org/schema/oxm/spring-oxm-3.1.xsd</div><div class="line">http://www.springframework.org/schema/tx </div><div class="line">http://www.springframework.org/schema/tx/spring-tx-3.1.xsd</div><div class="line">http://www.springframework.org/schema/aop</div><div class="line">http://www.springframework.org/schema/aop/spring-aop-3.1.xsd</div><div class="line">http://www.springframework.org/schema/util</div><div class="line">http://www.springframework.org/schema/util/spring-util-3.1.xsd&quot;&gt;</div><div class="line">	&lt;!-- 配置spring bean --&gt;</div><div class="line">	&lt;!-- id 用于被获取，不可重复 --&gt;</div><div class="line">	&lt;beans:bean id=&quot;userService&quot; class=&quot;com.service.UserService&quot;&gt;</div><div class="line">		&lt;!-- name 和 value体现出了注入 --&gt;</div><div class="line">		&lt;beans:property name=&quot;name&quot;&gt;</div><div class="line">			&lt;beans:value&gt;使用spring输出的zyy&lt;/beans:value&gt;</div><div class="line">		&lt;/beans:property&gt;</div><div class="line">		&lt;!-- ref 体现依赖注入 --&gt;</div><div class="line">		&lt;beans:property name=&quot;sayByeService&quot; ref=&quot;sayByeServiceBean&quot;&gt;&lt;/beans:property&gt;</div><div class="line">	&lt;/beans:bean&gt;</div><div class="line">	&lt;beans:bean id=&quot;sayByeServiceBean&quot; class=&quot;com.service.SayByeService&quot;&gt;</div><div class="line">		&lt;beans:property name=&quot;name&quot; value=&quot;使用spring输出的小明&quot;&gt;&lt;/beans:property&gt;</div><div class="line">	&lt;/beans:bean&gt;</div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure>
+<p>S4.test.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">package com.test;</div><div class="line">import org.springframework.context.ApplicationContext;</div><div class="line">import org.springframework.context.support.ClassPathXmlApplicationContext;</div><div class="line">import com.service.SayByeService;</div><div class="line">import com.service.UserService;</div><div class="line">public class test &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// 传统方法调用</div><div class="line">		UserService userService = new UserService();</div><div class="line">		userService.setName(&quot;传统方法的zyy&quot;);</div><div class="line">		SayByeService sayByeService_0 = new SayByeService();</div><div class="line">		sayByeService_0.setName(&quot;传统方法的zyy_小明&quot;);</div><div class="line">		userService.setSayByeService(sayByeService_0);</div><div class="line">		userService.sayHello();</div><div class="line">		System.out.println(&quot;1 is over!&quot;);</div><div class="line">		// 传统方法调用</div><div class="line">		SayByeService sayByeService = new SayByeService();</div><div class="line">		sayByeService.setName(&quot;传统方法的小明&quot;);</div><div class="line">		//sayByeService;</div><div class="line">		sayByeService.sayBye();</div><div class="line">		System.out.println(&quot;2 is over!&quot;);</div><div class="line">		// spring的方法实例化</div><div class="line">		ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</div><div class="line">		// 获取sayByeService</div><div class="line">		SayByeService sayByeService2 = (SayByeService) ac.getBean(&quot;sayByeServiceBean&quot;);</div><div class="line">		sayByeService2.sayBye();</div><div class="line">		System.out.println(&quot;3 is over!&quot;);</div><div class="line">		UserService userService2 = (UserService) ac.getBean(&quot;userService&quot;);</div><div class="line">		userService2.sayHello();</div><div class="line">		System.out.println(&quot;4 is over!&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="DI配合接口编程"><a href="#DI配合接口编程" class="headerlink" title="DI配合接口编程"></a>DI配合接口编程</h2><p>Web层和业务层之间通过接口进行访问，实现解耦，将接口使用spring进行管理。</p>
+<p>S1.TestMain.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 使用spring实现接口在beans.xml中进行转换</div><div class="line">		ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;com_2/beans.xml&quot;);</div><div class="line">		// 选择激活beans.xml中不同的changeLetter即可实现不同的接口实现，实现spring对业务控制</div><div class="line">		ChangeLetter changeLetter =  (ChangeLetter) ac.getBean(&quot;changeLetter&quot;);</div><div class="line">		changeLetter.change();</div><div class="line">		System.out.println(&quot;3. spring的不同实现方法&quot;);</div></pre></td></tr></table></figure>
+<p>S2.beans.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 两个 bean 的 id 不能相同，通过激活对接口 ChangeLetter 的不同的实现类，可以达到不同的业务逻辑 --&gt;</div><div class="line">	&lt;beans:bean id=&quot;changeLetter&quot; class=&quot;com_2.service.LowerLetter&quot;&gt;</div><div class="line">		&lt;beans:property name=&quot;string&quot; value=&quot;Struts 3.0 &quot;&gt;&lt;/beans:property&gt;</div><div class="line">	&lt;/beans:bean&gt;</div><div class="line">	&lt;!-- </div><div class="line">	&lt;beans:bean id=&quot;changeLetter&quot; class=&quot;com_2.service.UpperLetter&quot;&gt;</div><div class="line">		&lt;beans:property name=&quot;string&quot; value=&quot;Struts 3.0 &quot;&gt;&lt;/beans:property&gt;</div><div class="line">	&lt;/beans:bean&gt;</div><div class="line">	  --&gt;</div></pre></td></tr></table></figure>
+<p>S3.ChangeLetter.java接口和两个实现类LowerLetter.java、UpperLetter.java。</p>
+<hr>
+<h2 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h2><h3 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h3><p>service一般分为interace与implement，代码结构一般是：</p>
+<ul>
+<li><p>interface中：</p>
+<ul>
+<li>baseinterface //放通用的方法，用public Object findByKey(Class class，Serializabled key)等通用类型较好</li>
+<li>aaainterface extends baseinterface //关于aaa的方法，继承了baseinterface的方法</li>
+<li>bbbinterface extends baseinterface</li>
+</ul>
+</li>
+<li><p>implement中：</p>
+<ul>
+<li>baseimpl implements baseinterface //将接口方法实现为abstract，让aaaimpl，bbbimpl继承此类时实现了baseinterface的接口</li>
+<li>aaaimpl extends baseimpl implements aaainterface //实现aaainterface并且继承了实现了baseinterface的baseimpl方法</li>
+<li>bbbimpl extends baseimpl implements aaainterface</li>
+</ul>
+</li>
+<li><p>通过使用接口与继承，可以提升代码重用性，降低耦合：</p>
+<ul>
+<li>interface中aaa、bbb继承了base的基础接口方法，不用写很多个接口中的方法；</li>
+<li>implement中aaa、bbb需要实现base接口及父接口中的方法，只需继承baseimpl的实现就可以实现base接口中的方法。</li>
+</ul>
+</li>
+<li>调用service的时候使用接口，以支持动态加载：<ul>
+<li>aaainterface ain = new aImpl();</li>
+<li>Aaa = ain.findByKey(Aaa.class,10);</li>
+</ul>
+</li>
+</ul>
+<h3 id="Controller控制器"><a href="#Controller控制器" class="headerlink" title="Controller控制器"></a>Controller控制器</h3><h4 id="页面请求"><a href="#页面请求" class="headerlink" title="页面请求"></a>页面请求</h4><p>使用@RequestMapping进行路由，可以路由到方法级别，也可以路由到类的级别。但是如果写完整的页面路径会比较繁琐，可以使用InternalResourceViewResolver类设置默认的路径补全。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;!-- spring的xml中设置jsp解析路径，自动补全前后缀 --&gt;</div><div class="line">   &lt;bean id=&quot;viewResolver&quot; class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</div><div class="line">	&lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/views/&quot; /&gt;</div><div class="line">	&lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot; /&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value = &quot;/kcpage&quot;, method = RequestMethod.GET) // 代码中设置对应的路value</div><div class="line">public String getConclusionsPage() &#123;</div><div class="line">	return &quot;qaos/analysis/kc_page&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="ajax请求"><a href="#ajax请求" class="headerlink" title="ajax请求"></a>ajax请求</h4><p>使用@ResponseBody处理ajax请求，返回map、json类型数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value = &quot;/kcsearch&quot;, method = RequestMethod.GET)</div><div class="line">@ResponseBody</div><div class="line">public Map&lt;String, Object&gt; getConclusions(HttpServletRequest request,</div><div class="line">		HttpServletResponse response, @RequestParam(value = &quot;query&quot;, defaultValue = &quot;&quot;) String name) &#123;</div><div class="line">	Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();</div><div class="line">	map.put(&quot;object&quot;, qakConclusionService.queryKConclusion(name));</div><div class="line">	return map; // return new Gson().toJson(map) </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="ModelAndView"><a href="#ModelAndView" class="headerlink" title="ModelAndView"></a>ModelAndView</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ModelAndView中添加返回页面和参数，return modelAndView。</div><div class="line">	@RequestMapping(value = &#123; &quot;/&quot;, &quot;/index&quot;, &quot;/toIndex&quot; &#125;)</div><div class="line">	public ModelAndView index(HttpServletRequest request, HttpServletResponse response) &#123;</div><div class="line">		ModelAndView modelAndView = new ModelAndView();</div><div class="line">		List&lt;MenuPo&gt; rootList = MenuServiceImpl.queryRoot();</div><div class="line">		modelAndView.setViewName(&quot;index/index&quot;);</div><div class="line">		modelAndView.addObject(&quot;rootList&quot;, rootList);</div><div class="line">		return modelAndView;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h4 id="ModelMap"><a href="#ModelMap" class="headerlink" title="ModelMap"></a>ModelMap</h4><p>ModelMap可以传参数，并且不需要return该map就可自动传递到前台，同时使用return返回界面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value = &#123; &quot;&quot;, &quot;/&quot;, &quot;home&quot; &#125;, method = RequestMethod.GET)</div><div class="line">    public String home(ModelMap modelMap, HttpServletRequest request,</div><div class="line">            HttpServletResponse response) throws IOException &#123;</div><div class="line">        JSONArray yearArray = adrAnalysisService.getYearStatistic();</div><div class="line">        JSONObject freqObject = adrAnalysisService.getKeyFreq();</div><div class="line">        modelMap.put(&quot;adrList&quot;, freqObject.get(&quot;adr&quot;));</div><div class="line">        modelMap.put(&quot;drugList&quot;, freqObject.get(&quot;med&quot;));</div><div class="line">        modelMap.put(&quot;yearAnalysisResult&quot;,</div><div class="line">                JSONFormatter.JSON2AdrYearAnalysisHighchart(yearArray));</div><div class="line">        return &quot;adrhome&quot;;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Interceptor拦截器"><a href="#Interceptor拦截器" class="headerlink" title="Interceptor拦截器"></a>Interceptor拦截器</h2><p>拦截器按照配置文件中出现的先后顺序进行拦截；拦截全部请求时使用”/**”；拦截应只针对controller. </p>
+<h3 id="配置拦截器拦截规则"><a href="#配置拦截器拦截规则" class="headerlink" title="配置拦截器拦截规则"></a>配置拦截器拦截规则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;mvc:interceptors&gt;</div><div class="line">	&lt;!-- 直接使用全局拦截器。开发环境下,伪登录 --&gt;</div><div class="line">	&lt;bean class=&quot;com.tcm.web.interceptor.user.FakeSessionInterceptor&quot;&gt;</div><div class="line">		&lt;property name=&quot;uid&quot; value=&quot;1&quot;&gt;&lt;/property&gt;</div><div class="line">	&lt;/bean&gt;</div><div class="line">	&lt;bean class=&quot;com.tcm.web.interceptor.user.UserAuthInterceptor&quot; /&gt;</div><div class="line">	&lt;mvc:interceptor&gt;</div><div class="line">		&lt;mvc:mapping path=&quot;/search/**&quot; /&gt;</div><div class="line">		&lt;bean class=&quot;com.tcm.web.interceptor.security.AntiCrawlerInterceptor&quot; /&gt;</div><div class="line">	&lt;/mvc:interceptor&gt;</div><div class="line">	&lt;mvc:interceptor&gt;</div><div class="line">		&lt;!-- 使用局部拦截器。不会拦截/user/1/,会拦截/user/1/file --&gt;</div><div class="line">		&lt;mvc:mapping path=&quot;/user/?*/?**/**&quot; /&gt;</div><div class="line">		&lt;mvc:exclude-mapping path=&quot;/user/?*/user_logout&quot; /&gt; </div><div class="line">		&lt;bean class=&quot;com.tcm.web.interceptor.user.UserInfoInterceptor&quot; /&gt;</div><div class="line">	&lt;/mvc:interceptor&gt;</div><div class="line">	</div><div class="line">&lt;/mvc:interceptors&gt;</div></pre></td></tr></table></figure>
+<h3 id="拦截器代码"><a href="#拦截器代码" class="headerlink" title="拦截器代码"></a>拦截器代码</h3><p>拦截器实现HandlerInterceptor接口，常在preHandle中进行逻辑处理，返回boolean，如果是true则拦截器放行，否则不能访问设置的路由方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">public class UserInfoInterceptor implements HandlerInterceptor &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public void afterCompletion(HttpServletRequest arg0,</div><div class="line">			HttpServletResponse arg1, Object arg2, Exception arg3)</div><div class="line">			throws Exception &#123;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1,</div><div class="line">			Object arg2, ModelAndView arg3) throws Exception &#123;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	/**</div><div class="line">	 * 用户操作的权限管理; object: 下一个拦截器;</div><div class="line">	 */</div><div class="line">	@Override</div><div class="line">	public boolean preHandle(HttpServletRequest request,</div><div class="line">			HttpServletResponse response, Object object)</div><div class="line">			throws ServletException, IOException &#123;</div><div class="line">		/* 获得用户session */</div><div class="line">		UserSessionPo userSessionPo = (UserSessionPo) request.getSession()</div><div class="line">				.getAttribute(UserConst.USER_SESSION_NAME);</div><div class="line">		/* 未登录用户 */</div><div class="line">		if (null == userSessionPo) &#123;</div><div class="line">			response.sendRedirect(request.getContextPath() + &quot;/user/denypage&quot;);</div><div class="line">			return false;</div><div class="line">		&#125;</div><div class="line">		/* 放行 */</div><div class="line">		return true;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Listener监听器"><a href="#Listener监听器" class="headerlink" title="Listener监听器"></a>Listener监听器</h2><h3 id="ApplicationListener监听程序启动"><a href="#ApplicationListener监听程序启动" class="headerlink" title="ApplicationListener监听程序启动"></a>ApplicationListener监听程序启动</h3><p>通过实现ApplicationListener接口进行启动监听。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">@Component</div><div class="line">public class StartupListener implements ApplicationListener &#123;</div><div class="line">	@Resource</div><div class="line">	private FeedbackLuceneServiceImpl FeedbackLuceneServiceImpl;</div><div class="line"></div><div class="line">	// 工程发布的时候启用线程</div><div class="line">	@Override</div><div class="line">	public void onApplicationEvent(ApplicationEvent e) &#123;</div><div class="line">		/**</div><div class="line">		 * 只在项目启动的时候,启动一个线程</div><div class="line">		 */</div><div class="line">		if (e instanceof ContextRefreshedEvent)</div><div class="line">			new Thread(new LuceneFeedback()).start();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private class LuceneFeedback implements Runnable &#123;</div><div class="line">		@Override</div><div class="line">		public void run() &#123;</div><div class="line">			try &#123;</div><div class="line">				System.out.println(&quot;测试生成反馈索引&quot;);</div><div class="line">			&#125; catch (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Scheduled定时任务"><a href="#Scheduled定时任务" class="headerlink" title="@Scheduled定时任务"></a>@Scheduled定时任务</h2><h3 id="开启扫描注解"><a href="#开启扫描注解" class="headerlink" title="开启扫描注解"></a>开启扫描注解</h3><p>spring.xml多加下面的内容启用定时功能，代码使用@Component和@Schedule。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">xmlns:task=&quot;http://www.springframework.org/schema/task&quot;  </div><div class="line"></div><div class="line">http://www.springframework.org/schema/task  </div><div class="line">http://www.springframework.org/schema/task/spring-task-3.1.xsd</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 启用task扫描注解 --&gt;</div><div class="line">&lt;task:annotation-driven /&gt;</div></pre></td></tr></table></figure>
+<h3 id="任务代码"><a href="#任务代码" class="headerlink" title="任务代码"></a>任务代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">@Component</div><div class="line">public class Test &#123;</div><div class="line">	@Resource</div><div class="line">	private ConstsServiceImpl constsServiceImpl;</div><div class="line">	</div><div class="line">	@Scheduled(cron = &quot;0/5 * * * * ?&quot;)//每隔5秒执行一次</div><div class="line">	public void doit()&#123;</div><div class="line">		String logPath =  constsServiceImpl.getStringByName(&quot;visitor_log&quot;);</div><div class="line">		String logName = &quot;visitor111.log&quot;;</div><div class="line">		try &#123;</div><div class="line">			FileReader fr = new FileReader(logPath + logName);</div><div class="line">			BufferedReader br = new BufferedReader(fr);</div><div class="line">			String s = br.readLine();</div><div class="line">			while (s != null) &#123;</div><div class="line">				System.err.println(s);</div><div class="line">				s = br.readLine();</div><div class="line">			&#125;</div><div class="line">			br.close();</div><div class="line">		&#125; catch (Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Aspect切面编程"><a href="#Aspect切面编程" class="headerlink" title="@Aspect切面编程"></a>@Aspect切面编程</h2><h3 id="开启切面注解"><a href="#开启切面注解" class="headerlink" title="开启切面注解"></a>开启切面注解</h3><p>spring.xml多加下面的内容启用切面功能，代码使用@Component和@Aspect和切片@Around，@Before，@After等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</div><div class="line"></div><div class="line">http://www.springframework.org/schema/aop</div><div class="line">http://www.springframework.org/schema/aop/spring-aop-3.1.xsd</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 强制使用CGLIB代理 --&gt;</div><div class="line">&lt;aop:aspectj-autoproxy proxy-target-class=&quot;true&quot;/&gt;</div></pre></td></tr></table></figure>
+<h3 id="切片代码"><a href="#切片代码" class="headerlink" title="切片代码"></a>切片代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">@Component</div><div class="line">@Aspect</div><div class="line">public class LogAOP &#123;</div><div class="line"></div><div class="line">    @Before(&quot;execution(* com.sr.web.controller..*.*(..))&quot;)</div><div class="line">    public void before(JoinPoint joinPoint) &#123;</div><div class="line">        Signature signature = joinPoint.getSignature(); // 签名信息</div><div class="line">        System.out.println(&quot;请求参数：&quot; + Arrays.toString(joinPoint.getArgs())); // 请求参数</div><div class="line">        System.out.println(&quot;开始运行：&quot; + signature.getName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @After(&quot;execution(* com.sr.web.controller..*.*(..))&quot;)</div><div class="line">    public void after(JoinPoint joinPoint) &#123;</div><div class="line">        Signature signature = joinPoint.getSignature(); // 签名信息</div><div class="line">        System.out.println(&quot;请求参数：&quot; + Arrays.toString(joinPoint.getArgs())); // 请求参数</div><div class="line">        System.out.println(&quot;结束运行：&quot; + signature.getName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 环绕通知需要携带ProceedingJoinPoint类型的参数</div><div class="line">     * 环绕通知类似于动态代理的全过程：ProceedingJoinPoint类型的参数可以决定是否执行目标方法</div><div class="line">     * 且环绕通知必须有返回值，返回值即为目标方法的返回值</div><div class="line">     */</div><div class="line">    @Around(&quot;execution(* com.sr.web.controller..*.*(..))&quot;)</div><div class="line">    public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable &#123;</div><div class="line">        Signature signature = proceedingJoinPoint.getSignature(); // 签名信息</div><div class="line">        System.out.println(&quot;请求参数：&quot; + Arrays.toString(proceedingJoinPoint.getArgs())); // 请求参数</div><div class="line">        long start = System.currentTimeMillis();</div><div class="line">        Object object = proceedingJoinPoint.proceed(); // 执行方法，必须将返回值return</div><div class="line">        long costTime = System.currentTimeMillis() - start;</div><div class="line">        System.out.println(&quot;方法运行时间：&quot; + signature.getName() + &quot; &quot; + costTime);</div><div class="line">        return object;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag">#Spring</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/software/Servlet/" rel="next" title="Servlet">
+                <i class="fa fa-chevron-left"></i> Servlet
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/12/software/Text Editors/" rel="prev" title="Text Editors">
+                Text Editors <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+      	<!-- 多说评论框 start -->
+		<div class="ds-thread" data-thread-key="2017/01/12/software/Spring/" data-url="http://bebetter.site/2017/01/12/software/Spring/"></div>
+		<!-- 多说评论框 end -->
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+		<script type="text/javascript">
+			var duoshuoQuery = {short_name:"gatewayzy"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//bebetter.site/statics/js/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+		</script>
+		<!-- 多说公共JS代码 end -->
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="my-github" target="_blank">my-github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baidu.com/" title="百度" target="_blank">百度</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring简介"><span class="nav-number">1.</span> <span class="nav-text">Spring简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring概念"><span class="nav-number">2.</span> <span class="nav-text">Spring概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单Spring项目"><span class="nav-number">3.</span> <span class="nav-text">简单Spring项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最小配置包"><span class="nav-number">3.1.</span> <span class="nav-text">最小配置包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建spring核心文件applicationContext-xml"><span class="nav-number">3.2.</span> <span class="nav-text">创建spring核心文件applicationContext.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置bean"><span class="nav-number">3.3.</span> <span class="nav-text">配置bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java反射"><span class="nav-number">3.4.</span> <span class="nav-text">Java反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring代码demo"><span class="nav-number">3.5.</span> <span class="nav-text">spring代码demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DI配合接口编程"><span class="nav-number">4.</span> <span class="nav-text">DI配合接口编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-MVC"><span class="nav-number">5.</span> <span class="nav-text">Spring MVC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Service层"><span class="nav-number">5.1.</span> <span class="nav-text">Service层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller控制器"><span class="nav-number">5.2.</span> <span class="nav-text">Controller控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页面请求"><span class="nav-number">5.2.1.</span> <span class="nav-text">页面请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax请求"><span class="nav-number">5.2.2.</span> <span class="nav-text">ajax请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ModelAndView"><span class="nav-number">5.2.3.</span> <span class="nav-text">ModelAndView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ModelMap"><span class="nav-number">5.2.4.</span> <span class="nav-text">ModelMap</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interceptor拦截器"><span class="nav-number">6.</span> <span class="nav-text">Interceptor拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置拦截器拦截规则"><span class="nav-number">6.1.</span> <span class="nav-text">配置拦截器拦截规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拦截器代码"><span class="nav-number">6.2.</span> <span class="nav-text">拦截器代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Listener监听器"><span class="nav-number">7.</span> <span class="nav-text">Listener监听器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ApplicationListener监听程序启动"><span class="nav-number">7.1.</span> <span class="nav-text">ApplicationListener监听程序启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scheduled定时任务"><span class="nav-number">8.</span> <span class="nav-text">@Scheduled定时任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启扫描注解"><span class="nav-number">8.1.</span> <span class="nav-text">开启扫描注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务代码"><span class="nav-number">8.2.</span> <span class="nav-text">任务代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Aspect切面编程"><span class="nav-number">9.</span> <span class="nav-text">@Aspect切面编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启切面注解"><span class="nav-number">9.1.</span> <span class="nav-text">开启切面注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切片代码"><span class="nav-number">9.2.</span> <span class="nav-text">切片代码</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+
+</body>
+</html>

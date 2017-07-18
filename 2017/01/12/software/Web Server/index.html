@@ -476,6 +476,43 @@ redirectPort=&quot;8443&quot;  URIEncoding=&quot;UTF-8&quot;/&gt;</code><br>其�
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">PROJECT=&quot;usercenter&quot;</div><div class="line">cd ./svn/usercenter/</div><div class="line">echo &quot;going to update project: $&#123;PROJECT&#125;.&quot;</div><div class="line">svn update</div><div class="line">mvn clean package -Dmaven.test.skip=true</div><div class="line">echo &quot;mvn package done.&quot;</div><div class="line">./../../sh/shutdown.sh</div><div class="line">echo &quot;tomcats have been shutdown.&quot;</div><div class="line">rm  ../../1/webapps/$&#123;PROJECT&#125;* -r</div><div class="line">rm  ../../2/webapps/$&#123;PROJECT&#125;* -r</div><div class="line">rm  ../../3/webapps/$&#123;PROJECT&#125;* -r</div><div class="line">echo &quot;going to copy $&#123;PROJECT&#125;.war to all webapps.&quot;</div><div class="line">cp ./target/$&#123;PROJECT&#125;.war   ../../1/webapps/</div><div class="line">cp ./target/$&#123;PROJECT&#125;.war   ../../2/webapps/</div><div class="line">cp ./target/$&#123;PROJECT&#125;.war   ../../3/webapps/</div><div class="line">./../../sh/startup.sh</div><div class="line">echo &quot;tomcats have been startup.&quot;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">echo &quot;kill all tomcats&quot;</div><div class="line">ID=`lsof -i:8103 |tail -1 | awk &apos;&#123;print $2&#125;&apos;`</div><div class="line">echo $ID</div><div class="line">for id in $ID</div><div class="line">do</div><div class="line">  kill -9 $id</div><div class="line">  echo &quot;killed $id&quot;</div><div class="line">done</div><div class="line">echo &quot;#############################&quot;</div></pre></td></tr></table></figure>
+<h3 id="tomcat-启用-https"><a href="#tomcat-启用-https" class="headerlink" title="tomcat 启用 https"></a>tomcat 启用 https</h3><p>参考文章 <a href="http://www.cnblogs.com/sixiweb/p/3339698.html" target="_blank" rel="external">tomcat7+jdk的keytool生成证书 配置https</a></p>
+<ul>
+<li><p>window下https</p>
+<ol>
+<li>确定tomcat使用的jdk。以使用系统环境变量中的jdk1.8为例。</li>
+<li>用jdk生成keystore文件并导出证书<ol>
+<li>%JAVA_HOME%\bin\keytool -genkey -alias sr -keyalg RSA  # 这是设置证书别名叫sr，别名任选不重复就行</li>
+<li>输入信息，假设密码是changeit，填写要求的信息，国家代码用cn，正确按y，输入tomcat的秘钥口令也假设为changeit。</li>
+<li>会在用户主目录生成.keystore文件，将其拷贝到tomcat的bin目录下。</li>
+<li>在tomcat的bin目录下运行命令：keytool -selfcert -alias sr -keystore .keystore，输入之前的命令changeit</li>
+<li>接着运行keytool -export -alias sr -keystore .keystore -storepass changeit -rfc -file sr.cer 会导出证书sr.cer</li>
+</ol>
+</li>
+<li>tomcat启用https<ul>
+<li>配置tomcat/conf/server.xml</li>
+<li>找到<code>&lt;Connector port=&quot;8443&quot;</code> 取消注释并改成<code>port=&quot;443&quot; ... sslProtocol=&quot;TLS&quot; keystoreFile=&quot;bin/.keystore&quot; keystorePass=&quot;changeit&quot; /&gt;</code></li>
+<li>上面设置了https采用默认端口443，且配置http是证书。重启tomcat，访问https/127.0.0.1/ </li>
+<li>正常的话，应该会提示https不安全，证书不安全，点击继续访问后可以访问页面。</li>
+</ul>
+</li>
+<li>用户安装证书<ul>
+<li>将证书sr.cer发给使用者，让他们安装该证书（具体步骤同12306.cn网站证书的安装步骤）</li>
+<li>用户下载sr.cer双击运行，添加到“本地计算机”，“就所有证书都放入下列存储”，选择“受信任的根证书颁发机构”，一路确定即可。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>linux下配置方式与window下类似，只不过建议所有的keytool都使用绝对路径，因为locate keytool可以看到ubuntu有很多keytool。</p>
+</li>
+<li><p>错误问题</p>
+<ul>
+<li>访问https时提示“您的连接不是私密连接…此服务器无法证明其所在网域是…”，但是可以继续访问。</li>
+<li>由于证书是自己给自己颁发的，所以浏览器不相信证书颁发机构。原因是浏览器没有 CA 证书，只有 CA 证书，服务器才能够确定这个用户就是真实的访问请求（比如不是代理过来的）。</li>
+<li>如果我们的证书不是自己颁发，而是去靠谱的机构去申请的，就不会出现这样的问题，因为靠谱机构的证书会放到浏览器中，浏览器会各种安全检查。初次尝试的同学可以去 startssl.com 申请一个免费的证书，相关操作可以参考<a href="http://www.tuicool.com/articles/VbeEfyz" target="_blank" rel="external">startssl申请免费ssl证书的方法</a>，需要注册邮箱，域名验证，证书下载…</li>
+</ul>
+</li>
+</ul>
 <h2 id="问题与解决"><a href="#问题与解决" class="headerlink" title="问题与解决"></a>问题与解决</h2><hr>
 <h3 id="tomcat提示Choose-unique-values-for-the-webAppRootKey"><a href="#tomcat提示Choose-unique-values-for-the-webAppRootKey" class="headerlink" title="tomcat提示Choose unique values for the webAppRootKey"></a>tomcat提示Choose unique values for the webAppRootKey</h3><ul>
 <li>问题描述：一个tomcat发布多个web项目提示错误Choose unique values for the ‘webAppRootKey’</li>
@@ -483,6 +520,10 @@ redirectPort=&quot;8443&quot;  URIEncoding=&quot;UTF-8&quot;/&gt;</code><br>其�
 <li>解决方法：为后者指定或者为每个web都定义一个webAppRootKey</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;context-param&gt;</div><div class="line">    &lt;param-name&gt;webAppRootKey&lt;/param-name&gt;</div><div class="line">    &lt;param-value&gt;app1.root&lt;/param-value&gt;</div><div class="line">&lt;/context-param&gt;</div></pre></td></tr></table></figure>
+<h3 id="ubuntu-tomcat提示isARPRequired-Z错误"><a href="#ubuntu-tomcat提示isARPRequired-Z错误" class="headerlink" title="ubuntu tomcat提示isARPRequired()Z错误"></a>ubuntu tomcat提示isARPRequired()Z错误</h3><ul>
+<li>解决方法：重新下载官网的新版的tomcat。注意新版需要修改设置：端口修改、中文支持URLEncoding=utf-8、系统没有中文乱码。</li>
+</ul>
+
       
     </div>
 
@@ -519,16 +560,16 @@ redirectPort=&quot;8443&quot;  URIEncoding=&quot;UTF-8&quot;/&gt;</code><br>其�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/12/software/Visual Studio/" rel="next" title="Visual Studio">
-                <i class="fa fa-chevron-left"></i> Visual Studio
+              <a href="/2017/01/12/software/Windows/" rel="next" title="Windows">
+                <i class="fa fa-chevron-left"></i> Windows
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/12/software/Windows/" rel="prev" title="Windows">
-                Windows <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/14/AIDeepLearning/Deep Learning Overview/" rel="prev" title="Deep Learning Overview">
+                Deep Learning Overview <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -615,7 +656,7 @@ redirectPort=&quot;8443&quot;  URIEncoding=&quot;UTF-8&quot;/&gt;</code><br>其�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -632,7 +673,7 @@ redirectPort=&quot;8443&quot;  URIEncoding=&quot;UTF-8&quot;/&gt;</code><br>其�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -679,7 +720,7 @@ redirectPort=&quot;8443&quot;  URIEncoding=&quot;UTF-8&quot;/&gt;</code><br>其�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache"><span class="nav-number">1.</span> <span class="nav-text">Apache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jetty"><span class="nav-number">2.</span> <span class="nav-text">Jetty</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jetty介绍"><span class="nav-number">2.1.</span> <span class="nav-text">Jetty介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要端口号"><span class="nav-number">2.3.</span> <span class="nav-text">主要端口号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat"><span class="nav-number">3.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat安装启动"><span class="nav-number">3.1.</span> <span class="nav-text">Tomcat安装启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布项目"><span class="nav-number">3.2.</span> <span class="nav-text">发布项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat-界面管理与设置"><span class="nav-number">3.3.</span> <span class="nav-text">Tomcat 界面管理与设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat主要端口"><span class="nav-number">3.4.</span> <span class="nav-text">Tomcat主要端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat的体系结构"><span class="nav-number">3.5.</span> <span class="nav-text">tomcat的体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#catalina-bat"><span class="nav-number">3.6.</span> <span class="nav-text">catalina.bat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat集群"><span class="nav-number">3.7.</span> <span class="nav-text">Tomcat集群</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装与配置"><span class="nav-number">3.7.1.</span> <span class="nav-text">安装与配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享session"><span class="nav-number">3.7.2.</span> <span class="nav-text">共享session</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#脚本管理tomcat集群"><span class="nav-number">3.7.3.</span> <span class="nav-text">脚本管理tomcat集群</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与解决"><span class="nav-number">4.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat提示Choose-unique-values-for-the-webAppRootKey"><span class="nav-number">4.1.</span> <span class="nav-text">tomcat提示Choose unique values for the webAppRootKey</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache"><span class="nav-number">1.</span> <span class="nav-text">Apache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jetty"><span class="nav-number">2.</span> <span class="nav-text">Jetty</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jetty介绍"><span class="nav-number">2.1.</span> <span class="nav-text">Jetty介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要端口号"><span class="nav-number">2.3.</span> <span class="nav-text">主要端口号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat"><span class="nav-number">3.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat安装启动"><span class="nav-number">3.1.</span> <span class="nav-text">Tomcat安装启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布项目"><span class="nav-number">3.2.</span> <span class="nav-text">发布项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat-界面管理与设置"><span class="nav-number">3.3.</span> <span class="nav-text">Tomcat 界面管理与设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat主要端口"><span class="nav-number">3.4.</span> <span class="nav-text">Tomcat主要端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat的体系结构"><span class="nav-number">3.5.</span> <span class="nav-text">tomcat的体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#catalina-bat"><span class="nav-number">3.6.</span> <span class="nav-text">catalina.bat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat集群"><span class="nav-number">3.7.</span> <span class="nav-text">Tomcat集群</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装与配置"><span class="nav-number">3.7.1.</span> <span class="nav-text">安装与配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享session"><span class="nav-number">3.7.2.</span> <span class="nav-text">共享session</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#脚本管理tomcat集群"><span class="nav-number">3.7.3.</span> <span class="nav-text">脚本管理tomcat集群</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat-启用-https"><span class="nav-number">3.8.</span> <span class="nav-text">tomcat 启用 https</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与解决"><span class="nav-number">4.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat提示Choose-unique-values-for-the-webAppRootKey"><span class="nav-number">4.1.</span> <span class="nav-text">tomcat提示Choose unique values for the webAppRootKey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ubuntu-tomcat提示isARPRequired-Z错误"><span class="nav-number">4.2.</span> <span class="nav-text">ubuntu tomcat提示isARPRequired()Z错误</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

@@ -319,6 +319,11 @@
         <p><strong>说明：</strong>MySQL配置使用。<br><a id="more"></a></p>
 <hr>
 <p>参考文章：</p>
+<h2 id="sql-语法"><a href="#sql-语法" class="headerlink" title="sql 语法"></a>sql 语法</h2><hr>
+<h3 id="sql-内容"><a href="#sql-内容" class="headerlink" title="sql 内容"></a>sql 内容</h3><ul>
+<li>ddl、dml、</li>
+<li>设置自增起始值：alter table mytable AUTO_INCREMENT=1</li>
+</ul>
 <h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><hr>
 <h3 id="Date-formate日期格式转换"><a href="#Date-formate日期格式转换" class="headerlink" title="Date_formate日期格式转换"></a>Date_formate日期格式转换</h3><hr>
 <p>将datetime转换为字符串： <code>Select date_format(feedback_time,&#39;%Y-%c-%d %h:%i:%s&#39;) AS feedbackTime</code></p>
@@ -343,7 +348,7 @@
 <li>explain select * from… </li>
 </ul>
 <h3 id="选取存在重复项的数据"><a href="#选取存在重复项的数据" class="headerlink" title="选取存在重复项的数据"></a>选取存在重复项的数据</h3><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * from qa_dis_dic_code a where not EXISTS (SELECT 1 from qa_dis_dic_code b where a.category_2= b.category_2 and b.id&lt;a.id)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * from qa_dis_dic_code a where EXISTS (SELECT 1 from qa_dis_dic_code b where a.category_2= b.category_2 and b.id&lt;a.id)</div></pre></td></tr></table></figure>
 <h2 id="命令行操作"><a href="#命令行操作" class="headerlink" title="命令行操作"></a>命令行操作</h2><hr>
 <ul>
 <li>mysql登陆root：mysql -u root -p<ul>
@@ -408,8 +413,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/12/software/MongoDB/" rel="prev" title="MongoDB">
-                MongoDB <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/12/software/Mybatis/" rel="prev" title="Mybatis">
+                Mybatis <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -496,7 +501,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -513,7 +518,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -560,7 +565,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用函数"><span class="nav-number">1.</span> <span class="nav-text">常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-formate日期格式转换"><span class="nav-number">1.1.</span> <span class="nav-text">Date_formate日期格式转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Concat拼接函数"><span class="nav-number">1.2.</span> <span class="nav-text">Concat拼接函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中文排序问题"><span class="nav-number">1.3.</span> <span class="nav-text">中文排序问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器状态信息"><span class="nav-number">1.4.</span> <span class="nav-text">服务器状态信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Explain语句解析"><span class="nav-number">1.5.</span> <span class="nav-text">Explain语句解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选取存在重复项的数据"><span class="nav-number">1.6.</span> <span class="nav-text">选取存在重复项的数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行操作"><span class="nav-number">2.</span> <span class="nav-text">命令行操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell编程"><span class="nav-number">2.1.</span> <span class="nav-text">shell编程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sql-语法"><span class="nav-number">1.</span> <span class="nav-text">sql 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sql-内容"><span class="nav-number">1.1.</span> <span class="nav-text">sql 内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用函数"><span class="nav-number">2.</span> <span class="nav-text">常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-formate日期格式转换"><span class="nav-number">2.1.</span> <span class="nav-text">Date_formate日期格式转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Concat拼接函数"><span class="nav-number">2.2.</span> <span class="nav-text">Concat拼接函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中文排序问题"><span class="nav-number">2.3.</span> <span class="nav-text">中文排序问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器状态信息"><span class="nav-number">2.4.</span> <span class="nav-text">服务器状态信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Explain语句解析"><span class="nav-number">2.5.</span> <span class="nav-text">Explain语句解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选取存在重复项的数据"><span class="nav-number">2.6.</span> <span class="nav-text">选取存在重复项的数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行操作"><span class="nav-number">3.</span> <span class="nav-text">命令行操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell编程"><span class="nav-number">3.1.</span> <span class="nav-text">shell编程</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

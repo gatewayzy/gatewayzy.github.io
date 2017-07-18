@@ -353,7 +353,6 @@
 <ul>
 <li>python版本<ul>
 <li>linux下面的python可能还有3.5、3.5m这种版本，表示：<code>--with-pydebug (flag: d)--with-pymalloc (flag: m)--with-wide-unicode (flag: u)</code></li>
-<li></li>
 </ul>
 </li>
 </ul>
@@ -381,7 +380,6 @@
 <li>注释：单行注释用#开头，多行注释用’’’注释且支持换行，也可用三个双引号’’’</li>
 <li>行与缩进：必须相应对齐，因为没有{}，只要是对齐的，可缩进多个。句尾不要写分号，用分号的话，后面后面可以写另一句代码。</li>
 <li>多行语句：用\连接起来多行，如a+\换行b，但是如果是[]、{}、()内部的多行，不需要使用\表示换行。</li>
-<li>数据类型：4种数：整数、长整数、浮点数、复数</li>
 <li>字符串：<ul>
 <li>py中单引号与双引号等价。</li>
 <li>三引号或三个双引号可以指定一个多行字符串，用于定义字符串或者当做注释。</li>
@@ -394,10 +392,271 @@
 </li>
 <li>等待用户输入：n=input(‘输入n=’);print(n)</li>
 <li>输出语句：print默认是之后会换行，添加end参数，如print(“string”, end=’随便’)设置结尾不是\n而是指定的内容。</li>
+<li>删除引用对象用del，如del a,b</li>
+<li>_常用于交互模式下上一个运算结果。</li>
 </ul>
 <h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><hr>
 <ul>
-<li></li>
+<li>type(A)返回A的类型，不会认为子类是父类的类型，isinstance(A(),A)判断是否是实例，会认为子类是父类的类型。</li>
+<li><strong>python有6个标准的数据类型：Number数字、String字符串、List列表、Tuple元组、Set集合、Dictionary字典。</strong></li>
+<li>变量定义不要指定类型，支持多变量统一定义和分别定义，如a=b=c=1;aa,bb,cc=1,0.3,”string”。变量的类型可通过赋值操作改变。</li>
+<li>类型转换：使用int(s),float(s),tuple(s),set(s),str(s),complex(a,b),dict(s),chr(x),unichar(x)等等进行转换</li>
+<li>遍历技巧：<ul>
+<li>字典遍历可用 for k, v in dictA.items()</li>
+<li>序列遍历可用 for i, v in enumerate(listA)</li>
+<li>同时遍历多个序列 for q, a in zip(questions, answers)</li>
+<li>反向遍历一个序列 for i in reversed(listA)</li>
+<li>顺序遍历一个序列 for f in sorted(set(listA))</li>
+</ul>
+</li>
+</ul>
+<h4 id="Number-数字类型包括4种："><a href="#Number-数字类型包括4种：" class="headerlink" title="Number 数字类型包括4种："></a>Number 数字类型包括4种：</h4><ul>
+<li>int整数：py3只有int整数，对应python2的long int。</li>
+<li>float浮点数：除法/总是返回浮点数</li>
+<li>bool：py2中没有bool，但是py3和py2一样都是用0和1表示False，True，可以和数字相加</li>
+<li>complex复数：用a+bj或者a+bJ表示，其中a，b都是float。支持complex(a,b)构造。</li>
+<li><code>+-*/</code>，其中/是浮点除法，//才是整除，%取余，<code>**</code>是指数运算</li>
+<li>常用函数<ul>
+<li>数学函数 <code>abs() ceil exp floor log log10 max min pow sqrt round</code> 等等，在import math中都能找到math.round(0.55,1)，也有一些其他的封装库，如numpy。</li>
+<li>随机数函数 choice(seq)随机选取队列一个元素；random()随机生成一个[0,1)间实数；shuffle(list)将序列打乱；uniform(x,y)随机生成[x,y]间一个实数等等。</li>
+<li>三角函数 <code>sin() cos tan acos degrees radians</code>等等 print(math.cos(0.5* math.pi));print(math.cos(0))</li>
+<li>数学常量 math.pi math.e</li>
+</ul>
+</li>
+</ul>
+<h4 id="String-字符串"><a href="#String-字符串" class="headerlink" title="String 字符串"></a>String 字符串</h4><ul>
+<li>使用单引号或双引号，使用\转义。a=’string\n’</li>
+<li>使用变量[头下标: 尾下标]进行截取，从左向右是0到最后，或者从最后向头部索引是-1,-2…。截取返回新字符串</li>
+<li>注意python所有的[i:j]都是包括左边但是不包括右边的。</li>
+<li>不可以进行str[0]=’a’这种尝试改变字符串的操作。py没有char类型，每一个字符只能用字符串表示。</li>
+<li>+进行字符串拼接，使用str*2表示重复。</li>
+<li>常用函数<ul>
+<li>转义用\，如输出<code>\&#39; \&quot; \n \t \\</code>等</li>
+<li>字符串运算符支持<code>+ * [:] in  not in  r/R</code>等</li>
+<li>格式化输出，支持的格式有<code>%c %s %d %f %e</code>等等，并且支持%与字母之间的辅助指令<code>数字表示宽度、-表示左对齐、+是整数显示+、m.nb表示最小总宽度和小数点位数</code>等等。如<code>print(&quot;%%我叫%s今年%+d岁!&quot; % (&#39;小明&#39;, 10));print(&#39;%-8s %-8s %-8s&#39; % (&#39;name&#39;, &#39;id&#39;, &#39;salary&#39;));print(&#39;%-8s %-+8d %5.2f&#39; % (&#39;aa&#39;, 10, 12.123));print(&#39;%-8s %-+8d %5.2f&#39; % (&#39;xxxx&#39;, -10, 58.91))</code> 就可以输出整数带+，宽度统一且都左对齐的格式。</li>
+<li>python2中使用ASCII(char8)存string，python3使用16位的Unicode存储string</li>
+<li>常用str内置函数，包括<code>len() startwith join lower isspace max encode</code>等等。如<code>a=&#39;aa Bb Cc DD&#39;;print(&#39;%s %s %s&#39;% (str.islower(a), str.lower(a), a.split(&#39; &#39;,2)))</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="List-列表"><a href="#List-列表" class="headerlink" title="List 列表 []"></a>List 列表 []</h4><ul>
+<li>使用[]和,进行定义，可包含不同类型，如a=[1, 2.0, 0.3j, “test”]，支持嵌套a=[[1,2],’a’] </li>
+<li>使用变量[头下标: 尾下标]进行截取，从左向右是0到最后，或者从最后向头部索引是-1,-2…截取返回新列表</li>
+<li>list元素可以修改，如str[0]=’a’</li>
+<li>+进行列表连接，使用*进行重复</li>
+<li>常用函数<ul>
+<li>使用del list[i] 删除一个元素</li>
+<li>常用<code>len() max min list</code>和<code>list.append() extend index sort pop remove clear copy</code>等等。</li>
+</ul>
+</li>
+<li>特点：<ul>
+<li>元素可变，可用作堆栈，可用作队列（但是基本是ArrayList，插入和删除不高效）</li>
+<li>列表推导式：方便地从序列创建列表，<code>b=[3*x for x in vec]</code> <code>[[x, x**2] for x in vec]</code>等构建复杂的列表</li>
+<li>嵌套列表解析：<code>a=[[row[i] for row in matrix] for i in range(4)]</code>等等</li>
+</ul>
+</li>
+</ul>
+<h4 id="Tuple-元组"><a href="#Tuple-元组" class="headerlink" title="Tuple 元组 ()"></a>Tuple 元组 ()</h4><ul>
+<li>使用()和,进行定义，可包含不同类型，如ta = (‘a’, 1,”STR”,0.1J)</li>
+<li>元组含有0或者1个元素时构建方法为empt = ();onet = (‘a’,)#需要逗号</li>
+<li>使用变量[头下标: 尾下标]进行截取，从左向右是0到最后，或者从最后向头部索引是-1,-2…。截取返回新元组</li>
+<li>元组与list的区别在于元组的元素不能修改，不能使用ta[0] = 0。但是tuple支持包含可变的对象，如list = [1,2];tc = (list, ‘c’); print(tc)</li>
+<li>+进行列表连接，使用*进行重复</li>
+<li>string、list和tuple都属于sequence（序列）</li>
+<li>常用函数<ul>
+<li><code>len() max min tuple(seq)将列表转换为元组</code>等。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Set-集合-set"><a href="#Set-集合-set" class="headerlink" title="Set 集合 ({}) set()"></a>Set 集合 ({}) set()</h4><ul>
+<li>set无序不重复的序列，常用于检测关系或自动删除重复。</li>
+<li>set无序，不支持使用set[索引]的方式获取元素</li>
+<li>使用({})和,定义如，或者用set()创建空set或者a=set(一个元素)，如sa = ({1, ‘a’, 3, 3, 3, 30})会自动删除重复元素。</li>
+<li>set的运算用|、-、&amp;、^表示集合的并/减/交/异或</li>
+<li>集合支持集合推导式：<code>a = {x for x in &#39;abracadabra&#39; if x not in &#39;abc&#39;}</code></li>
+</ul>
+<h4 id="Dictionary-字典"><a href="#Dictionary-字典" class="headerlink" title="Dictionary 字典 {}"></a>Dictionary 字典 {}</h4><ul>
+<li>使用{}和,定义，空的字典是a={}，如</li>
+<li>dictionary是无序的对象集合，list是有序的对象集合，dictionary使用key:value进行存取</li>
+<li>字典是无序的集合，不支持dictionary[索引位置]方式，支持dict[keyName]的方式。</li>
+<li>key必须是不可变类型，key唯一，可以是字符串、数字、元组等，不能是list。</li>
+<li>可以用dict()构造函数创建dict，如db = dict([(‘name’,1),(3,2)])</li>
+<li>常用函数<ul>
+<li>常用dict的函数<code>str() len type</code>等，常用的<code>a.clear keys pop get items</code>等函数。</li>
+</ul>
+</li>
+<li>特点<ul>
+<li>字典支持字典推导式<code>a={x: x**2 for x in (2, 4, 6)}</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><hr>
+<ul>
+<li>算数运算符 <code>=-*/、 //、 %、 **</code></li>
+<li>比较运算符 <code>==、 !=、 &gt;、 &gt;=、 &lt;=</code></li>
+<li>赋值运算符 <code>=、 +=、 -=、 *=、 /=、 %=、 //=</code></li>
+<li>位运算符 <code>&amp;、 |、 ^异或、 ~取反、 &lt;&lt;左移、 &gt;&gt;右移</code></li>
+<li>逻辑运算 <code>and、 or、 not</code></li>
+<li>成员运算 <code>in、 not in</code></li>
+<li>身份运算 <code>is、 is not</code></li>
+<li>运算优先级 略</li>
+</ul>
+<h3 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h3><hr>
+<h4 id="条件控制"><a href="#条件控制" class="headerlink" title="条件控制"></a>条件控制</h4><hr>
+<ul>
+<li>if else elif，没有switch</li>
+</ul>
+<h4 id="循环控制"><a href="#循环控制" class="headerlink" title="循环控制"></a>循环控制</h4><hr>
+<ul>
+<li>while else 无限循环可以使用ctrl c中断循环</li>
+<li>for else  支持遍历序列，如列表、字符串等</li>
+<li>range() 函数，支持 for i,item in range(start, end, step)等，范围包括start不包括end</li>
+<li>使用continue、break控制循环</li>
+<li>pass 只用于占位，，没有任何实际影响</li>
+</ul>
+<h3 id="迭代器与生成器"><a href="#迭代器与生成器" class="headerlink" title="迭代器与生成器"></a>迭代器与生成器</h3><hr>
+<ul>
+<li>迭代用于遍历集合元素，只能向前不会后退<ul>
+<li>迭代器的基本方法：iter() 和 next() <code>a = [1,&#39;a&#39;,1.j];it = iter(a);print (next(it))</code></li>
+</ul>
+</li>
+<li>生成器是一个使用了yield函数的特殊的函数，用于返回迭代器，且只能用于迭代。<ul>
+<li>每次运行到yield函数时，会暂停并保存当前所有的运行信息，返回yield值，下一次next()从当前位置继续运行 <code>def get(n): ... yield a;</code> <code>f=get(5);print(next(f))</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><hr>
+<ul>
+<li>def 函数名 (参数列表): 函数体<ul>
+<li>使用return返回给调用方，不指明return则return None。</li>
+<li>在函数定义中参数指明如end=1可以设置默认值，否则就是必须参数</li>
+<li>调用函数，如果不指明形参名称如end=1这种关键词参数，则需要对应参数位置。</li>
+<li>不定长参数：加*的参数名就是不定长参数，调用时会把所有未命名的参数（除去对应的位置参数）都放到一个对应不定长参数的元组中。</li>
+</ul>
+</li>
+<li>python的参数都是引用传递，调用中改变时会影响调用方。</li>
+<li>匿名函数：使用lambda而不用def，主体只包含一个语句，且只能访问调用方的参数值，如<code>sumF = lambda a, b, c: a + b + c;  print(sumF(1, 2, 3))</code></li>
+<li>变量作用域：函数内的局部变量，函数外的全局变量。不声明的话，内部变量会使用全局变量，但是函数内部的修改不会改变全局变量，除非内部使用时指定global varName</li>
+</ul>
+<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><hr>
+<ul>
+<li>模块引入<ul>
+<li>import sys进行模块引入，sys.argv显示命令行参数，sys.path显示python路径等等。如果是import a.b.c 就要使用a.b.c.xx比较长。这种形式除了最后一项都必须是包，最后一项可以是模块或者包，但不可以是类、函数或者变量。</li>
+<li>from a.b import c,d # 引入指定模块以访问c、d，就可以使用c.xx。该形式可以引入子包（子模块）或者包里面定义的其他名称，如函数、类、变量等。引入的对象先会被当做包进行导入，如果没找到就会尝试作为模块进行导入，还找不到就抛出异常</li>
+<li>from package1.p2 import * # 引入所有项目。如果包文件的<code>__init__.py</code>中存在<code>__all__</code>列表变量，就将列表中所有名字作为包内容导入，所以需要手动更新该变量值。如<code>__all__ = [&quot;echo&quot;, &quot;surround&quot;, &quot;reverse&quot;]</code>表示只导入3个模块。如果没有该变量，就会默认导入p2里面的所有内容以及<code>__init__.py</code>中的初始化内容。这种引入方式使用不当可能会产生覆盖。</li>
+<li>推荐使用from package1.p2 import module1 as m1,module2 as m2 这种方式。from支持.和..相对路径，但是主模块永远是<code>__main__</code>。</li>
+</ul>
+</li>
+<li>不同模块的全局变量存放在不同空间符号表，之间不会相互影响</li>
+<li>模块被引入时，默认会运行其主程序。所以需要注意，这些程序在被import时就会运行，常用于初始化操作等。如果不想在被import时就运行可以对模块设置相应的属性可以进行限定。<ul>
+<li><code>_name_</code>属性，<code>if __name__ == &#39;__main__&#39;</code>可以限定只在自身运行时才会调用对应的代码，避免放在外部的话在被import时就运行。</li>
+</ul>
+</li>
+<li>dir()函数可找到模块内定义的所有名称，如dir()得到当前模块的所有名称， dir(sys)获得sys模块内的名称。</li>
+<li>每个模块都有内置的属性，如<code>print(__doc__)</code>就可以输出当前模块开头的’’’注释说明’’’。</li>
+<li>标准模块</li>
+<li>包管理使用‘点模块名称’<ul>
+<li>包的目录包含 <code>__init__.py</code> 文件才会被认作是一个包，主要是为了避免一些滥俗的名字（比如叫做 string）不小心的影响搜索路径中的有效模块。最简单的情况，放一个空的 <code>__init__.py</code>就可以了。当然这个文件中也可以包含一些初始化代码或者为<code>__all__</code>变量赋值。</li>
+</ul>
+</li>
+</ul>
+<h3 id="输入和输出"><a href="#输入和输出" class="headerlink" title="输入和输出"></a>输入和输出</h3><hr>
+<h4 id="输出格式美化"><a href="#输出格式美化" class="headerlink" title="输出格式美化"></a>输出格式美化</h4><hr>
+<ul>
+<li>输出值的方式：表达式语句和 print() 函数，或者文件对象的 write()，如引用sys.stdout。</li>
+<li>str() <ul>
+<li>str.format() 函数来格式化输出值，如<code>print(&#39;{}网址： &quot;{}!&quot;&#39;.format(&#39;菜鸟教程&#39;, &#39;www.runoob.com&#39;))</code>等等。</li>
+<li>% 操作符也可以实现字符串格式化,但是属于旧式方法，最终会被 str.format() 替换</li>
+</ul>
+</li>
+<li>repr() <ul>
+<li>可以转义特殊字符，如’\n’输出为’\n’而不换行</li>
+<li>提供rjust()、ljust、center和zfill等方法，分别进行空格填充以靠右左中、用0填充数字等。<code>print(repr(x*x*x).rjust(4))</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="读取键盘输入"><a href="#读取键盘输入" class="headerlink" title="读取键盘输入"></a>读取键盘输入</h4><hr>
+<ul>
+<li>a=input(‘请输入a=’,a)</li>
+</ul>
+<h4 id="读写文件"><a href="#读写文件" class="headerlink" title="读写文件"></a>读写文件</h4><hr>
+<ul>
+<li>open打开文件r，w，a，b等模式，对文件句柄进行操作</li>
+<li>包括f.read() readline() readlines() f.write() f.close()等等，如<code>f = open(&quot;/tmp/foo.txt&quot;, &quot;r&quot;);print(f.readline())</code></li>
+<li>注意关闭文件。</li>
+</ul>
+<h4 id="pickle模块"><a href="#pickle模块" class="headerlink" title="pickle模块"></a>pickle模块</h4><hr>
+<ul>
+<li>pickle模块实现了基本的数据序列和反序列化。通过pickle模块的序列化操作我们能够将程序中运行的对象信息保存到文件中去，永久存储。通过pickle模块的反序列化操作，我们能够从文件中创建上一次程序保存的对象。</li>
+<li>pickle操作类文件对象，import pickle，注意关闭文件<ul>
+<li><code>obj=...;file = open(&#39;data.pkl&#39;, &#39;wb&#39;);pickle.dump(obj, file, protocol)</code> protocol有0/-1等，为可选参数。</li>
+<li><code>file = open(&#39;data.pkl&#39;, &#39;rb&#39;);x = pickle.load(file)</code> 可以引入pprint.pprint(x)</li>
+</ul>
+</li>
+</ul>
+<h3 id="错误和异常"><a href="#错误和异常" class="headerlink" title="错误和异常"></a>错误和异常</h3><hr>
+<ul>
+<li>try: except ExceptName: else: finally:<ul>
+<li>except 可以用except (RuntimeError, TypeError, NameError):或者多个except，但是至多一个会被执行。</li>
+<li>else会在try没有异常时执行</li>
+<li>不管有没有异常，在最后都会执行finally的清理行为。</li>
+</ul>
+</li>
+<li>raise 放在except里面将异常抛给上一级<code>except NameError:  raise</code>。</li>
+<li>预定义的清理行为：无论系统是否成功，一旦不需要它就会自动清理。<ul>
+<li><code>for line in open(&quot;myfile.txt&quot;): print(line, end=&quot;&quot;)</code></li>
+<li>关键词with可以保证文件之类的对象使用完后会自动被关闭或清理。<code>with open(&quot;myfile.txt&quot;) as f: for line in f:print(line, end=&quot;&quot;)</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><hr>
+<h4 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h4><ul>
+<li>python本身就是面向对象的。类。类变量：类中函数体之外的变量，实例化中公用。实例变量：实例化中定义的变量。数据成员：类变量或者实例变量等数据。方法重写：子类可以覆盖父类的方法override。</li>
+<li>类定义：<code>class ClassName: 变量、方法等</code>。支持属性引用和实例化，</li>
+<li>如果子类方法名与父类重名，会自动重写。如果子类中找不到方法名，会从父类中查找相应的方法。</li>
+<li>继承支持多类继承<code>class Student(MyClass, Human):</code>，如果子类找不到方法，而且是多类继承，会根据该括号中顺序从左向右的父类中搜索。</li>
+</ul>
+<h4 id="类的属性与方法"><a href="#类的属性与方法" class="headerlink" title="类的属性与方法"></a>类的属性与方法</h4><ul>
+<li>类的私有属性用两个下划线开头的属性，可保证在类外部无法直接通过a.name等方式获取</li>
+<li>类的方法定义第一个参数是额外的用于指代实例本身，惯用self。如果是私有方法，将方法名也是以两个下划线开头，该方法只能在类的内部调用。</li>
+<li>类的专有方法主要如下，也都是支持重写的。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">__init__ : 构造函数，在生成对象时调用</div><div class="line">__del__ : 析构函数，释放对象时使用</div><div class="line">__repr__ : 打印，转换</div><div class="line">__setitem__ : 按照索引赋值</div><div class="line">__getitem__: 按照索引获取值</div><div class="line">__len__: 获得长度</div><div class="line">__cmp__: 比较运算</div><div class="line">__call__: 函数调用</div><div class="line">__add__: 加运算</div><div class="line">__sub__: 减运算</div><div class="line">__mul__: 乘运算</div><div class="line">__div__: 除运算</div><div class="line">__mod__: 求余运算</div><div class="line">__pow__: 乘方</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">class MyClass():</div><div class="line">    &apos;&apos;&apos;</div><div class="line">    定义自己的类。类的方法需要第一个位置作为额外参数，惯例是叫self，指代类的实例</div><div class="line">    &apos;&apos;&apos;</div><div class="line">    country = &apos;china&apos;</div><div class="line">    __weight = &apos;60kg&apos;  # 双下划线开始的属性不能在类外部直接访问</div><div class="line"></div><div class="line">    def __init__(self, name, age):</div><div class="line">        # init是初始化方法（构造方法）</div><div class="line">        self.name = name</div><div class="line">        self.age = age</div><div class="line"></div><div class="line">    def printSelf(self):</div><div class="line">        print(self)</div><div class="line">        print(self.__class__)</div><div class="line"></div><div class="line">    def setNo(self, no):</div><div class="line">        self.no = no</div><div class="line"></div><div class="line">    def show(self):</div><div class="line">        print(&quot;country:&#123;&#125; name:&#123;&#125; age:&#123;&#125; no:&#123;&#125; weight:&#123;&#125;&quot;.format(self.country, self.name, self.age, self.no,</div><div class="line">                                                                 self.__weight))</div><div class="line"></div><div class="line"></div><div class="line">class human():</div><div class="line">    __age = 23</div><div class="line">    sex = &apos;unknown&apos;</div><div class="line"></div><div class="line">    def __init__(self, sex):</div><div class="line">        self.sex = sex</div><div class="line"></div><div class="line">    def showHuman(self):</div><div class="line">        print(&quot;age:&#123;&#125; sex:&#123;&#125;&quot;.format(self.__age, self.sex))</div><div class="line"></div><div class="line"></div><div class="line">class student(MyClass, human):</div><div class="line">    &apos;&apos;&apos;</div><div class="line">    支持多继承，如果方法在子类没找到，而多个父类有同名方法，会依据括号中顺序从左向右搜索</div><div class="line">    &apos;&apos;&apos;</div><div class="line">    stuID = -1</div><div class="line">    __score = -1000</div><div class="line"></div><div class="line">    def __init__(self, stuId, name, age, sex, no):</div><div class="line">        # self.stuID = stuId</div><div class="line">        MyClass.__init__(self, name, age)</div><div class="line">        MyClass.setNo(self, no)</div><div class="line">        human.__init__(self, sex)</div><div class="line"></div><div class="line">    def showStudent(self):</div><div class="line">        print(&apos;stuID:&#123;&#125; name:&#123;&#125; age:&#123;&#125; sex:&#123;&#125;&apos;.format(self.stuID, self.name, self.age, self.sex))</div><div class="line">        self.__getscore()</div><div class="line">        return self.name, self.age</div><div class="line"></div><div class="line">    def __getscore(self):</div><div class="line">        print(&apos;得分：%d&apos; % self.__score)</div><div class="line"></div><div class="line"></div><div class="line">def class_basic():</div><div class="line">    tom = MyClass(&apos;tom&apos;, 10)</div><div class="line">    tom.setNo(0)</div><div class="line">    tom.show()</div><div class="line">    tom.printSelf()</div><div class="line">    # print(tom.__weight)</div><div class="line">    jack = human(&apos;nan&apos;)</div><div class="line">    jack.showHuman()</div><div class="line"></div><div class="line">    will = student(100, &apos;will&apos;, 20, &apos;nv&apos;, 22)</div><div class="line">    will.show()</div><div class="line">    will.showHuman()</div><div class="line">    will.showStudent()</div><div class="line">    name, age = will.showStudent()</div><div class="line">    print(&apos;return 返回的值为：&#123;&#125;, &#123;&#125;&apos;.format(name, age))</div><div class="line">    # will.__getscore()</div><div class="line"></div><div class="line"></div><div class="line">def main_class():</div><div class="line">    print(&apos;\n\n&gt;&gt;&gt;&gt;&gt;&gt; class &gt;&gt;&gt;&gt;&gt;&gt;&apos;)</div><div class="line">    class_basic()</div><div class="line">    print(&apos;&lt;&lt;&lt;&lt;&lt;&lt; class &lt;&lt;&lt;&lt;&lt;&lt;\n&apos;)</div></pre></td></tr></table></figure>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><hr>
+<ul>
+<li>python3常用两个线程模块；_thread模块属于兼容python2的thread模块；threading是推荐使用的模块。</li>
+<li>兼容的_thread使用的是<code>_thread.start_new_thread ( function, args[, kwargs] )</code><ul>
+<li>function 表示线程函数</li>
+<li>args 表示传递给函数的线程，需要用tuple</li>
+<li>kwargs 可选参数</li>
+</ul>
+</li>
+<li>threading模块支持多种函数，包括start()、join()等。<ul>
+<li>threading模块实现多线程, 但是模块并没有提供暂停, 恢复和停止线程的方法, 一旦线程对象调用start方法后, 只能等到对应的方法函数运行完毕. 也就是说一旦start后, 线程就属于失控状态. 不过, 我们可以自己实现这些. 一般的方法就是循环地判断一个标志位, 一旦标志位到达到预定的值, 就退出循环. 这样就能做到退出线程了. 但暂停和恢复线程就有点难了, 我一直也不清除有什么好的方法, 直到我看到threading中Event对象的wait方法的描述时.</li>
+</ul>
+</li>
+<li>同步锁：使用 <code>threadLock = threading.Lock(); threadLock.acquire(); {代码块}threadLock.release()</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">import _thread</div><div class="line">import threading</div><div class="line">import time</div><div class="line"></div><div class="line"># 为线程定义一个函数</div><div class="line">def print_time(threadName, delay, counter):</div><div class="line">    count = 0</div><div class="line">    while count &lt; counter:</div><div class="line">        time.sleep(delay)</div><div class="line">        count += 1</div><div class="line">        print(&quot;%s: %s : %d&quot; % (threadName, time.ctime(time.time()), count))</div><div class="line"></div><div class="line">def thread_basic():</div><div class="line">    # 创建两个线程</div><div class="line">    try:</div><div class="line">        _thread.start_new_thread(print_time, (&quot;Thread-1&quot;, 1, 5))</div><div class="line">        _thread.start_new_thread(print_time, (&quot;Thread-2&quot;, 2, 5))</div><div class="line">    except:</div><div class="line">        print(&quot;Error: 无法启动线程&quot;)</div><div class="line">    # 如果不使用线程或者循环，而直接运行到程序退出的话会导致新线程退出</div><div class="line">    time.sleep(20)  # 30秒，给子线程一些运行时间</div><div class="line">    # while 1:</div><div class="line">    #    pass</div><div class="line"></div><div class="line">def main_thread():</div><div class="line">    print(&apos;\n\n&gt;&gt;&gt;&gt;&gt;&gt; _thread &gt;&gt;&gt;&gt;&gt;&gt;&apos;)</div><div class="line">    thread_basic()</div><div class="line">    print(&apos;开始Threading模块 &gt;&gt;&gt;&gt;&gt;&gt;&apos;)</div><div class="line">    threading_basic()</div><div class="line">    print(&apos;&lt;&lt;&lt;&lt;&lt;&lt; _thread &lt;&lt;&lt;&lt;&lt;&lt;\n&apos;)</div><div class="line"></div><div class="line">exitFlag = True</div><div class="line"></div><div class="line">def threading_basic():</div><div class="line">    pass</div><div class="line">    global exitFlag  # 默认使用全局变量，但是内部修改不会影响全局变量，真想改变全局变量就用global</div><div class="line">    print(exitFlag)</div><div class="line">    time.sleep(3)</div><div class="line">    thread3 = myThread(&apos;mythread-3&apos;, 3, 10)</div><div class="line">    thread3.start()  # start方法运行线程的run()</div><div class="line">    exitFlag = True</div><div class="line">    thread4 = myThread(&apos;mythread-4&apos;, 4, 7)</div><div class="line">    thread4.start()</div><div class="line">    if exitFlag:</div><div class="line">        print(&apos;全局变量已经修改，在外围将强制退出线程：&#123;&#125;但是不知道线程如何退出&apos;.format(thread4.threadName))</div><div class="line"></div><div class="line">class myThread(threading.Thread):</div><div class="line">    def __init__(self, threadName, delay, counter):</div><div class="line">        threading.Thread.__init__(self)</div><div class="line">        self.threadName = threadName</div><div class="line">        self.delay = delay</div><div class="line">        self.counter = counter</div><div class="line">    def run(self):</div><div class="line">        print(&quot;开始线程：%s&quot; % self.threadName)</div><div class="line">        print_time(self.threadName, self.delay, self.counter)</div><div class="line">        print(&quot;线程结束：&#123;&#125;&quot;.format(self.threadName))</div></pre></td></tr></table></figure>
+<h3 id="标准库概览"><a href="#标准库概览" class="headerlink" title="标准库概览"></a>标准库概览</h3><hr>
+<ul>
+<li>import os 操作系统接口</li>
+<li>glob 文件通配符</li>
+<li>sys 命令行参数</li>
+<li>re 字符串正则匹配，re.match、search、sub等等</li>
+<li>math 数学，random 生成随机数</li>
+<li>datetime 日期和时间</li>
+<li>数据压缩 zlib gzip等等</li>
+</ul>
+<h3 id="其他模块"><a href="#其他模块" class="headerlink" title="其他模块"></a>其他模块</h3><hr>
+<ul>
+<li>json模块 import json<ul>
+<li><code>json_str = json.dumps(data);data2 = json.loads(json_str)</code></li>
+<li><code>with open(&#39;data.json&#39;, &#39;w&#39;) as f: json.dump(data, f)</code></li>
+<li><code>with open(&#39;data.json&#39;, &#39;r&#39;) as f: data = json.load(f)</code></li>
+</ul>
+</li>
 </ul>
 <h2 id="pycharm使用"><a href="#pycharm使用" class="headerlink" title="pycharm使用"></a>pycharm使用</h2><hr>
 <h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><hr>
@@ -405,6 +664,10 @@
 <li>ctrl alt shift L 格式化代码</li>
 <li>ctrl F5 重新运行项目</li>
 <li>alt insert 新建</li>
+<li>方法内部第一行输入’’’并回车  自动生成代码接口说明</li>
+<li>选中多行，按tab是统一添加tab</li>
+<li>选中多行按shift tab是统一减少tab</li>
+<li>抽取函数是ctrl alt m</li>
 <li>更多快捷键可查看idea的说明</li>
 </ul>
 <h2 id="错误与解决"><a href="#错误与解决" class="headerlink" title="错误与解决"></a>错误与解决</h2><hr>
@@ -546,7 +809,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -563,7 +826,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -610,7 +873,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python介绍"><span class="nav-number">1.</span> <span class="nav-text">Python介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装python"><span class="nav-number">2.1.</span> <span class="nav-text">安装python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装python插件"><span class="nav-number">2.2.</span> <span class="nav-text">安装python插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">3.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础语法"><span class="nav-number">3.1.</span> <span class="nav-text">基础语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本数据类型"><span class="nav-number">3.2.</span> <span class="nav-text">基本数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pycharm使用"><span class="nav-number">4.</span> <span class="nav-text">pycharm使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快捷键"><span class="nav-number">4.1.</span> <span class="nav-text">快捷键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误与解决"><span class="nav-number">5.</span> <span class="nav-text">错误与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#init-dgesdd-failed-init"><span class="nav-number">5.1.</span> <span class="nav-text">init_dgesdd failed init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tensorflow提示没有debug-lib"><span class="nav-number">5.2.</span> <span class="nav-text">tensorflow提示没有debug.lib</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python介绍"><span class="nav-number">1.</span> <span class="nav-text">Python介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装python"><span class="nav-number">2.1.</span> <span class="nav-text">安装python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装python插件"><span class="nav-number">2.2.</span> <span class="nav-text">安装python插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">3.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础语法"><span class="nav-number">3.1.</span> <span class="nav-text">基础语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本数据类型"><span class="nav-number">3.2.</span> <span class="nav-text">基本数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Number-数字类型包括4种："><span class="nav-number">3.2.1.</span> <span class="nav-text">Number 数字类型包括4种：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#String-字符串"><span class="nav-number">3.2.2.</span> <span class="nav-text">String 字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-列表"><span class="nav-number">3.2.3.</span> <span class="nav-text">List 列表 []</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tuple-元组"><span class="nav-number">3.2.4.</span> <span class="nav-text">Tuple 元组 ()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-集合-set"><span class="nav-number">3.2.5.</span> <span class="nav-text">Set 集合 ({}) set()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dictionary-字典"><span class="nav-number">3.2.6.</span> <span class="nav-text">Dictionary 字典 {}</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符"><span class="nav-number">3.3.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制语句"><span class="nav-number">3.4.</span> <span class="nav-text">控制语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#条件控制"><span class="nav-number">3.4.1.</span> <span class="nav-text">条件控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环控制"><span class="nav-number">3.4.2.</span> <span class="nav-text">循环控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器与生成器"><span class="nav-number">3.5.</span> <span class="nav-text">迭代器与生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">3.6.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块"><span class="nav-number">3.7.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入和输出"><span class="nav-number">3.8.</span> <span class="nav-text">输入和输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式美化"><span class="nav-number">3.8.1.</span> <span class="nav-text">输出格式美化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取键盘输入"><span class="nav-number">3.8.2.</span> <span class="nav-text">读取键盘输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读写文件"><span class="nav-number">3.8.3.</span> <span class="nav-text">读写文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pickle模块"><span class="nav-number">3.8.4.</span> <span class="nav-text">pickle模块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误和异常"><span class="nav-number">3.9.</span> <span class="nav-text">错误和异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象"><span class="nav-number">3.10.</span> <span class="nav-text">面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类的定义"><span class="nav-number">3.10.1.</span> <span class="nav-text">类的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类的属性与方法"><span class="nav-number">3.10.2.</span> <span class="nav-text">类的属性与方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">3.11.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准库概览"><span class="nav-number">3.12.</span> <span class="nav-text">标准库概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他模块"><span class="nav-number">3.13.</span> <span class="nav-text">其他模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pycharm使用"><span class="nav-number">4.</span> <span class="nav-text">pycharm使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快捷键"><span class="nav-number">4.1.</span> <span class="nav-text">快捷键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误与解决"><span class="nav-number">5.</span> <span class="nav-text">错误与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#init-dgesdd-failed-init"><span class="nav-number">5.1.</span> <span class="nav-text">init_dgesdd failed init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tensorflow提示没有debug-lib"><span class="nav-number">5.2.</span> <span class="nav-text">tensorflow提示没有debug.lib</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

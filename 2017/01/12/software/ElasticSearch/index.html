@@ -1,0 +1,837 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ElasticSearch,Information Retrieval," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：ElasticSearch、logstash、kibana的配置使用。">
+<meta name="keywords" content="ElasticSearch,Information Retrieval">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ElasticSearch">
+<meta property="og:url" content="http://bebetter.site/2017/01/12/software/ElasticSearch/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：ElasticSearch、logstash、kibana的配置使用。">
+<meta property="og:updated_time" content="2017-01-12T05:58:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ElasticSearch">
+<meta name="twitter:description" content="说明：ElasticSearch、logstash、kibana的配置使用。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/01/12/software/ElasticSearch/"/>
+
+  <title> ElasticSearch | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ElasticSearch
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T13:58:05+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Softwares/" itemprop="url" rel="index">
+                    <span itemprop="name">Softwares</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>ElasticSearch、logstash、kibana的配置使用。<br><a id="more"></a></p>
+<hr>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://www.elastic.co/start" target="_blank" rel="external">ES官网: Get Started with Elasticsearch, Kibana, X-Pack</a></li>
+<li><a href="https://kibana.logstash.es/content/logstash/get-start/full-config.html" target="_blank" rel="external">ELKstack 中文指南</a></li>
+</ul>
+<hr>
+<h2 id="ES-介绍"><a href="#ES-介绍" class="headerlink" title="ES 介绍"></a>ES 介绍</h2><ul>
+<li>ES通过cluster名称自动加入结点，拓展性强，支持数据量亿级以上，自动选择master，构建索引时查询效率仍比较高。</li>
+<li>下文的ES、es均代指ElasticSearch。</li>
+</ul>
+<hr>
+<h2 id="ES与插件安装"><a href="#ES与插件安装" class="headerlink" title="ES与插件安装"></a>ES与插件安装</h2><ul>
+<li>参考文章：官网<a href="https://www.elastic.co/start" target="_blank" rel="external">Get Started with Elasticsearch, Kibana, X-Pack</a></li>
+<li>安装es:  for search — and logging, and analytics, and more. 下载解压。</li>
+<li>安装kibana: Visualize and manage your data. 下载解压。</li>
+<li>安装x-pack: Security, monitoring, and more for Elasticsearch and Kibana. 运行命令：<ul>
+<li>es/bin/elasticsearch-plugin install x-pack</li>
+<li>kibana/bin/kibana-plugin install x-pack</li>
+</ul>
+</li>
+<li>安装(elasticsearch-head)[<a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="external">https://github.com/mobz/elasticsearch-head</a>]<ul>
+<li>es-head是集群可视化管理工具，es5.x版本之后不支持以插件安装es-head，按照github说明安装成独立nodejs web程序即可（安装node、npm，再npm install等）。</li>
+<li>配置：<ul>
+<li>允许es跨域请求：添加ES配置<code>http.cors.enabled: true</code> <code>http.cors.allow-origin: &quot;*&quot;</code> 注意使用*不安全。</li>
+<li>允许es认证：添加ES配置<code>http.cors.allow-headers: Authorization</code></li>
+<li>由于x-pack认证问题（见<code>https://github.com/mobz/elasticsearch-head/issues/304</code>），未成功，所以采用关闭x-pack认证，设置es<code>xpack.security.enabled: false</code>。当然也可以把该plugin文件夹删除。</li>
+</ul>
+</li>
+<li>如果显示集群状态存在red，可以删除所有的索引，重新构建。</li>
+<li>es-head使用方法可以参考<a href="http://blog.csdn.net/bsh_csn/article/details/53908406" target="_blank" rel="external">_head插件对elasticsearch 索引文档的增删改查</a></li>
+</ul>
+</li>
+<li>安装logstash<ul>
+<li><a href="https://www.elastic.co/downloads/logstash" target="_blank" rel="external">下载并安装logstash</a>，它可以书写logstash配置生成格式化的日志文件，非常适合日志记录与分析。</li>
+<li>参考<a href="http://blog.csdn.net/gamer_gyt/article/details/59077189" target="_blank" rel="external">Elasticsearch5.2.1集群搭建，动态加入节点，并添加监控诊断插件</a>一文配置logstash。运行后，通过es-head查看生成的日志索引。注意下载文件应该检验sha1是否正确。</li>
+<li>在logstash中配置logstash的端口等，在启动logstash对应的配置文件中，有输入input、过滤filter、输出output等配置，output中配置相应的es。</li>
+</ul>
+</li>
+<li>安装bigdesk<ul>
+<li>使用<a href="https://github.com/hlstudio/bigdesk" target="_blank" rel="external">bigdesk</a>进行es集群性能监控。可以查看集群中各个节点的存储、查询、jvm等运行情况。</li>
+<li>下载之后，将site文件夹重命名放到web容器(如tomcat)下发布访问相应的地址即可，如<code>http://127.0.0.1:8080/bigdesk/</code>，再链接相应的集群地址。</li>
+</ul>
+</li>
+<li>总结来说：<ul>
+<li>整一套ES软件可以当作一个MVC模型，logstash是controller层，es是一个model层，kibana是view层。logstash负责日志分析，通过对输入进行格式化处理生成json数据，es负责数据索引，kibana负责可视化。ls和es基于java，kbn基于nodejs。</li>
+<li>其他的第三方插件：es-head提供集群索引信息监管，bigdesk提供集群性能监控。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="ES启动与配置"><a href="#ES启动与配置" class="headerlink" title="ES启动与配置"></a>ES启动与配置</h2><h3 id="单节点es"><a href="#单节点es" class="headerlink" title="单节点es"></a>单节点es</h3><ul>
+<li>启动<ul>
+<li>启动es：bin/elasticsearch，访问9200端口查看。用户名密码: <code>Username: elastic Password: changeme</code>。安装x-pack的话，查看的时候就会需要该默认用户名密码。</li>
+<li>启动kibana： bin/kibana，访问5601端口。用户名密码: <code>Username: elastic Password: changeme</code></li>
+</ul>
+</li>
+<li>关闭<ul>
+<li>重启es：只能查看端口，关闭进程，启动服务。ps -ef | grep elastic，kill -9 2382（进程号），sh elasticsearch </li>
+<li>重启kibana：ps -ef|grep kibana，ps -ef|grep 5601，都找不到，尝试 使用 fuser -n tcp 5601或者netstat -anp|grep 5601，kill -9 端口。启动即可 ./kibana。</li>
+</ul>
+</li>
+<li>配置<ul>
+<li>配置es<ul>
+<li>修改conf中的jvm，设置大小等。修改elasticsearch.yml，修改集群名、端口、IP等。启动失败可以查看后文的“问题与解决”。</li>
+</ul>
+</li>
+<li>配置kibana<ul>
+<li>修改config的yml文件，设置用户名和密码对应es的设置(x-pack)。设置host对应ES的ip，设置请求的url是es的ip:port。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="集群配置"><a href="#集群配置" class="headerlink" title="集群配置"></a>集群配置</h3><ul>
+<li>配置es可以参考<a href="http://blog.csdn.net/gamer_gyt/article/details/59077189" target="_blank" rel="external">Elasticsearch5.2.1集群搭建，动态加入节点，并添加监控诊断插件</a>，但是建议<code>discovery.zen.minimum_master_nodes</code>至少为2，通讯端口、监听端口、集群节点列表等都是需要配置的。</li>
+<li>配置kibana可以参考<a href="https://www.elastic.co/guide/en/kibana/current/production.html#load-balancing" target="_blank" rel="external">官方kibana集群设置</a>.用一个单独的es作为kibana结点。</li>
+</ul>
+<hr>
+<h2 id="ES的使用"><a href="#ES的使用" class="headerlink" title="ES的使用"></a>ES的使用</h2><h3 id="増查改删"><a href="#増查改删" class="headerlink" title="増查改删"></a>増查改删</h3><ul>
+<li>见文末示例代码。</li>
+</ul>
+<h3 id="查询与高级查询"><a href="#查询与高级查询" class="headerlink" title="查询与高级查询"></a>查询与高级查询</h3><ul>
+<li>见文末示例代码。</li>
+</ul>
+<h3 id="批量操作"><a href="#批量操作" class="headerlink" title="批量操作"></a>批量操作</h3><ul>
+<li>见文末示例代码。</li>
+</ul>
+<h3 id="SearchType详解"><a href="#SearchType详解" class="headerlink" title="SearchType详解"></a>SearchType详解</h3><p>es在查询时，可以指定搜索类型为<code>QUERY_THEN_FETCH, QUERY_AND_FEATCH, DFS_QUERY_THEN_FEATCH 和 DFS_QUERY_AND_FEATCH（SACN,COUNT都已不建议使用）</code>。那么这4种搜索类型有什么区别？</p>
+<p>ES天生就是为分布式而生，但分布式有分布式的缺点。比如要搜索某个单词，但是数据却分别在5个分片（Shard)上面，这5个分片可能在5台主机上面。因为全文搜索天生就要排序（按照匹配度进行排名）,但数据却在5个分片上，如何得到最后正确的排序呢？ES是这样做的，大概分两步。</p>
+<ul>
+<li>step1. ES客户端会将这个搜索词同时向5个分片发起搜索请求，这叫Scatter, </li>
+<li>step2. 这5个分片基于本Shard独立完成搜索，然后将符合条件的结果全部返回，这一步叫Gather。 </li>
+</ul>
+<p>客户端将返回的结果进行重新排序和排名，最后返回给用户。也就是说，ES的一次搜索，是一次scatter/gather过程（这个跟map-reduce也很类似）.然而这其中有两个问题:</p>
+<ul>
+<li>第一、数量问题。比如，用户需要搜索”双黄连”，要求返回最符合条件的前10条。但在5个分片中，可能都存储着双黄连相关的数据。所以ES会向这5个分片都发出查询请求，并且要求每个分片都返回符合条件的10条记录。当ES得到返回的结果后，进行整体排序，然后取最符合条件的前10条返给用户。这种情况，ES5个shard最多会收到10*5=50条记录，这样返回给用户的结果数量会多于用户请求的数量。</li>
+<li>第二、排名问题。上面搜索，每个分片计算分值都是基于自己的分片数据进行计算的。计算分值使用的词频率和其他信息都是基于自己的分片进行的，而ES进行整体排名是基于每个分片计算后的分值进行排序的，这就可能会导致排名不准确的问题。如果我们想更精确的控制排序，应该先将计算排序和排名相关的信息（词频率等）从5个分片收集上来，进行统一计算，然后使用整体的词频率去每个分片进行查询。</li>
+</ul>
+<p>这两个问题，估计ES也没有什么较好的解决方法，最终把选择的权利交给用户，方法就是在搜索的时候指定query type。 </p>
+<ol>
+<li>query and fetch<br>向索引的所有分片（shard）都发出查询请求，各分片返回的时候把元素文档（document）和计算后的排名信息一起返回。这种搜索方式是最快的。因为相比下面的几种搜索方式，这种查询方法只需要去shard查询一次。但是各个shard返回的结果的数量之和可能是用户要求的size的n倍。</li>
+<li>query then fetch（默认的搜索方式）<br>如果你搜索时，没有指定搜索方式，就是使用的这种搜索方式。这种搜索方式，大概分两个步骤，第一步，先向所有的shard发出请求，各分片只返回排序和排名相关的信息（注意，不包括文档document)，然后按照各分片返回的分数进行重新排序和排名，取前size个文档。然后进行第二步，去相关的shard取document。这种方式返回的document可能是用户要求的size的n倍</li>
+<li>DFS query and fetch<br>这种方式比第一种方式多了一个初始化散发(initial scatter)步骤，有这一步，据说可以更精确控制搜索打分和排名。这种方式返回的document与用户要求的size是相等的。</li>
+<li>DFS query then fetch<br>比第2种方式多了一个初始化散发(initial scatter)步骤。这种方式返回的document与用户要求的size是相等的。</li>
+</ol>
+<p>DSF是什么缩写？初始化散发是一个什么样的过程？</p>
+<p>从es的官方网站我们可以指定，初始化散发其实就是在进行真正的查询之前，先把各个分片的词频率和文档频率收集一下，然后进行词搜索的时候，各分片依据全局的词频率和文档频率进行搜索和排名。显然如果使用<code>DFS_QUERY_THEN_FETCH</code>这种查询方式，效率是最低的，因为一个搜索，可能要请求3次分片。但，使用DFS方法，搜索精度应该是最高的。<br>至于DFS是什么缩写，没有找到相关资料，这个D可能是Distributed，F可能是frequency的缩写，至于S可能是Scatter的缩写，整个单词可能是分布式词频率和文档频率散发的缩写。<br>总结一下，从性能考虑<code>QUERY_AND_FETCH</code>是最快的，<code>DFS_QUERY_THEN_FETCH</code>是最慢的。从搜索的准确度来说，DFS要比非DFS的准确度更高。</p>
+<hr>
+<h2 id="Logstash的使用"><a href="#Logstash的使用" class="headerlink" title="Logstash的使用"></a>Logstash的使用</h2><p>参考文章：<a href="http://yincheng.site/logstash" target="_blank" rel="external">logstash日志分析的配置和使用</a></p>
+<h3 id="书写配置文件"><a href="#书写配置文件" class="headerlink" title="书写配置文件"></a>书写配置文件</h3><ul>
+<li>配置文件主要有input、filter、output，功能强大，支持多种输入输出，filter进行自定义加工。</li>
+<li>对nginx、Apache等服务器的访问日志支持性非常好。自带IP解析为goip、clientUA解析为userAgent设备信息等。</li>
+<li>支持grok正则匹配、date时间匹配、mutate数据修改、goip查询归类、userAgent设备解析等。参考<a href="http://udn.yyuap.com/doc/logstash-best-practice-cn/filter/grok.html" target="_blank" rel="external">Logstash 最佳实践</a></li>
+</ul>
+<h3 id="ES与Mysql数据的数据同步"><a href="#ES与Mysql数据的数据同步" class="headerlink" title="ES与Mysql数据的数据同步"></a>ES与Mysql数据的数据同步</h3><ul>
+<li>参考文章：<ul>
+<li><a href="https://github.com/leotse90/blogs/blob/master/ElasticSearch%E4%B8%8EMySQL%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%E4%BB%A5%E5%8F%8A%E4%BF%AE%E6%94%B9%E8%A1%A8%E7%BB%93%E6%9E%84.md" target="_blank" rel="external">ElasticSearch与MySQL数据同步以及修改表结构</a></li>
+<li><a href="http://suclogger.com/MySQL%E5%88%B0Elasticsearch%E7%9A%84%E5%90%8C%E6%AD%A5%E4%B9%8B%E8%B7%AF/" target="_blank" rel="external">MySQL到Elasticsearch的同步之路</a></li>
+<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html" target="_blank" rel="external">Logstash Reference [5.4] » Input plugins » jdbc</a></li>
+<li>采用logstash方法，主要根据官网的说明进行配置：<ul>
+<li>下载jdbc驱动，书写logstash配置文件，官网有参数说明，启动logstash，查看ES集群。</li>
+<li>遇到的问题：jvm堆溢出(修改jvm.properties设置)、<code>retrying failed action with response code: 429</code>(提示信息不知道是不是并发问题，但是数据已经导入成功)</li>
+<li>150万的短文本数据很快就导入完成，用时不到1min。主片存储空间2.5G(毕竟Lucene空间换时间)。</li>
+</ul>
+</li>
+<li>问题解决：时间格式匹配failure(在mysql中使用<code>DATE_FORMAT(in_time, &#39;%Y-%m-%d %T&#39;) in_time</code>匹配为<code>yyyy-MM-dd HH:mm:ss</code>)，重复导入(设置<code>clean_run、use_column_value、tracking_column</code>，并且select语句中使用<code>where id &gt;:sql_last_value</code>)，当然还是使用timestamp比较好，可以更新修改的记录。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Kibana的使用"><a href="#Kibana的使用" class="headerlink" title="Kibana的使用"></a>Kibana的使用</h2><h3 id="统计与生成地图"><a href="#统计与生成地图" class="headerlink" title="统计与生成地图"></a>统计与生成地图</h3><ul>
+<li>参考文章<ul>
+<li><a href="http://blog.csdn.net/ming_311/article/details/50619859" target="_blank" rel="external">Kibana基本使用</a></li>
+</ul>
+</li>
+<li>大体流程：就是选择目标index，创建visualize图，保存图，组成dashboard。</li>
+<li>问题解决：生成Tile map提示<code>No Compatible Fields... geo_point</code>  参考： <a href="https://autofei.wordpress.com/2017/01/11/visualize-geo-location-of-log-using-elasticsearch-logstash-kibana/" target="_blank" rel="external">Visualize Geo location of log using Elasticsearch + Logstash + Kibana</a>，主要就是index默认匹配的是logstash-开头的。</li>
+</ul>
+<hr>
+<h2 id="问题与解决"><a href="#问题与解决" class="headerlink" title="问题与解决"></a>问题与解决</h2><ul>
+<li>启动错误<code>vm.max_map_count</code>过小<ul>
+<li>错误提示<code>max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]</code></li>
+<li>临时解决：<code>sudo sysctl -w vm.max_map_count=262144</code>，更新设置sysctl -p，查看设置sysctl -a | grep max_map</li>
+<li>永久解决：上面的修改，重启后值会无效，如果想永久改变需要如下操作： <code>vm.max_map_count=262144</code>直接写到/etc/sysctl.conf中,然后执行sysctl -p </li>
+</ul>
+</li>
+<li>启动错误<code>max file descriptors</code>过小<ul>
+<li>错误提示<code>max file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536]</code></li>
+<li>解决：sudo vim /etc/security/limits.conf 添加用户zju的参数为<code>zju - nofile 65536</code> ，注销用户或重启，查看ulimit -n。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="配置文件示例"><a href="#配置文件示例" class="headerlink" title="配置文件示例"></a>配置文件示例</h2><h3 id="ES集群"><a href="#ES集群" class="headerlink" title="ES集群"></a>ES集群</h3><ul>
+<li>ES-5.0.0</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"># ES.yml</div><div class="line">cluster.name: esc5.0</div><div class="line">node.name: ip-9200</div><div class="line"></div><div class="line">#network.host: 192.168.0.1</div><div class="line">network.host: your-ip1</div><div class="line">http.port: 9200</div><div class="line"></div><div class="line"># The default list of hosts is [&quot;127.0.0.1&quot;, &quot;[::1]&quot;]</div><div class="line">transport.tcp.port: 9300</div><div class="line">discovery.zen.ping.unicast.hosts: [&quot;your-ip1:9300&quot;, &quot;your-ip2:9300&quot;, &quot;your-ip2:9301&quot;]</div><div class="line">discovery.zen.minimum_master_nodes: 2</div><div class="line"></div><div class="line"># add for extension</div><div class="line">http.cors.enabled: true</div><div class="line">http.cors.allow-origin: &quot;*&quot;</div><div class="line">#xpack.security.enabled: false</div><div class="line"># dda</div></pre></td></tr></table></figure>
+<h3 id="Logstash同步mysql"><a href="#Logstash同步mysql" class="headerlink" title="Logstash同步mysql"></a>Logstash同步mysql</h3><ul>
+<li>Logstash-5.4.0</li>
+<li>配置文件看是否需要修改端口，jvm.properties文件等。</li>
+<li>下面配置文件中，注意：schedule不设置就是立即执行，设置就是类似crontab定时，设置clean_run=false(默认true)就是sql_last_value为0（这一点不确定），use_column_value、tracking_column用于指定要track的栏目，指定之后就可以用sql_last_value存储上次更新后的值，支持track number和timestamp类型，建议用timestamp（考虑一下原有数据更新怎么办？数据软删除怎么办？）。【这几个重要的参数还是需要参考官网：<a href="https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html" target="_blank" rel="external">Logstash Reference [5.4] » Input plugins » jdbc</a>】</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 用logstash同步mysql数据</div><div class="line">input &#123;</div><div class="line">  jdbc &#123;</div><div class="line">    type =&gt; &quot;qa&quot;</div><div class="line">    jdbc_driver_library =&gt; &quot;~/software/elastic/logstash-5.4.0-9600/lib/mylib/mysql-connector-java-5.1.35.jar&quot;</div><div class="line">    jdbc_driver_class =&gt; &quot;com.mysql.jdbc.Driver&quot;</div><div class="line">    jdbc_connection_string =&gt; &quot;jdbc:mysql://ip:3306/qa&quot;</div><div class="line">    jdbc_user =&gt; &quot;user&quot;</div><div class="line">    jdbc_password =&gt; &quot;pass&quot;</div><div class="line">    #schedule =&gt; &quot;30 23 * * *&quot;</div><div class="line">    schedule =&gt; &quot;*/1 * * * *&quot;</div><div class="line">    statement =&gt; &quot;SELECT id, question, body, answer, source, source_id, timestamp edit_time from qa_all WHERE timestamp &gt;:sql_last_value&quot;</div><div class="line">    use_column_value =&gt; true</div><div class="line">    tracking_column =&gt; edit_time</div><div class="line">    clean_run =&gt; false</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  jdbc &#123;</div><div class="line">    type =&gt; &quot;access-log&quot;</div><div class="line">    jdbc_driver_library =&gt; &quot;~/software/elastic/logstash-5.4.0-9600/lib/mylib/mysql-connector-java-5.1.35.jar&quot;</div><div class="line">    jdbc_driver_class =&gt; &quot;com.mysql.jdbc.Driver&quot;</div><div class="line">    jdbc_connection_string =&gt; &quot;jdbc:mysql://ipp:3306/usercenter&quot;</div><div class="line">    jdbc_user =&gt; &quot;user&quot;</div><div class="line">    jdbc_password =&gt; &quot;pass&quot;</div><div class="line">    #schedule =&gt; &quot;30 23 * * *&quot;</div><div class="line">    schedule =&gt; &quot;*/4 * * * *&quot;</div><div class="line">    statement =&gt; &quot;SELECT ip, url, referrer, DATE_FORMAT(in_time, &apos;%Y-%m-%d %T&apos;) in_time, DATE_FORMAT(out_time, &apos;%Y-%m-%d %T&apos;)out_time, stay_time, position, timestamp edit_time FROM visitor_info WHERE timestamp &gt;:sql_last_value&quot;</div><div class="line">    use_column_value =&gt; true</div><div class="line">    tracking_column =&gt; edit_time</div><div class="line">    clean_run =&gt; true</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">filter&#123;</div><div class="line">  if [type] == &quot;access-log&quot; &#123;</div><div class="line"></div><div class="line">    date &#123;</div><div class="line">      match =&gt; [ &quot;in_time&quot;, &quot;yyyy-MM-dd HH:mm:ss&quot; , &quot;yyyy-MM-dd HH:mm:ss.SSS&quot; ]</div><div class="line">      locale =&gt; &quot;cn&quot;</div><div class="line">      #target =&gt; &quot;@timestamp&quot;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    geoip &#123;</div><div class="line">      source =&gt; &quot;ip&quot;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    mutate&#123;</div><div class="line">      convert =&gt; [&quot;stay_time&quot;, &quot;float&quot;]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">output &#123;</div><div class="line">  if [type] == &quot;qa&quot; &#123;</div><div class="line">    elasticsearch &#123;</div><div class="line">        #protocol =&gt; http</div><div class="line">        index =&gt; &quot;qa&quot;</div><div class="line">        document_type =&gt; &quot;me&quot;</div><div class="line">        #document_id =&gt; &quot;%&#123;uid&#125;&quot;</div><div class="line">        hosts =&gt; [&quot;http://IP:9200&quot;]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  if [type] == &quot;access-log&quot; &#123;</div><div class="line">    elasticsearch &#123;</div><div class="line">        #protocol =&gt; http</div><div class="line">        index =&gt; &quot;logstash-logs&quot;</div><div class="line">        document_type =&gt; &quot;me&quot;</div><div class="line">        #document_id =&gt; &quot;%&#123;uid&#125;&quot;</div><div class="line">        hosts =&gt; [&quot;http://ip:9200&quot;]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h3><ul>
+<li>Kibana连接ES集群内的结点时，最好将该结点按照官网设置成<code>node.master: false</code> <code>node.data: false</code> <code>node.ingest: false</code>模式(写在es.yml中即可)以专门用于展现，不要用于数据分片，然后再Kibana配置中连接该ES结点。</li>
+</ul>
+<hr>
+<h2 id="ES5-Java-API代码示例"><a href="#ES5-Java-API代码示例" class="headerlink" title="ES5 Java API代码示例"></a>ES5 Java API代码示例</h2><h3 id="index增查改删"><a href="#index增查改删" class="headerlink" title="index增查改删"></a>index增查改删</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div></pre></td><td class="code"><pre><div class="line">package com.sr.util.elasticsearch;</div><div class="line"></div><div class="line">import org.elasticsearch.action.delete.DeleteResponse;</div><div class="line">import org.elasticsearch.action.get.GetResponse;</div><div class="line">import org.elasticsearch.action.index.IndexResponse;</div><div class="line">import org.elasticsearch.action.update.UpdateRequest;</div><div class="line">import org.elasticsearch.action.update.UpdateResponse;</div><div class="line">import org.elasticsearch.client.transport.TransportClient;</div><div class="line">import org.elasticsearch.common.settings.Settings;</div><div class="line">import org.elasticsearch.common.transport.InetSocketTransportAddress;</div><div class="line">import org.elasticsearch.common.xcontent.XContentBuilder;</div><div class="line">import org.elasticsearch.rest.RestStatus;</div><div class="line">import org.elasticsearch.script.Script;</div><div class="line">import org.elasticsearch.script.ScriptService;</div><div class="line">import org.elasticsearch.transport.client.PreBuiltTransportClient;</div><div class="line"></div><div class="line">import static org.elasticsearch.common.xcontent.XContentFactory.*;</div><div class="line"></div><div class="line">import java.io.IOException;</div><div class="line">import java.net.InetAddress;</div><div class="line">import java.net.UnknownHostException;</div><div class="line">import java.util.Date;</div><div class="line">import java.util.HashMap;</div><div class="line">import java.util.Map;</div><div class="line"></div><div class="line">/**索引API：用于查找、新建、删除一个索引</div><div class="line"> * Created by dell on 2017/5/17.</div><div class="line"> */</div><div class="line">public class IndexCRUD &#123;</div><div class="line">    public static void main(String[] args) throws Exception &#123;</div><div class="line">        TransportClient client = getClient();</div><div class="line">        String index = &quot;test&quot;;</div><div class="line">        String type = &quot;book&quot;;</div><div class="line"></div><div class="line">        System.out.println(&quot;测试索引的crud\r\n&quot;);</div><div class="line">        System.out.println(&quot;create =======================&quot;);</div><div class="line">        createIndex(client, index, type);</div><div class="line"></div><div class="line">        System.out.println(&quot;select =&gt; get =======================&quot;);</div><div class="line">        // 查询不到id会异常，那么是不是只能先query，再根据id查索引</div><div class="line">        //getIndex(client, index, type, &quot;1&quot;);</div><div class="line">        getIndex(client, index, null, &quot;2&quot;);</div><div class="line"></div><div class="line">        System.out.println(&quot; update index =======================&quot;);</div><div class="line">        updateIndex(client, index, type);</div><div class="line"></div><div class="line">        System.out.println(&quot; delete =======================&quot;);</div><div class="line">        //在2.0以前版本，删除操作有两种方式，一种是通过id来进行删除，但是这种方式一般不常用，因为id不容易得到</div><div class="line">        //另一种是DeleteByQuery()，但是会强制自动刷新引起内存溢出。</div><div class="line">        // 5版本之后移除DeleteByQuery，如果是少量删除就获取id再删除，如果是大量，应考虑建立多个索引，整个删除再重建索引</div><div class="line">        deleteIndex(client, index, type);</div><div class="line"></div><div class="line">        // 关闭连接</div><div class="line">        client.close();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 可以使用UpdateRequest、prepareUpdate进行索引更新，支持通过script、doc传入数据</div><div class="line">     *</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     * @param type</div><div class="line">     * @throws IOException</div><div class="line">     * @throws InterruptedException</div><div class="line">     * @throws java.util.concurrent.ExecutionException</div><div class="line">     */</div><div class="line">    private static void updateIndex(TransportClient client, String index, String type) throws IOException, InterruptedException, java.util.concurrent.ExecutionException &#123;</div><div class="line">        // 可以使用UpdateRequest，也可以使用prepareUpdate</div><div class="line">        UpdateRequest updateRequest = new UpdateRequest();</div><div class="line">        updateRequest.index(index);</div><div class="line">        updateRequest.type(type);</div><div class="line">        updateRequest.id(&quot;2&quot;);</div><div class="line">        XContentBuilder xContentBuilder = jsonBuilder()</div><div class="line">                .startObject()</div><div class="line">                .field(&quot;gender&quot;, &quot;male&quot;)//之前没有的字段可以添加进去</div><div class="line">                .field(&quot;title&quot;, &quot;book updateRequest&quot;) //之前有的字段会被更新</div><div class="line">                .endObject();</div><div class="line">        updateRequest.doc(xContentBuilder);</div><div class="line">        //updateRequest.script(new Script(&quot;ctx._source.gender = \&quot;male\&quot;&quot;));// 脚本和doc不能同时使用</div><div class="line">        client.update(updateRequest).get();</div><div class="line"></div><div class="line">        // 可以用脚本或者文档，但二者不可同时set</div><div class="line">        // 脚本可以使用ScriptService.ScriptType.FILE指定外部的脚本文件</div><div class="line">        UpdateResponse updateResponse = client.prepareUpdate(index, type, &quot;AVwVXiFYfbUBmxyYF65g&quot;)</div><div class="line">                .setScript(new Script(&quot;ctx._source.gender = \&quot;male\&quot;&quot;, ScriptService.ScriptType.INLINE, null, null))</div><div class="line">                .get();</div><div class="line">        // 文档适合于简洁的情况，指定内容将和原始doc进行整合</div><div class="line">        client.prepareUpdate(index, type, &quot;AVwVUieAkr-jPeVnIcUG&quot;)</div><div class="line">                .setDoc(jsonBuilder()</div><div class="line">                        .startObject()</div><div class="line">                        .field(&quot;title&quot;, &quot;book-prepareUpdate&quot;) // 之前有的字段会被更新</div><div class="line">                        .field(&quot;gender&quot;, &quot;male&quot;)//之前没有也添加进去</div><div class="line">                        .endObject())</div><div class="line">                .get();</div><div class="line">        System.out.println(updateResponse.status());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 获取es连接</div><div class="line">     *</div><div class="line">     * @return</div><div class="line">     * @throws UnknownHostException</div><div class="line">     */</div><div class="line">    private static TransportClient getClient() throws UnknownHostException &#123;</div><div class="line">        // 设置链接es的集群名，是否发现所有集群ip</div><div class="line">        Settings settings = Settings.builder().put(&quot;cluster.name&quot;, &quot;esc5.0&quot;).put(&quot;client.transport.sniff&quot;, true).build();</div><div class="line">        TransportClient client = new PreBuiltTransportClient(settings);</div><div class="line">        // 添加链接</div><div class="line">        client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(&quot;10.15.82.65&quot;), 9300));</div><div class="line">        return client;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 创建索引，可不指定id，数据可通过map、json存入</div><div class="line">     *</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     * @param type</div><div class="line">     */</div><div class="line">    private static void createIndex(TransportClient client, String index, String type) &#123;</div><div class="line">        // 数据封装在json中，生成的方式可以用map、自己拼写json、Jackson或es的jsonBuilder()序列化生成json</div><div class="line">        Map&lt;String, Object&gt; map = new HashMap();</div><div class="line">        map.put(&quot;name&quot;, &quot;book1&quot;);</div><div class="line">        map.put(&quot;title&quot;, &quot;title1&quot;);</div><div class="line">        map.put(&quot;author&quot;, &quot;Geo&quot;);</div><div class="line">        map.put(&quot;year&quot;, 2011);</div><div class="line">        map.put(&quot;date&quot;, new Date());</div><div class="line">        // 添加索引可以不指定id</div><div class="line">        client.prepareIndex(index, type)</div><div class="line">                .setSource(map)</div><div class="line">                .get();</div><div class="line">        // setSource全部覆盖,setId产生新的一份</div><div class="line">        map.put(&quot;name&quot;, &quot;book2&quot;);</div><div class="line">        map.put(&quot;title&quot;, &quot;title2&quot;);</div><div class="line">        map.put(&quot;author&quot;, &quot;2&quot;);</div><div class="line">        map.put(&quot;year&quot;, 2012);</div><div class="line">        map.put(&quot;date&quot;, new Date());</div><div class="line">        IndexResponse response = client.prepareIndex(index, type, &quot;2&quot;)</div><div class="line">                .setSource(map)</div><div class="line">                .get();</div><div class="line">        // 查看处理结果</div><div class="line">        // 所在索引名称</div><div class="line">        String _index = response.getIndex();</div><div class="line">        // 类型</div><div class="line">        String _type = response.getType();</div><div class="line">        // 是否有docId</div><div class="line">        String _id = response.getId();</div><div class="line">        // Version (第一次index这个doc会返回1)</div><div class="line">        long _version = response.getVersion();</div><div class="line">        // status has stored current instance statement.</div><div class="line">        RestStatus status = response.status();</div><div class="line">        System.out.println(&quot;create 结果状态：&quot; + _index + &quot;\t&quot; + _type + &quot;\t&quot; + _id + &quot;\t&quot; + _version + &quot;\t&quot; + status);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 删除索引中的doc</div><div class="line">     *</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     * @param type</div><div class="line">     */</div><div class="line">    private static void deleteIndex(TransportClient client, String index, String type) &#123;</div><div class="line">        DeleteResponse response = client.prepareDelete(index, type, &quot;AVwVYdbRkr-jPeVnIcUH&quot;)</div><div class="line">                .get();</div><div class="line">        System.out.println(response.status());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 查看索引，type为空选择所有</div><div class="line">     *</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     * @param type</div><div class="line">     * @param id</div><div class="line">     */</div><div class="line">    private static void getIndex(TransportClient client, String index, String type, String id) &#123;</div><div class="line">        // 可以先使用excute是执行，再用actionGet是等待返回结果</div><div class="line">       /*</div><div class="line">        GetResponse getIndex = client.prepareGet(index, type, id).execute().actionGet();</div><div class="line">        System.out.println(&quot;索引是否存在：&quot; + getIndex.isExists());</div><div class="line">        System.out.println(&quot;GetResponse: &quot; + getIndex);</div><div class="line">*/</div><div class="line">        // 也可以直接使用get，默认使用异步线程，设置为false则是同步</div><div class="line">        GetResponse response = client.prepareGet(index, type, id)</div><div class="line">                .setOperationThreaded(false)</div><div class="line">                .get();</div><div class="line">        System.out.println(&quot;GetResponse: &quot; + response);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="doc查询"><a href="#doc查询" class="headerlink" title="doc查询"></a>doc查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div></pre></td><td class="code"><pre><div class="line">package com.sr.util.elasticsearch;</div><div class="line"></div><div class="line">import com.vividsolutions.jts.geom.Coordinate;</div><div class="line">import org.elasticsearch.action.search.SearchRequestBuilder;</div><div class="line">import org.elasticsearch.action.search.SearchResponse;</div><div class="line">import org.elasticsearch.client.transport.TransportClient;</div><div class="line">import org.elasticsearch.common.geo.ShapeRelation;</div><div class="line">import org.elasticsearch.common.geo.builders.ShapeBuilders;</div><div class="line">import org.elasticsearch.common.settings.Settings;</div><div class="line">import org.elasticsearch.common.text.Text;</div><div class="line">import org.elasticsearch.common.transport.InetSocketTransportAddress;</div><div class="line">import org.elasticsearch.common.unit.TimeValue;</div><div class="line">import org.elasticsearch.index.query.Operator;</div><div class="line">import org.elasticsearch.index.query.QueryBuilder;</div><div class="line">import org.elasticsearch.index.query.QueryBuilders;</div><div class="line">import org.elasticsearch.index.search.MatchQuery;</div><div class="line">import org.elasticsearch.search.SearchHit;</div><div class="line">import org.elasticsearch.search.SearchHits;</div><div class="line">import org.elasticsearch.search.aggregations.AggregationBuilder;</div><div class="line">import org.elasticsearch.search.aggregations.AggregationBuilders;</div><div class="line">import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;</div><div class="line">import org.elasticsearch.search.sort.SortOrder;</div><div class="line">import org.elasticsearch.search.suggest.SuggestBuilder;</div><div class="line">import org.elasticsearch.search.suggest.SuggestBuilders;</div><div class="line">import org.elasticsearch.search.suggest.term.TermSuggestionBuilder;</div><div class="line">import org.elasticsearch.transport.client.PreBuiltTransportClient;</div><div class="line"></div><div class="line">import java.io.IOException;</div><div class="line">import java.net.InetAddress;</div><div class="line">import java.net.UnknownHostException;</div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.List;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 查询API：用于查询、排序、分页、过滤、高亮、滚动等</div><div class="line"> * Created by dell on 2017/5/17.</div><div class="line"> */</div><div class="line">public class QueryTest &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) throws Exception &#123;</div><div class="line">        TransportClient client = getClient();</div><div class="line">        String index = &quot;test&quot;;</div><div class="line"></div><div class="line">        // QueryBuilders 有非常多的查询方法</div><div class="line">        // 但是默认查询时英文单词是按空格切分，不能使用单词的一部分进行查询，除非使用通配符构造目标词</div><div class="line">        System.out.println(&quot;==== queryTermAndPrefix ======&quot;);</div><div class="line">        //queryTermAndPrefix(client, index);</div><div class="line">        System.out.println(&quot;==== matchAll ======&quot;);</div><div class="line">        //matchAll(client, index);</div><div class="line">        System.out.println(&quot;==== matchQuery ======&quot;);</div><div class="line">        //matchQuery(client, index);</div><div class="line">        System.out.println(&quot;==== queryString ======&quot;);</div><div class="line">        //queryString(client, index);</div><div class="line">        // 中文查询过程中，就不会遇到上面“一个英文单词进行局部查找”的问题</div><div class="line">        // 如下中文索引查询所示，查询默认是queryStringQuery默认是模糊匹配，且可自动分配</div><div class="line">        System.out.println(&quot;==== queryByString1 ======&quot;);</div><div class="line">        //queryByString(client, &quot;qa&quot;, &quot;question:心肌炎 AND answer: 病毒&quot;);</div><div class="line">        System.out.println(&quot;==== queryByString2 ======&quot;);</div><div class="line">        //queryByString(client, &quot;qa&quot;, &quot;question:心肌炎 OR answer: 病毒&quot;);</div><div class="line">        System.out.println(&quot;==== queryByString3 ======&quot;);</div><div class="line">        //queryByString(client, &quot;kb_nlpcc2016&quot;, &quot;subject:坦克大战 AND predicate: 类型&quot;);</div><div class="line">        System.out.println(&quot;==== queryByString4 ======&quot;);</div><div class="line">        //queryByString(client, &quot;kb_nlpcc2016&quot;, &quot;subject:坦克大战 OR predicate: 类型&quot;);</div><div class="line">        System.out.println(&quot;==== queryByString5 ======&quot;);</div><div class="line">        //queryByString(client, &quot;kb_nlpcc2016&quot;, &quot;subject:坦克大战&quot;);</div><div class="line"></div><div class="line">        System.out.println(&quot;==== geoShapeQuery ======&quot;);</div><div class="line">        //geoShapeQuery(client, &quot;logstash-logs&quot;);</div><div class="line"></div><div class="line"></div><div class="line">        System.out.println(&quot;==== pageAndSort ======&quot;);</div><div class="line">        //pageAndSort(client, index);</div><div class="line">        System.out.println(&quot;==== scanAndScroll ======&quot;);</div><div class="line">        //scanAndScroll(client, &quot;qa&quot;);</div><div class="line"></div><div class="line">        // ES查询主要有两个部分query and filter，两者的主要区别在于:filter是不计算相关性的,同时可以cache。因此,filter速度要快于query</div><div class="line">        System.out.println(&quot;==== filter ======&quot;);</div><div class="line">        //filterQuery(client, &quot;test&quot;);</div><div class="line">        System.out.println(&quot;==== facets ======&quot;);</div><div class="line">        //facets(client, &quot;test&quot;);</div><div class="line">        System.out.println(&quot;==== highlight ======&quot;);</div><div class="line">        //highlight(client, &quot;test&quot;);</div><div class="line">        System.out.println(&quot;==== suggester ======&quot;);</div><div class="line">        //suggester(client, &quot;test&quot;);</div><div class="line"></div><div class="line">        client.close();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 构造简单查询</div><div class="line">     *</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     */</div><div class="line">    private static void queryTermAndPrefix(TransportClient client, String index) &#123;</div><div class="line">        QueryBuilder queryBuilder = QueryBuilders</div><div class="line">                .disMaxQuery() //对子查询的结果做union，score沿用子查询score的最大值。这种查询广泛应用于muti-field的查询</div><div class="line">                .add(QueryBuilders.termQuery(&quot;title&quot;, &quot;title&quot;)) // termQuery 查询时不分词，必须含有对应的term，不能查到title1</div><div class="line">                .add(QueryBuilders.termQuery(&quot;title&quot;, &quot;title1&quot;))// 可以查到title1的文档，但是查不到title2</div><div class="line">                //.add(QueryBuilders.termQuery(&quot;title&quot;, &quot;book&quot;)) // 可查到book updateRequest</div><div class="line">                //.add(QueryBuilders.termQuery(&quot;title&quot;, &quot;updaterequest&quot;)) // 可查到book updateRequest，但updateRequest查不到，因为es存在词处理</div><div class="line">                .add(QueryBuilders.prefixQuery(&quot;title&quot;, &quot;boo&quot;)) // 可查到book updateRequest</div><div class="line">                ;</div><div class="line">        System.out.println(queryBuilder.toString());</div><div class="line">        SearchResponse response = client.prepareSearch(index)</div><div class="line">                .setQuery(queryBuilder).get();</div><div class="line">        SearchHits hits = response.getHits();</div><div class="line">        printHits(response, hits);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 查询索引中的所有文档</div><div class="line">     *</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     */</div><div class="line">    private static void matchAll(TransportClient client, String index) &#123;</div><div class="line">        QueryBuilder queryBuilder = QueryBuilders.matchAllQuery().boost(11f); // boost设置查询结果的score得分</div><div class="line">        SearchResponse response = client.prepareSearch(index)</div><div class="line">                .setQuery(queryBuilder).get();</div><div class="line">        SearchHits hits = response.getHits();</div><div class="line">        printHits(response, hits);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void matchQuery(TransportClient client, String index) &#123;</div><div class="line">        QueryBuilder queryBuilder = QueryBuilders.matchQuery(&quot;title&quot;, &quot;updateRequest&quot;) // updateRequest查得到updateRequest，但是update、Request查不到</div><div class="line">                .operator(Operator.OR) // 默认查询的通配符是or</div><div class="line">                .zeroTermsQuery(MatchQuery.ZeroTermsQuery.ALL) // 按照声明的顺序返回包含此枚举类型的常数的数组。此方法可用于迭代常量（还不知道怎么用）</div><div class="line">                ;</div><div class="line">        SearchResponse response = client.prepareSearch(index)</div><div class="line">                .setQuery(queryBuilder).get();</div><div class="line">        SearchHits hits = response.getHits();</div><div class="line">        printHits(response, hits);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void queryString(TransportClient client, String index) &#123;</div><div class="line">        // queryStringQuery可以使用复杂的查询语句</div><div class="line">        QueryBuilder queryBuilder = QueryBuilders.queryStringQuery(&quot;title:update* OR name:book1&quot;)// updateRequest查得到updateRequest，但是update、Request查不到，通配符可以</div><div class="line">                ;</div><div class="line">        SearchResponse response = client.prepareSearch(index)</div><div class="line">                .setQuery(queryBuilder).get();</div><div class="line">        SearchHits hits = response.getHits();</div><div class="line">        printHits(response, hits);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void queryByString(TransportClient client, String index, String queryString) &#123;</div><div class="line">        // queryStringQuery可以使用复杂的查询语句</div><div class="line">        QueryBuilder queryBuilder = QueryBuilders.queryStringQuery(queryString);</div><div class="line">        SearchResponse response = client.prepareSearch(index)</div><div class="line">                .setQuery(queryBuilder).get();</div><div class="line">        SearchHits hits = response.getHits();</div><div class="line">        printHits(response, hits);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void geoShapeQuery(TransportClient client, String index) &#123;</div><div class="line">        // 使用地理信息查询，参考api：https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-geo-queries.html</div><div class="line">        List&lt;Coordinate&gt; points = new ArrayList&lt;&gt;();</div><div class="line">        points.add(new Coordinate(0, 0));</div><div class="line">        points.add(new Coordinate(0, 10));</div><div class="line">        points.add(new Coordinate(10, 10));</div><div class="line">        points.add(new Coordinate(10, 0));</div><div class="line">        points.add(new Coordinate(0, 0));</div><div class="line">        QueryBuilder queryBuilder = null;</div><div class="line">        try &#123;</div><div class="line">            queryBuilder = QueryBuilders.geoShapeQuery(&quot;geoip.location&quot;,</div><div class="line">                    ShapeBuilders.newMultiPoint(points))</div><div class="line">                    .relation(ShapeRelation.WITHIN)</div><div class="line">            ;</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        SearchResponse response = client.prepareSearch(index)</div><div class="line">                .setQuery(queryBuilder).get();</div><div class="line">        SearchHits hits = response.getHits();</div><div class="line">        printHits(response, hits);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 使用from和size进行分页。</div><div class="line">     * &lt;p&gt;</div><div class="line">     * 基本步骤：查找出total count， 设置from、size参数获取分页，ES支持一次查找同时返回total count和目标数据</div><div class="line">     * &lt;/p&gt;</div><div class="line">     * &lt;p&gt;</div><div class="line">     * 缺点：深度分页(比如size=10&amp;from=50000，越往后的分页，执行的效率越低，且需要申请的排序内存就很大)时很慢：会对所有total进行排序，并选取目标页。每次执行都会重复这样操作，速度慢还会造成内存溢出</div><div class="line">     * &lt;/p&gt;</div><div class="line">     *</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     */</div><div class="line">    private static void pageAndSort(TransportClient client, String index) &#123;</div><div class="line">        // 对文本进行sort/aggregate(聚合)/or access values，默认是没意义的，若用需要进行设置fielddata=true。</div><div class="line">        // 参考api：https://www.elastic.co/guide/en/elasticsearch/reference/current/fielddata.html</div><div class="line">        SearchRequestBuilder builder = client.prepareSearch(index);</div><div class="line">        SearchResponse response = builder.setQuery(QueryBuilders.matchAllQuery())</div><div class="line">                .setFrom(4)</div><div class="line">                .setSize(2)</div><div class="line">                //.addSort(SortBuilders.fieldSort(&quot;_score&quot;)) // sort支持字段排序、scriptSort、geoDistanceSort。</div><div class="line">                .addSort(&quot;_score&quot;, SortOrder.ASC)</div><div class="line">                .get();</div><div class="line">        SearchHits hits = response.getHits();</div><div class="line">        printHits(response, hits);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 使用scan和scroll提高分页效率</div><div class="line">     * &lt;p&gt;</div><div class="line">     * ES深度分页效率不高，尽量使用scan、scroll进行标记，再返回结果。但是如果是深度排序分页，那还是要用sort的from/size</div><div class="line">     * &lt;/p&gt;</div><div class="line">     * &lt;p&gt;</div><div class="line">     * scan、scroll类似于mysql的cursor游标，根据查找、标记、排序策略、返回结果。</div><div class="line">     * scroll会进行标记并排序，标记缓存3或5分钟，如果只查找而不需要排序，还是推荐scan。</div><div class="line">     * scroll相比sort的from/size，优点在于可匹配后缓存排序的标记，避免每次都匹配、排序。</div><div class="line">     * scan只会标记但不排序，标记也会缓存几分钟，适合于分页查找但不需排序的场合。</div><div class="line">     * scan在es2以后被deprecated</div><div class="line">     * &lt;/p&gt;</div><div class="line">     * &lt;p&gt;</div><div class="line">     * 注意sort的from/size是综合所有shard分片的，但是scan/scroll是基于各个shard分片的</div><div class="line">     * &lt;/p&gt;</div><div class="line">     *</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     */</div><div class="line">    private static void scanAndScroll(TransportClient client, String index) &#123;</div><div class="line"></div><div class="line">        SearchRequestBuilder builder = client.prepareSearch(index);</div><div class="line">        SearchResponse response = builder</div><div class="line">                .setQuery(QueryBuilders.queryStringQuery(&quot;question:脑炎后帕金森病&quot;))</div><div class="line">                //.setSearchType(SearchType.SCAN)  // 默认scroll为scroll，进行排序缓存，不排序用scan且需指明scan，但是es2以后已经deprecated了</div><div class="line">                .setScroll(TimeValue.timeValueMinutes(3))</div><div class="line">                .setSize(2)  // size还是返回最终的分页size，而不是每个分片的size？！</div><div class="line">                .get();</div><div class="line">        printHits(response, response.getHits());</div><div class="line">        System.out.println(&quot;ScrollId: &quot; + response.getScrollId());</div><div class="line"></div><div class="line">        for (int sum = 0; sum &lt; response.getHits().getTotalHits() &amp;&amp; sum &lt; 10; ) &#123;</div><div class="line">            response = client</div><div class="line">                    .prepareSearchScroll(response.getScrollId()) // 继续使用之前的scroll，将不断向下获取数据</div><div class="line">                    .setScroll(TimeValue.timeValueMinutes(8))// 必须设置新的scroll缓存时间，才可以使用之前的scroll</div><div class="line">                    .get();</div><div class="line">            System.out.println(&quot;ScrollId: &quot; + response.getScrollId()); // 会发现是同一个scrollId</div><div class="line">            sum += response.getHits().hits().length;</div><div class="line">            System.out.println(&quot;总量: &quot; + response.getHits().getTotalHits() + &quot;, 已经查到: &quot; + sum);</div><div class="line">        &#125;</div><div class="line">        SearchHits hits = response.getHits();</div><div class="line">        printHits(response, hits);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void filterQuery(TransportClient client, String index) &#123;</div><div class="line">        QueryBuilder queryBuilder = QueryBuilders.boolQuery()</div><div class="line">                .must(QueryBuilders.prefixQuery(&quot;name&quot;, &quot;book&quot;)) // 不使用filter时，total hits: 6</div><div class="line">                .filter(QueryBuilders.termQuery(&quot;title&quot;, &quot;title1&quot;)) // filter之后命中：total hits: 5</div><div class="line">                ;</div><div class="line">        SearchResponse response = client.prepareSearch(index).setQuery(queryBuilder).get();</div><div class="line">        printHits(response, response.getHits());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * facets es2之后被超类 aggregations 代替</div><div class="line">     * 切面计算，支持多种切面：filter facets、term facets、query facts等</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     */</div><div class="line">    private static void facets(TransportClient client, String index) &#123;</div><div class="line">        System.out.println(&quot;还不知道下面的用法对不对，切面计算会将filter之前的结果进行计算&quot;);</div><div class="line">        QueryBuilder queryBuilder = QueryBuilders.boolQuery()</div><div class="line">                .must(QueryBuilders.prefixQuery(&quot;name&quot;, &quot;book&quot;)) // 不使用filter时，total hits: 6</div><div class="line">                .filter(QueryBuilders.termQuery(&quot;title&quot;, &quot;title1&quot;)) // filter之后命中：total hits: 5</div><div class="line">                ;</div><div class="line">        AggregationBuilder aggregationBuilder = AggregationBuilders.filter(&quot;title&quot;,queryBuilder);</div><div class="line">        SearchResponse response = client.prepareSearch(index).addAggregation(aggregationBuilder).get();</div><div class="line">        printHits(response, response.getHits());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 搜索文本高亮，可以用fragments结果作为返回的高亮文本</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     */</div><div class="line">    private static void highlight(TransportClient client, String index) &#123;</div><div class="line">        HighlightBuilder highlightBuilder = new HighlightBuilder();</div><div class="line">        highlightBuilder.preTags(&quot;&lt;em&gt;&quot;);</div><div class="line">        highlightBuilder.postTags(&quot;&lt;/em&gt;&quot;);</div><div class="line">        highlightBuilder.field(&quot;title&quot;);</div><div class="line"></div><div class="line">        SearchResponse response = client.prepareSearch(index)</div><div class="line">                .setQuery(QueryBuilders.termQuery(&quot;title&quot;, &quot;book&quot;))</div><div class="line">                .highlighter(highlightBuilder)</div><div class="line">                .get();</div><div class="line">        printHits(response,response.getHits());</div><div class="line"></div><div class="line">        for(SearchHit hit:response.getHits())&#123;</div><div class="line">            System.out.println(&quot;String方式打印文档搜索内容:&quot;);</div><div class="line">            System.out.println(hit.getSourceAsString());</div><div class="line">            System.out.println(&quot;Map方式打印高亮内容&quot;);</div><div class="line">            System.out.println(hit.getHighlightFields());</div><div class="line"></div><div class="line">            System.out.println(&quot;遍历高亮集合，打印高亮片段:&quot;);</div><div class="line">            Text[] text = hit.getHighlightFields().get(&quot;title&quot;).getFragments();</div><div class="line">            for (Text str : text) &#123;</div><div class="line">                System.out.println(str.string());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 查询建议，如搜索引擎建议“您是不是要找”,suggest 的api也在es5中进行了改动。需要将目标字段设置为type: completion</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     */</div><div class="line">    private static void suggester(TransportClient client, String index) &#123;</div><div class="line">        SearchResponse response = client.prepareSearch(index)</div><div class="line">                .setQuery(QueryBuilders.matchAllQuery())</div><div class="line">                .suggest(new SuggestBuilder()</div><div class="line">                        .addSuggestion(&quot;fooSuggest&quot;, SuggestBuilders.completionSuggestion(&quot;title&quot;).text(&quot;b&quot;))) // 添加搜索建议，并设置suggester别名</div><div class="line">                .get();</div><div class="line">        printHits(response,response.getHits());</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * 输出查询结果</div><div class="line">     *</div><div class="line">     * @param response</div><div class="line">     * @param hits</div><div class="line">     */</div><div class="line">    private static void printHits(SearchResponse response, SearchHits hits) &#123;</div><div class="line">        System.out.println(&quot;total hits: &quot; + response.getHits().getTotalHits());</div><div class="line">        for (SearchHit hit : hits</div><div class="line">                ) &#123;</div><div class="line">            //System.out.println(hit.getSource().get(&quot;predicate&quot;)); // 获取数据对应的字段值</div><div class="line">            System.out.println(hit.getId() + &quot;\t&quot; + hit.getIndex() + &quot;\t&quot; + hit.getType() + &quot;\t&quot; + hit.getFields() + &quot;\t&quot; + hit.getSourceAsString() + &quot;\t&quot; + hit.getHighlightFields() + &quot;\t&quot; + hit.getScore());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 获取es连接</div><div class="line">     *</div><div class="line">     * @return</div><div class="line">     * @throws UnknownHostException</div><div class="line">     */</div><div class="line">    public static TransportClient getClient() throws UnknownHostException &#123;</div><div class="line">        // 设置链接es的集群名，是否发现所有集群ip</div><div class="line">        Settings settings = Settings.builder().put(&quot;cluster.name&quot;, &quot;esc5.0&quot;).put(&quot;client.transport.sniff&quot;, true).build();</div><div class="line">        TransportClient client = new PreBuiltTransportClient(settings);</div><div class="line">        // 添加链接</div><div class="line">        client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(&quot;10.15.82.65&quot;), 9300));</div><div class="line">        return client;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="bulk批量操作"><a href="#bulk批量操作" class="headerlink" title="bulk批量操作"></a>bulk批量操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div></pre></td><td class="code"><pre><div class="line">package com.sr.util.elasticsearch;</div><div class="line"></div><div class="line">import org.apache.commons.collections.map.HashedMap;</div><div class="line">import org.elasticsearch.action.bulk.BulkRequestBuilder;</div><div class="line">import org.elasticsearch.action.bulk.BulkResponse;</div><div class="line">import org.elasticsearch.action.get.MultiGetItemResponse;</div><div class="line">import org.elasticsearch.action.get.MultiGetRequestBuilder;</div><div class="line">import org.elasticsearch.action.get.MultiGetResponse;</div><div class="line">import org.elasticsearch.action.search.MultiSearchRequestBuilder;</div><div class="line">import org.elasticsearch.action.search.MultiSearchResponse;</div><div class="line">import org.elasticsearch.client.transport.TransportClient;</div><div class="line"></div><div class="line">import java.util.Map;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 批量操作：将多个索引、删除、更新等操作打包成一个请求</div><div class="line"> * Created by dell on 2017/5/17.</div><div class="line"> */</div><div class="line">public class BulkTest &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) throws Exception &#123;</div><div class="line">        TransportClient client = QueryTest.getClient();</div><div class="line">        String index = &quot;test&quot;;</div><div class="line">        String type = &quot;book&quot;;</div><div class="line"></div><div class="line">        System.out.println(&quot;=== bulk index ==========&quot;);</div><div class="line">        bulkRequest(client, index, type);</div><div class="line"></div><div class="line">        System.out.println(&quot;=== multiGet ===========&quot;);</div><div class="line">        multiGet(client, index, type);</div><div class="line"></div><div class="line">        System.out.println(&quot;=== multiSearch ===========&quot;);</div><div class="line">        // multiSearch</div><div class="line">        MultiSearchRequestBuilder builder = client.prepareMultiSearch();</div><div class="line">        builder.add(client.prepareSearch(index, type).request());</div><div class="line">        builder.add(client.prepareSearch(index, type).request()); // filter</div><div class="line">        MultiSearchResponse response= builder.get();</div><div class="line"></div><div class="line">        MultiSearchResponse.Item[] items = response.getResponses();</div><div class="line">        for (MultiSearchResponse.Item item: items</div><div class="line">             ) &#123;</div><div class="line">            System.out.println(item.getResponse().getHits());</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 一次性get多个id对应的文档，功能比较单一</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     * @param type</div><div class="line">     */</div><div class="line">    private static void multiGet(TransportClient client, String index, String type) &#123;</div><div class="line">        MultiGetRequestBuilder builder = client.prepareMultiGet();</div><div class="line">        MultiGetResponse responses = builder.add(index, type, &quot;1&quot;, &quot;2&quot;,&quot;3&quot;).get();</div><div class="line">        System.out.println(responses.toString());</div><div class="line"></div><div class="line">        MultiGetItemResponse[] respa = responses.getResponses();</div><div class="line">        for (MultiGetItemResponse res:respa</div><div class="line">             ) &#123;</div><div class="line">            System.out.println(res.getId() + res.getFailure() + res.getResponse().isExists());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * bulkRequestBuilder可以添加多种、多个操作，一次性提交各种操作，可用于批量导入。批量导出可以选择所有然后写入文件。</div><div class="line">     * @param client</div><div class="line">     * @param index</div><div class="line">     * @param type</div><div class="line">     */</div><div class="line">    private static void bulkRequest(TransportClient client, String index, String type) &#123;</div><div class="line">        Map&lt;String, Object&gt; map = new HashedMap();</div><div class="line">        BulkRequestBuilder bulkRequestBuilder = client.prepareBulk();</div><div class="line"></div><div class="line">        map.put(&quot;title&quot;,&quot;bulk-data1&quot;);</div><div class="line">        bulkRequestBuilder.add(client.prepareIndex(index,type).setSource(map).request());</div><div class="line">        map.put(&quot;title&quot;,&quot;bulk-data2&quot;);</div><div class="line">        bulkRequestBuilder.add(client.prepareIndex(index,type).setSource(map).request());</div><div class="line"></div><div class="line">        BulkResponse responses = bulkRequestBuilder.get(); // 可以添加很多个request然后一次性提交以批量操作</div><div class="line">        System.out.println(responses.toString());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="管理API"><a href="#管理API" class="headerlink" title="管理API"></a>管理API</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">package com.sr.util.elasticsearch;</div><div class="line"></div><div class="line">import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;</div><div class="line">import org.elasticsearch.action.admin.cluster.state.ClusterStateResponse;</div><div class="line">import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;</div><div class="line">import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;</div><div class="line">import org.elasticsearch.client.ClusterAdminClient;</div><div class="line">import org.elasticsearch.client.Response;</div><div class="line">import org.elasticsearch.client.transport.TransportClient;</div><div class="line"></div><div class="line">import java.net.UnknownHostException;</div><div class="line"></div><div class="line">/**管理Api，用于集群监控和管理</div><div class="line"> * Created by dell on 2017/5/17.</div><div class="line"> */</div><div class="line">public class AdminTest &#123;</div><div class="line">    public static void main(String[] args) throws Exception &#123;</div><div class="line">        TransportClient client = QueryTest.getClient();</div><div class="line"></div><div class="line">        // 集群健康状态</div><div class="line">        System.out.println(&quot;==== cluster status ======&quot;);</div><div class="line">        ClusterAdminClient clusterAdminClient = client.admin().cluster();</div><div class="line">        ClusterHealthResponse response = clusterAdminClient.prepareHealth().get();</div><div class="line">        System.out.println(response.getStatus());</div><div class="line"></div><div class="line">        // 集群结点</div><div class="line">        System.out.println(&quot;==== cluster nodes ======&quot;);</div><div class="line">        ClusterStatsResponse response1 = client.admin().cluster().prepareClusterStats().get();</div><div class="line">        System.out.println(response1.getNodes().toString());</div><div class="line"></div><div class="line">        // 设置mapping映射，可以新建或修改多个mapping映射</div><div class="line">        // api: https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-admin-indices.html</div><div class="line">        client.admin().indices().prepareCreate(&quot;twitter&quot;)</div><div class="line">                .addMapping(&quot;tweet&quot;, &quot;&#123;\n&quot; +</div><div class="line">                        &quot;    \&quot;tweet\&quot;: &#123;\n&quot; +</div><div class="line">                        &quot;      \&quot;properties\&quot;: &#123;\n&quot; +</div><div class="line">                        &quot;        \&quot;message\&quot;: &#123;\n&quot; +</div><div class="line">                        &quot;          \&quot;type\&quot;: \&quot;string\&quot;\n&quot; +</div><div class="line">                        &quot;        &#125;\n&quot; +</div><div class="line">                        &quot;      &#125;\n&quot; +</div><div class="line">                        &quot;    &#125;\n&quot; +</div><div class="line">                        &quot;  &#125;&quot;)</div><div class="line">                .get();</div><div class="line"></div><div class="line">        PutMappingResponse response2 =</div><div class="line">                client.admin().indices().preparePutMapping(&quot;twitter&quot;)</div><div class="line">                        .setType(&quot;user&quot;)</div><div class="line">                        .setSource(&quot;&#123;\n&quot; +</div><div class="line">                                &quot;  \&quot;properties\&quot;: &#123;\n&quot; +</div><div class="line">                                &quot;    \&quot;name\&quot;: &#123;\n&quot; +</div><div class="line">                                &quot;      \&quot;type\&quot;: \&quot;string\&quot;\n&quot; +</div><div class="line">                                &quot;    &#125;\n&quot; +</div><div class="line">                                &quot;  &#125;\n&quot; +</div><div class="line">                                &quot;&#125;&quot;)</div><div class="line">                        .get();</div><div class="line">        System.out.println(response2.toString());</div><div class="line">        // 还有更多...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ElasticSearch/" rel="tag">#ElasticSearch</a>
+          
+            <a href="/tags/Information-Retrieval/" rel="tag">#Information Retrieval</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/software/Django/" rel="next" title="Django">
+                <i class="fa fa-chevron-left"></i> Django
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/12/software/Eclipse/" rel="prev" title="Eclipse">
+                Eclipse <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+      	<!-- 多说评论框 start -->
+		<div class="ds-thread" data-thread-key="2017/01/12/software/ElasticSearch/" data-url="http://bebetter.site/2017/01/12/software/ElasticSearch/"></div>
+		<!-- 多说评论框 end -->
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+		<script type="text/javascript">
+			var duoshuoQuery = {short_name:"gatewayzy"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//bebetter.site/statics/js/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+		</script>
+		<!-- 多说公共JS代码 end -->
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="my-github" target="_blank">my-github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://baidu.com/" title="百度" target="_blank">百度</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES-介绍"><span class="nav-number">1.</span> <span class="nav-text">ES 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES与插件安装"><span class="nav-number">2.</span> <span class="nav-text">ES与插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES启动与配置"><span class="nav-number">3.</span> <span class="nav-text">ES启动与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单节点es"><span class="nav-number">3.1.</span> <span class="nav-text">单节点es</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群配置"><span class="nav-number">3.2.</span> <span class="nav-text">集群配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES的使用"><span class="nav-number">4.</span> <span class="nav-text">ES的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#増查改删"><span class="nav-number">4.1.</span> <span class="nav-text">増查改删</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询与高级查询"><span class="nav-number">4.2.</span> <span class="nav-text">查询与高级查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批量操作"><span class="nav-number">4.3.</span> <span class="nav-text">批量操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SearchType详解"><span class="nav-number">4.4.</span> <span class="nav-text">SearchType详解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logstash的使用"><span class="nav-number">5.</span> <span class="nav-text">Logstash的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#书写配置文件"><span class="nav-number">5.1.</span> <span class="nav-text">书写配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES与Mysql数据的数据同步"><span class="nav-number">5.2.</span> <span class="nav-text">ES与Mysql数据的数据同步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kibana的使用"><span class="nav-number">6.</span> <span class="nav-text">Kibana的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#统计与生成地图"><span class="nav-number">6.1.</span> <span class="nav-text">统计与生成地图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与解决"><span class="nav-number">7.</span> <span class="nav-text">问题与解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件示例"><span class="nav-number">8.</span> <span class="nav-text">配置文件示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ES集群"><span class="nav-number">8.1.</span> <span class="nav-text">ES集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logstash同步mysql"><span class="nav-number">8.2.</span> <span class="nav-text">Logstash同步mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kibana"><span class="nav-number">8.3.</span> <span class="nav-text">Kibana</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES5-Java-API代码示例"><span class="nav-number">9.</span> <span class="nav-text">ES5 Java API代码示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#index增查改删"><span class="nav-number">9.1.</span> <span class="nav-text">index增查改删</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#doc查询"><span class="nav-number">9.2.</span> <span class="nav-text">doc查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bulk批量操作"><span class="nav-number">9.3.</span> <span class="nav-text">bulk批量操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理API"><span class="nav-number">9.4.</span> <span class="nav-text">管理API</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+
+</body>
+</html>

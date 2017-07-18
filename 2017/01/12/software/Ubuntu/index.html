@@ -347,19 +347,8 @@
 <li>service –status-all  显示所有服务</li>
 <li>date  日期时间</li>
 <li>ps -A 显示所有运行中的进程</li>
-<li>关机<ul>
-<li>shutdown -s [时间]，立即关机使用0或者now</li>
-<li>init 0，这个是运行级别关机，需要确保系统没有在读写硬盘等操作，否则可能导致损坏</li>
-<li>power off，这个命令很好用</li>
-<li>halt，这个命令不太好用</li>
-</ul>
-</li>
-<li>重启 <ul>
-<li>reboot 主要用于单用户模式</li>
-<li>shutdown -r [时间] 如now</li>
-</ul>
-</li>
 <li>shell编程<ul>
+<li>echo “passwd” | sudo -S reboot可以实现脚本中执行sudo，-S sudo从标准输入读取密码</li>
 <li>nohup ./test &amp; 用&amp;后台运行，用nohup保证关闭当前shell不会关闭运行中的程序</li>
 <li>jobs  显示当前shell中的所有作业信息，包括运行状态等，-l列出pid、作业号，-r运行中的，-s指stopped</li>
 <li>bg 2 以后台模式重启作业号为2的作业</li>
@@ -368,7 +357,7 @@
 <li>at -f test.sh +25 定时任务25分钟后运行文件中的命令，结合atq查看列表，atrm删除</li>
 <li>crontab -l  显示cron定时任务时刻表，-e编辑时刻表</li>
 <li>anacron 可以弥补cron停机期间错过定时任务的问题</li>
-<li>$? 返回上一条执行语句的状态返回值，$0代表程序名，$1为第一个参数类推，$#表示参数个数（不含程序名）</li>
+<li><code>$?</code> 返回上一条执行语句的状态返回值，<code>$0</code>代表程序名，<code>$1</code>为第一个参数类推，<code>$#</code>表示参数个数（不含程序名）</li>
 <li>read -p “hello” a 输出hello并读取用户输入存放到a变量</li>
 <li>文件描述符fd：每个进程最多9个fd，且0是STDIN，1是STDOUT，2是STDREE，可进行重定向<ul>
 <li>lsof 查看所有文件描述符，可能被隐藏，用/usr/sbin/lsof全路径才能运行</li>
@@ -383,7 +372,7 @@
 <li>sed 支持N、D、P等多行文本操作</li>
 </ul>
 </li>
-<li>gawk是awk的gnu版本，提供了流编辑器的编程语言，支持复杂编程和格式化输出，处理也是按行输入处理，$0表示整行，$1表示第一个字段（默认用空白符分割字段）<ul>
+<li>gawk是awk的gnu版本，提供了流编辑器的编程语言，支持复杂编程和格式化输出，处理也是按行输入处理，<code>$0</code>表示整行，<code>$1</code>表示第一个字段（默认用空白符分割字段）<ul>
 <li>gawk ‘{print “hello “ $1;$2=”bb”}’ data1 输出hello 第一个字段</li>
 <li>gawk ‘BEGIN {print “before dealing: “}{print $0}’ data1 运行前输出以及文本处理</li>
 <li>gawk -f test.gawk data1 使用gawk脚本文件处理data1文件</li>
@@ -393,17 +382,31 @@
 </li>
 </ul>
 <h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><hr>
+<h3 id="系统关机与系统信息"><a href="#系统关机与系统信息" class="headerlink" title="系统关机与系统信息"></a>系统关机与系统信息</h3><ul>
+<li>关机<ul>
+<li>shutdown -s [时间]，立即关机使用0或者now</li>
+<li>init 0，这个是运行级别关机，需要确保系统没有在读写硬盘等操作，否则可能导致损坏</li>
+<li>power off，这个命令很好用</li>
+<li>halt，这个命令不太好用</li>
+</ul>
+</li>
+<li>重启 <ul>
+<li>reboot 主要用于单用户模式</li>
+<li>shutdown -r [时间] 如now</li>
+</ul>
+</li>
+<li>查看电脑型号：sudo dmidecode | grep Product 查看服务器型号，如Dell PowerEdge R730</li>
+</ul>
 <h3 id="系统编码"><a href="#系统编码" class="headerlink" title="系统编码"></a>系统编码</h3><ul>
+<li>通过修改/var/lib/locales/supported.d/local文件 为三行<code>en_US.UTF-8 UTF-8</code> <code>zh_CN.UTF-8 UTF-8</code> <code>zh_CN GB2312</code></li>
 <li>Ubuntu默认的中文字符编码为zh_CN.UTF-8，这个可以在/etc/environment中看到：</li>
-<li>sudo gedit /etc/environment，可以看到如下内容：<br><code>PATH=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games&quot;
-LANG=&quot;zh_CN.UTF-8&quot;
-LANGUAGE=&quot;zh_CN:zh:en_US:en&quot;</code></li>
+<li>sudo gedit /etc/environment，可以看到如下内容：<br><code>PATH=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games&quot;</code>  <code>LANG=&quot;zh_CN.UTF-8&quot;</code><br><code>LANGUAGE=&quot;zh_CN:zh:en_US:en&quot;</code></li>
 <li>第二行即是默认的中文字符编码。注：可以通过这里修改默认的中文编码字符，比如修改为zh_CN.GBK</li>
-<li>运行sudo dpkg-reconfigure locales 重启ubuntu</li>
+<li>运行sudo dpkg-reconfigure locales 重启ubuntu。如果存在部分中文乱码，建议查看下一步中<code>安装字体的部分</code>。</li>
 </ul>
 <h3 id="使用ibus的中文输入法"><a href="#使用ibus的中文输入法" class="headerlink" title="使用ibus的中文输入法"></a>使用ibus的中文输入法</h3><ul>
 <li>可以先将系统编码设置为中文</li>
-<li>如果不想安装中文语言包，则需要安装中文字体：<code>$ sudo apt-get install ttf-wqy-* ``$ sudo apt-get install xfonts-wqy ``$ sudo apt-get install fonts-wqy-*</code></li>
+<li>如果不想安装中文语言包，则需要安装中文字体：<code>$ sudo apt-get install ttf-wqy-*</code> <code>$ sudo apt-get install xfonts-wqy</code> <code>$ sudo apt-get install fonts-wqy-*</code></li>
 <li>安装ibus框架：<code>sudo apt-get install ibus ibus-clutter ibus-gtk ibus-gtk3 ibus-qt4</code></li>
 <li>安装输入法：<code>sudo apt-get install ibus-pinyin ibus-table-wubi ibus-googlepinyin ibus-sunpinyin</code></li>
 <li>进行配置ibus <code>ibus-setup</code>，添加输入法。</li>
@@ -425,11 +428,20 @@ LANGUAGE=&quot;zh_CN:zh:en_US:en&quot;</code></li>
 </ul>
 </li>
 </ul>
-<h2 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h2><hr>
+<h2 id="磁盘内存"><a href="#磁盘内存" class="headerlink" title="磁盘内存"></a>磁盘内存</h2><hr>
 <ul>
-<li>df  查看磁盘使用情况</li>
+<li>df  查看磁盘使用情况，df -lh 格式化查看磁盘</li>
+<li>free 查看内存使用情况</li>
 <li>du  查看当前文件夹下的文件占用磁盘大小，-s /etc列出目录下所有目录一级，-S对子目录进行占用大小统计展示</li>
 </ul>
+<h3 id="系统环境变量"><a href="#系统环境变量" class="headerlink" title="系统环境变量"></a>系统环境变量</h3><hr>
+<ul>
+<li>使用env查看当前环境变量，可进行grep。</li>
+<li>/etc/profile 文件的环境变量对所有用户生效，且只在开机时加载。修改之后，source /etc/profile 生效，但只有该terminal有效，重启后所有terminal有效。</li>
+<li>~/.profile 文件是每个用户名用户的环境变量，在用户初次登陆时加载。修改之后，source ~/.profile 生效，但只有该terminal有效，logout该用户，重新登录后有效。</li>
+<li>如在/etc/profile和~/.profile中都添加如下的内容，或者用户可以自修改个人的env值。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/opt/jdk1.8.0</div><div class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre  </div><div class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib  </div><div class="line">export M2_HOME=/opt/maven3.3.3</div><div class="line">export PATH=$PATH:$M2_HOME/bin:$JAVA_HOME/bin</div><div class="line">export NODE_HOME=/opt/node7.7.2</div><div class="line">export  PATH=$PATH:$&#123;NODE_HOME&#125;/bin</div></pre></td></tr></table></figure>
 <h2 id="文件文件夹"><a href="#文件文件夹" class="headerlink" title="文件文件夹"></a>文件文件夹</h2><hr>
 <h3 id="新建文件文件夹"><a href="#新建文件文件夹" class="headerlink" title="新建文件文件夹"></a>新建文件文件夹</h3><hr>
 <ul>
@@ -557,6 +569,31 @@ LANGUAGE=&quot;zh_CN:zh:en_US:en&quot;</code></li>
 </li>
 </ul>
 <h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><hr>
+<h3 id="网络IP设置"><a href="#网络IP设置" class="headerlink" title="网络IP设置"></a>网络IP设置</h3><hr>
+<ul>
+<li>修改ip地址<ul>
+<li>即时生效: ifconfig eth0 192.168.1.155 netmask 255.255.255.0</li>
+<li>重启生效: 修改/etc/network/interfaces，修改如下内容即可，然后重启服务service networking restart或者sudo /etc/init.d/networking restart</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">auto em1</div><div class="line">iface em1 inet static</div><div class="line">address 10.15.82.64</div><div class="line">gateway 10.15.82.53</div><div class="line">netmask 255.255.255.0</div><div class="line">network 10.15.82.0</div><div class="line">broadcast 10.15.82.255</div><div class="line">dns-nameservers 10.10.0.21</div></pre></td></tr></table></figure>
+<ul>
+<li>修改dns<ul>
+<li>修改 /etc/resolvconf/resolv.conf.d/base 修改后即时并永久生效，添加两行：nameserver 192.168.1.1 nameserver 220.170.64.68</li>
+</ul>
+</li>
+<li>zju-vpn-ubuntu 使用 vpn-connect<ol>
+<li>下载一个全自动vpn安装包。<a href="http://zjufiles.lifetoy.org/linux/vpn/xl2tpd_1.2.5+zju-1_i386.deb" target="_blank" rel="external">http://zjufiles.lifetoy.org/linux/vpn/xl2tpd_1.2.5+zju-1_i386.deb</a> (ftp和org等找)</li>
+<li>安装之前先删除原来的xl2tpd包。命令：<code>sudo dpkg --purge xl2tpd</code></li>
+<li>安装。命令：sudo dpkg -i xl2tpd_1.2.5-zju1_i386.deb (根据提示或错误信息完成安装)</li>
+<li>配置。命令：sudo vpn-connect -c (用户名后面一定要加@a)。</li>
+<li>连接。命令：sudo vpn-connect</li>
+<li>断开。命令：sudo vpn-connect -d</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo &quot;&gt;&gt;&gt;&gt; disconnecting vpn &gt;&gt;&gt;&gt;&quot;</div><div class="line">sudo vpn-connect -d</div><div class="line">#vpn-connect -c</div><div class="line">echo &quot;&gt;&gt;&gt;&gt; using 21326@a &gt;&gt;&gt;&gt;&quot;</div><div class="line">sudo vpn-connect</div></pre></td></tr></table></figure>
 <h3 id="端口控制"><a href="#端口控制" class="headerlink" title="端口控制"></a>端口控制</h3><hr>
 <ul>
 <li><p>防火墙，使用ufw进行端口设置</p>
@@ -669,6 +706,7 @@ LANGUAGE=&quot;zh_CN:zh:en_US:en&quot;</code></li>
 <li>还有问题的话应该通过查看vnc4server对应的log文件排查问题，比如用户权限问题。<ul>
 <li>比如提示没有权限在~/.config下创建文件等提示，可将.config文件夹属主修改为当前用户和用户组（chown -R zju:zju .config/），注意应确保不影响其他用户和用户组。</li>
 <li>比如提示gnome-session的shell失败，可以分配~/.dbus的权限或者直接改chown。</li>
+<li>比如界面很丑，蓝色背景和黑色导航栏，提示<code>failed to load theme adwaita</code>，可以<code>sudo apt-get install gnome-themes-standard</code>，重启</li>
 </ul>
 </li>
 <li>修改分辨率：<ul>
@@ -884,7 +922,7 @@ LANGUAGE=&quot;zh_CN:zh:en_US:en&quot;</code></li>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -901,7 +939,7 @@ LANGUAGE=&quot;zh_CN:zh:en_US:en&quot;</code></li>
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -948,7 +986,7 @@ LANGUAGE=&quot;zh_CN:zh:en_US:en&quot;</code></li>
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统设置"><span class="nav-number">2.</span> <span class="nav-text">系统设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统编码"><span class="nav-number">2.1.</span> <span class="nav-text">系统编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ibus的中文输入法"><span class="nav-number">2.2.</span> <span class="nav-text">使用ibus的中文输入法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开机启动"><span class="nav-number">2.3.</span> <span class="nav-text">开机启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘"><span class="nav-number">3.</span> <span class="nav-text">磁盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件文件夹"><span class="nav-number">4.</span> <span class="nav-text">文件文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建文件文件夹"><span class="nav-number">4.1.</span> <span class="nav-text">新建文件文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示文件文件夹"><span class="nav-number">4.2.</span> <span class="nav-text">显示文件文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找文件与命令"><span class="nav-number">4.3.</span> <span class="nav-text">查找文件与命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝剪切压缩"><span class="nav-number">4.4.</span> <span class="nav-text">拷贝剪切压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件文件夹"><span class="nav-number">4.5.</span> <span class="nav-text">删除文件文件夹</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户用户组"><span class="nav-number">5.</span> <span class="nav-text">用户用户组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看用户"><span class="nav-number">5.1.</span> <span class="nav-text">查看用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加用户用户组"><span class="nav-number">5.2.</span> <span class="nav-text">添加用户用户组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除用户用户组"><span class="nav-number">5.3.</span> <span class="nav-text">删除用户用户组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改用户用户组"><span class="nav-number">5.4.</span> <span class="nav-text">修改用户用户组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限"><span class="nav-number">6.</span> <span class="nav-text">权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">7.</span> <span class="nav-text">网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#端口控制"><span class="nav-number">7.1.</span> <span class="nav-text">端口控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FTP"><span class="nav-number">7.2.</span> <span class="nav-text">FTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web"><span class="nav-number">7.3.</span> <span class="nav-text">web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mail"><span class="nav-number">7.4.</span> <span class="nav-text">mail</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程访问"><span class="nav-number">7.5.</span> <span class="nav-text">远程访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用SSH访问Linux"><span class="nav-number">7.5.1.</span> <span class="nav-text">使用SSH访问Linux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux访问Windows桌面系统"><span class="nav-number">7.5.2.</span> <span class="nav-text">Linux访问Windows桌面系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows访问linux的图形界面"><span class="nav-number">7.5.3.</span> <span class="nav-text">Windows访问linux的图形界面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件"><span class="nav-number">8.</span> <span class="nav-text">软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件管理"><span class="nav-number">8.1.</span> <span class="nav-text">软件管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐软件"><span class="nav-number">8.2.</span> <span class="nav-text">推荐软件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统设置"><span class="nav-number">2.</span> <span class="nav-text">系统设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统关机与系统信息"><span class="nav-number">2.1.</span> <span class="nav-text">系统关机与系统信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统编码"><span class="nav-number">2.2.</span> <span class="nav-text">系统编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ibus的中文输入法"><span class="nav-number">2.3.</span> <span class="nav-text">使用ibus的中文输入法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开机启动"><span class="nav-number">2.4.</span> <span class="nav-text">开机启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘内存"><span class="nav-number">3.</span> <span class="nav-text">磁盘内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统环境变量"><span class="nav-number">3.1.</span> <span class="nav-text">系统环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件文件夹"><span class="nav-number">4.</span> <span class="nav-text">文件文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建文件文件夹"><span class="nav-number">4.1.</span> <span class="nav-text">新建文件文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示文件文件夹"><span class="nav-number">4.2.</span> <span class="nav-text">显示文件文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找文件与命令"><span class="nav-number">4.3.</span> <span class="nav-text">查找文件与命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝剪切压缩"><span class="nav-number">4.4.</span> <span class="nav-text">拷贝剪切压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件文件夹"><span class="nav-number">4.5.</span> <span class="nav-text">删除文件文件夹</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户用户组"><span class="nav-number">5.</span> <span class="nav-text">用户用户组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看用户"><span class="nav-number">5.1.</span> <span class="nav-text">查看用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加用户用户组"><span class="nav-number">5.2.</span> <span class="nav-text">添加用户用户组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除用户用户组"><span class="nav-number">5.3.</span> <span class="nav-text">删除用户用户组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改用户用户组"><span class="nav-number">5.4.</span> <span class="nav-text">修改用户用户组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限"><span class="nav-number">6.</span> <span class="nav-text">权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">7.</span> <span class="nav-text">网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络IP设置"><span class="nav-number">7.1.</span> <span class="nav-text">网络IP设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口控制"><span class="nav-number">7.2.</span> <span class="nav-text">端口控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FTP"><span class="nav-number">7.3.</span> <span class="nav-text">FTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web"><span class="nav-number">7.4.</span> <span class="nav-text">web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mail"><span class="nav-number">7.5.</span> <span class="nav-text">mail</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程访问"><span class="nav-number">7.6.</span> <span class="nav-text">远程访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用SSH访问Linux"><span class="nav-number">7.6.1.</span> <span class="nav-text">使用SSH访问Linux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux访问Windows桌面系统"><span class="nav-number">7.6.2.</span> <span class="nav-text">Linux访问Windows桌面系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows访问linux的图形界面"><span class="nav-number">7.6.3.</span> <span class="nav-text">Windows访问linux的图形界面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件"><span class="nav-number">8.</span> <span class="nav-text">软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件管理"><span class="nav-number">8.1.</span> <span class="nav-text">软件管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐软件"><span class="nav-number">8.2.</span> <span class="nav-text">推荐软件</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

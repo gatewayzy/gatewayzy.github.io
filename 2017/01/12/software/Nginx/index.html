@@ -338,6 +338,16 @@
 <li>查看端口：netstat –ntlp |grep nginx， 或者ps -aux</li>
 <li>修改配置文件：sudo vi /etc/nginx/nginx.conf</li>
 </ul>
+<h3 id="Nginx配置多个虚拟主机"><a href="#Nginx配置多个虚拟主机" class="headerlink" title="Nginx配置多个虚拟主机"></a>Nginx配置多个虚拟主机</h3><hr>
+<ul>
+<li>参考文章<ul>
+<li><a href="https://gist.github.com/soheilhy/8b94347ff8336d971ad0" target="_blank" rel="external">Virtual Hosts on nginx</a></li>
+<li><a href="http://7424593.blog.51cto.com/7414593/1762432" target="_blank" rel="external">Nginx反向代理后端多个Tomcat、Nginx+PHP服务器</a></li>
+</ul>
+</li>
+<li>需求描述：有多个ip:port需要使用一个nginx进行代理。比如说想用域名mydomain.com代理几个nodejs工程10.10.10.10:4000、10.10.10.22:8000.</li>
+<li>解决方法</li>
+</ul>
 
       
     </div>
@@ -369,8 +379,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/12/模板/" rel="next" title="【模板】">
-                <i class="fa fa-chevron-left"></i> 【模板】
+              <a href="/2017/01/12/software/Mybatis/" rel="next" title="Mybatis">
+                <i class="fa fa-chevron-left"></i> Mybatis
               </a>
             
           </div>
@@ -465,7 +475,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -482,7 +492,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -529,7 +539,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx使用"><span class="nav-number">2.</span> <span class="nav-text">Nginx使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx安装配置"><span class="nav-number">2.1.</span> <span class="nav-text">Nginx安装配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx命令"><span class="nav-number">2.2.</span> <span class="nav-text">Nginx命令</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx使用"><span class="nav-number">2.</span> <span class="nav-text">Nginx使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx安装配置"><span class="nav-number">2.1.</span> <span class="nav-text">Nginx安装配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx命令"><span class="nav-number">2.2.</span> <span class="nav-text">Nginx命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx配置多个虚拟主机"><span class="nav-number">2.3.</span> <span class="nav-text">Nginx配置多个虚拟主机</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
