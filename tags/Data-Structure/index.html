@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Django," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,17 +84,15 @@
 
 
 
-<meta name="description" content="说明：Django配置使用。">
-<meta name="keywords" content="Django">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Django">
-<meta property="og:url" content="http://bebetter.site/2017/01/12/software/Django/index.html">
+<meta name="description" content="blog website with hexo and github pages">
+<meta property="og:type" content="website">
+<meta property="og:title" content="gatewayzy">
+<meta property="og:url" content="http://bebetter.site/tags/Data-Structure/index.html">
 <meta property="og:site_name" content="gatewayzy">
-<meta property="og:description" content="说明：Django配置使用。">
-<meta property="og:updated_time" content="2017-01-12T05:58:56.000Z">
+<meta property="og:description" content="blog website with hexo and github pages">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Django">
-<meta name="twitter:description" content="说明：Django配置使用。">
+<meta name="twitter:title" content="gatewayzy">
+<meta name="twitter:description" content="blog website with hexo and github pages">
 
 
 
@@ -115,9 +113,9 @@
 
 
 
-  <link rel="canonical" href="http://bebetter.site/2017/01/12/software/Django/"/>
+  <link rel="canonical" href="http://bebetter.site/tags/Data-Structure/"/>
 
-  <title> Django | gatewayzy </title>
+  <title> 标签: Data Structure | gatewayzy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -138,7 +136,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <div class="container one-collumn sidebar-position-right  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -236,180 +234,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Django
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-12T13:58:04+08:00" content="2017-01-12">
-              2017-01-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Softwares/" itemprop="url" rel="index">
-                    <span itemprop="name">Softwares</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p><strong>说明：</strong>Django配置使用。<br><a id="more"></a></p>
-<hr>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
-<li>参考文章：<a href="http://www.runoob.com/django/django-install.html" target="_blank" rel="external">Django 菜鸟教程</a></li>
-</ul>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
-<li><code>pip install django</code></li>
-<li>查看版本<code>import django; print(django.get_version())</code></li>
-<li>安装好django后可以使用django-admin.py进行项目管理</li>
-</ul>
-<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><ul>
-<li><code>django-admin startproject easyweb</code>  创建一个django项目工程</li>
-<li>django项目文件说明：<ul>
-<li>manage.py 命令行工具，用于管理项目</li>
-<li>easyweb文件夹存放项目的容器，内含init表示是个python包，settings是配置文件（html模板路径、数据库连接、访问限制、编码等），urls存放url（路由和后台的映射关系），wsgi存放web入口。</li>
-</ul>
-</li>
-</ul>
-<h3 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h3><ul>
-<li>pychamrm中创建django server，配置对应的django的root路径和settings路径等，启动并访问对应网址即可。</li>
-<li><code>python ./manage.py runserver 127.0.0.1:8080</code> 是通过python的命令行模式启动项目。因此除了命令行运行，也可以使用pycharm添加python脚本和参数runserver…</li>
-</ul>
-<h3 id="django使用"><a href="#django使用" class="headerlink" title="django使用"></a>django使用</h3><h4 id="基本页面与路由"><a href="#基本页面与路由" class="headerlink" title="基本页面与路由"></a>基本页面与路由</h4><ul>
-<li>使用return HttpResponse返回html文本，所以不适合返回完整html页面。<ul>
-<li><code>from django.http import HttpResponse</code></li>
-<li><code>def home(request): return HttpResponse(</code>‘<p>你好</p>‘<code>)</code></li>
-<li>必须使用request，不能省，不能简写</li>
-</ul>
-</li>
-<li><p>使用render方法返回html模板，将html文本和数据分开返回，类似于mvc结构。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">from django.shortcuts import render</div><div class="line">def toHome(request): context = &#123;&#125;;context[&apos;myText&apos;] = &apos;HI&apos;; return render(request, &apos;home.html&apos;, context)</div><div class="line">容器内编写/templates/home.html，使用&#123;&#123;myText&#125;&#125;获取数据，使用&#123;% if for include block 等语法，语法略 %&#125;，使用&#123;#此为html中的注释#&#125;等等。</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<pre><code>* 配置MVC：
-    * settings中配置TEMPLATES的`&apos;DIRS&apos;: [BASE_DIR + &apos;/templates&apos;]`以指定模板路径。还可以看到settings中有DATABASE默认使用了sqlite3等配置。
-    * urls中配置路由：`from .views.index import home`以引入编写的后台py，然后urlpatterns中添加`url(r&apos;^index/home$&apos;, home.toHome)`。其中url的第一项是url的正则表达式，注意正则表达式特性，如结束符$是否必须写以防home覆盖home2这种问题；第二项是路由对应的后台方法名。
-</code></pre>
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        Data Structure
+        <small>标签</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/2017/03/01/algorithm/Data Structure/" itemprop="url">
+              
+                <span itemprop="name">Data Structure</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-03-01T13:58:04+08:00"
+              content="2017-03-01" >
+          03-01
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Django/" rel="tag">#Django</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/01/12/software/Browser/" rel="next" title="Browser">
-                <i class="fa fa-chevron-left"></i> Browser
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/12/software/Docker/" rel="prev" title="Docker">
-                Docker <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -417,12 +281,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-
-
-  </div>
-
 
         </div>
         
@@ -442,17 +300,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/statics/images/avatar.png"
@@ -480,7 +329,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -520,17 +369,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建项目"><span class="nav-number">3.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动项目"><span class="nav-number">4.</span> <span class="nav-text">启动项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#django使用"><span class="nav-number">5.</span> <span class="nav-text">django使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本页面与路由"><span class="nav-number">5.1.</span> <span class="nav-text">基本页面与路由</span></a></li></ol></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -627,10 +465,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 

@@ -269,7 +269,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-01T13:58:04+08:00" content="2017-03-01">
+            <time itemprop="dateCreated" datetime="2017-03-01T13:58:17+08:00" content="2017-03-01">
               2017-03-01
             </time>
           </span>
@@ -447,7 +447,7 @@
 <li><p>几者关系<a href="http://blog.csdn.net/zccz14/article/details/51288079" target="_blank" rel="external">参考文章</a></p>
 <ul>
 <li>搜索(Searching)，动态规划(DP, Dynamic Programming)，贪心算法(GA, Greedy Algorithm)，至于什么回溯法（Backtracking）只能是搜索的方向问题。</li>
-<li>从范畴上来看：贪心 &lt; DP &lt; 搜索。 所有的贪心算法问题都能用DP求解，DP又能用搜索搞定，反之不成立。</li>
+<li>从范畴上来看：贪心 &lt; DP &lt; 搜索。 所有的贪心算法问题都能用DP求解，DP又能用搜索搞定，反之不成立。一般情况还是用dp算法，因为贪心难以保证全局最优，而搜索是全局搜索，应用场景也比较容易区分。</li>
 </ul>
 </li>
 </ul>
@@ -468,7 +468,7 @@
 <li>给定一个数列，长度为N，求这个数列的最长上升（递增）子数列（LIS）的长度.以1 7 2 8 3 4为例。这个数列的最长递增子数列是 1 2 3 4，长度为4；次长的长度为3， 包括 1 7 8; 1 2 3 等.</li>
 <li>动态规划：状态定义+转移方程。设Fk为：以数列中第k项结尾的最长递增子序列（LIS）的长度。状态转移方程：Fk=max(Fi+1 where Ai&lt;Ak)，就是说k的前面所有的数为结尾时，如果和k能组成LIS就比较最大值。</li>
 </ul>
-<h2 id="拼多多笔试-20170721"><a href="#拼多多笔试-20170721" class="headerlink" title="拼多多笔试 20170721"></a>拼多多笔试 20170721</h2><ul>
+<h2 id="20170721"><a href="#20170721" class="headerlink" title="20170721"></a>20170721</h2><ul>
 <li>给定M乘N的矩阵，每行都是多个0和多个1(0全部在前面)，要求用时间复杂度O(M+N)、空间复杂度O(1)的算法，输出1个数最多的行号(可能多个)？  <ul>
 <li>关键要求出每行中1最多几个，然后用O(M)遍历各行输出。怎么求这个个数呢？如果每行统计要O(MN)。</li>
 <li>要求O(M+N)，想到典型的<strong>对角线问题</strong>：横竖二维间隔使用（自己命名的）。</li>
@@ -498,7 +498,7 @@
 <ul>
 <li>类似于<strong>多线段合并问题</strong>，主要思路也就是画图，考虑结点的携带信息，通过合并到一个数轴，扫描求解目标区间。</li>
 <li>思路：一上来先用多线段求交的方法求出交区间<code>[3,5]</code>（参见上一题），但是求交只能保证结果被各个区间覆盖，但没法保证结果包含数组的点。这里的<code>[3,5]</code>就不包括<code>[0,2,8], [-1,100]</code> 里面的点，所以还需要向外扩展区间。拓展的方向怎么选择呢？那就涉及到了贪心。</li>
-<li>个人解法：在多线段求交的基础上，需要添加更多信息。一个节点需要携带（所属线段的集合，所在数组的集合）。“所属线段”是为了求交，没有交集是谈不上[s,t]区间的。“所在数组的集合”是为了进行交集扩展，确定扩展后的区间包含了各个数组的点。在交集<code>[3,5]</code>的基础上，再数轴上左右拓展：先统计[3,5]中的点的所在区数组的集合为（0,2）（也就是第一个和第三个数组，目标是（0,1,2,3））。然后向左右各拓展一个点，属于新的数组的点才有用：3左边的2是有用的，属于（1），5右边7没用，8属于（1）有用。所以对2和8进行贪心：拓展到2增加了3-2=1，拓展到8增加了8-5=3，那就选2。现在结果变成了[2,5]，涵盖的区间有（0,1,2）。接着向左右拓展，刚才拓展到2和8，现在拓展到-100（1无用）和10，比较发现10只需拓展10-5=5，涵盖区间变成（0,1,2,3），所以结果就是[2,10].</li>
+<li>个人解法(是错误的，贪心不能保证全局最优！)：<em>在多线段求交的基础上，需要添加更多信息。一个节点需要携带（所属线段的集合，所在数组的集合）。“所属线段”是为了求交，没有交集是谈不上[s,t]区间的。“所在数组的集合”是为了进行交集扩展，确定扩展后的区间包含了各个数组的点。在交集<code>[3,5]</code>的基础上，再数轴上左右拓展：先统计[3,5]中的点的所在区数组的集合为（0,2）（也就是第一个和第三个数组，目标是（0,1,2,3））。然后向左右各拓展一个点，属于新的数组的点才有用：3左边的2是有用的，属于（1），5右边7没用，8属于（1）有用。所以对2和8进行贪心：拓展到2增加了3-2=1，拓展到8增加了8-5=3，那就选2。现在结果变成了[2,5]，涵盖的区间有（0,1,2）。接着向左右拓展，刚才拓展到2和8，现在拓展到-100（1无用）和10，比较发现10只需拓展10-5=5，涵盖区间变成（0,1,2,3），所以结果就是[2,10].</em></li>
 </ul>
 </li>
 <li><p>线程和进程的区别？</p>
@@ -614,8 +614,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/14/AIMechineLearning/Statistical Learning Method/" rel="next" title="Statistical Learning Method">
-                <i class="fa fa-chevron-left"></i> Statistical Learning Method
+              <a href="/2017/03/01/algorithm/Data Structure/" rel="next" title="Data Structure">
+                <i class="fa fa-chevron-left"></i> Data Structure
               </a>
             
           </div>
@@ -711,7 +711,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -758,7 +758,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编程与算法"><span class="nav-number">1.</span> <span class="nav-text">编程与算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">2.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深搜广搜"><span class="nav-number">3.</span> <span class="nav-text">深搜广搜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未分类"><span class="nav-number">4.</span> <span class="nav-text">未分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划-Dynamic-Programming"><span class="nav-number">5.</span> <span class="nav-text">动态规划 Dynamic Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#背包问题"><span class="nav-number">5.1.</span> <span class="nav-text">背包问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最长上升子序列"><span class="nav-number">5.2.</span> <span class="nav-text">最长上升子序列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拼多多笔试-20170721"><span class="nav-number">6.</span> <span class="nav-text">拼多多笔试 20170721</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-源码"><span class="nav-number">7.</span> <span class="nav-text">Java 源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">7.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程安全"><span class="nav-number">7.2.</span> <span class="nav-text">线程安全</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编程与算法"><span class="nav-number">1.</span> <span class="nav-text">编程与算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">2.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深搜广搜"><span class="nav-number">3.</span> <span class="nav-text">深搜广搜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未分类"><span class="nav-number">4.</span> <span class="nav-text">未分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划-Dynamic-Programming"><span class="nav-number">5.</span> <span class="nav-text">动态规划 Dynamic Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#背包问题"><span class="nav-number">5.1.</span> <span class="nav-text">背包问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最长上升子序列"><span class="nav-number">5.2.</span> <span class="nav-text">最长上升子序列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20170721"><span class="nav-number">6.</span> <span class="nav-text">20170721</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-源码"><span class="nav-number">7.</span> <span class="nav-text">Java 源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">7.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程安全"><span class="nav-number">7.2.</span> <span class="nav-text">线程安全</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

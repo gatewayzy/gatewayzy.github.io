@@ -320,37 +320,32 @@
 <p>参考文章：</p>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
 <ul>
-<li>Java是强类型语言。</li>
-<li>属于编译型语言。</li>
+<li>语言的分类<ul>
+<li>其实，现在用编译型、解释型来分类编程语言已经有点力不从心了。</li>
+<li>JAVA的第一道工序是javac编译，当然目标文件是bytecode字节码文件。后续可能有三种处理方式：<ul>
+<li>运行时，BYTECODE由JVM逐条解释执行，</li>
+<li>运行时，部分代码可能由JIT翻译为目标机器指令（以method为翻译单位，还会保存起来，第二次执行就不用翻译了）直接执行；</li>
+<li>RTSJ。继JAVAC之后执行AOT二次编译，生成静态的目标平台代码（典型的就是IBM WEBSHPERE REAL TIME）。</li>
 </ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><hr>
-<p>jre用于运行Java，jdk用于开发调试Java，注意jdk中也包含一个jre。</p>
-<h3 id="Windows安装jdk"><a href="#Windows安装jdk" class="headerlink" title="Windows安装jdk"></a>Windows安装jdk</h3><hr>
-<ul>
-<li>下载jdk或安装jdk，添加JAVA_HOME类似于<code>D:\Program Files\Java\jdk1.8.0_65x64</code>；<br>在path中添加<code>%JAVA_HOME%\bin； %JAVA_HOME%\jre\bin； 
-%JAVA_HOME%\lib</code>。</li>
-<li>运行<code>java -version</code>查看安装状态。</li>
-<li>运行<code>javac Hello.java</code>编译生成了Hello.class，运行<code>java Hello</code>运行程序。</li>
+</li>
+<li>有的时候，可能是以上三种方式同时在使用，至少1和2是同时使用的，3需要程序员手工指定。所以讨论语言需要更细化一点了：强类型的、弱类型的，静态的、动态的，GC-based的、手工管理内存的，有没有VM…</li>
 </ul>
-<h3 id="Ubuntu安装jdk"><a href="#Ubuntu安装jdk" class="headerlink" title="Ubuntu安装jdk"></a>Ubuntu安装jdk</h3><hr>
-<ul>
-<li>下载解压jdk，添加path的操作为：将下面内容添加到/etc/profile，并运行<code>source /etc/profile</code></li>
+</li>
+<li>目前看来，Java语言特点为：<ul>
+<li>强类型（类型在编译期严格确定和检查）</li>
+<li>动态的（java语言编译时不需要进行连接工作，所以得到的class文件不能直接在内存中运行。java语言中，类型的加载、连接和初始化操作是在程序运行期间完成的，这种策略虽然会有一定性能开销，但是可以为java应用程序提供高度灵活性。java的动态拓展性就是依赖于运行期动态加载和动态连接实现的。）</li>
+<li>GC-based</li>
+<li>有jvm。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/opt/jdk</div><div class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre  </div><div class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib  </div><div class="line">export M2_HOME=/opt/maven</div><div class="line">export PATH=$PATH:$M2_HOME/bin:$JAVA_HOME/bin</div></pre></td></tr></table></figure>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><hr>
-<ul>
-<li>略。</li>
+</li>
 </ul>
-<h2 id="Java模板引擎"><a href="#Java模板引擎" class="headerlink" title="Java模板引擎"></a>Java模板引擎</h2><hr>
-<ul>
-<li>Velocity、FreeMarker、Beetl、Httl、Smarty4j等等开源模板引擎，用于替代解决JSP加EL、JSTL等的复杂性。</li>
-</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="abstract和interface"><a href="#abstract和interface" class="headerlink" title="abstract和interface"></a>abstract和interface</h3><p><em>* 【需要整理】 abstract 类才能有abstract方法，方法可以不实现。abstract类不能用new实例化，一般用于存放一些通用的方法，给一些具体的类实现其方法：abstract方法需要子类重写并实现；普通方法可以重写，也可以不重写而直接调用。</em></p>
 <h2 id="问题与解决"><a href="#问题与解决" class="headerlink" title="问题与解决"></a>问题与解决</h2><hr>
 <h3 id="子类与父类的静态代码块的加载"><a href="#子类与父类的静态代码块的加载" class="headerlink" title="子类与父类的静态代码块的加载"></a>子类与父类的静态代码块的加载</h3><hr>
 <ul>
-<li>父类的静态代码块 static{}</li>
+<li>父类的静态代码块 static{} // 类加载阶段的初始化要先运行父类的<clinit>类构造器，而<clinit>合并了类变量赋值和static代码块。</clinit></clinit></li>
 <li>子类的静态代码块 static{}</li>
-<li>父类的非静态代码块 {}</li>
+<li>父类的非静态代码块 {}  // <strong>需要整理</strong></li>
 <li>子类的非静态代码块 {}</li>
 <li>父类的构造器 constructor</li>
 <li>子类的构造器 constructor</li>
@@ -408,16 +403,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/08/AIDeepLearning/2016 基于神经网络的词和文档语义向量表示方法研究/" rel="next" title="基于神经网络的词和文档语义向量表示方法研究">
-                <i class="fa fa-chevron-left"></i> 基于神经网络的词和文档语义向量表示方法研究
+              <a href="/2017/01/10/language/Java JVM/" rel="next" title="Java JVM">
+                <i class="fa fa-chevron-left"></i> Java JVM
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/10/language/Nodejs/" rel="prev" title="Nodejs">
-                Nodejs <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/10/language/Python Django/" rel="prev" title="Python Django">
+                Python Django <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -505,7 +500,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -552,7 +547,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows安装jdk"><span class="nav-number">2.1.</span> <span class="nav-text">Windows安装jdk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu安装jdk"><span class="nav-number">2.2.</span> <span class="nav-text">Ubuntu安装jdk</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">3.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java模板引擎"><span class="nav-number">4.</span> <span class="nav-text">Java模板引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与解决"><span class="nav-number">5.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#子类与父类的静态代码块的加载"><span class="nav-number">5.1.</span> <span class="nav-text">子类与父类的静态代码块的加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Static与final"><span class="nav-number">5.2.</span> <span class="nav-text">Static与final</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map与list"><span class="nav-number">5.3.</span> <span class="nav-text">map与list</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#abstract和interface"><span class="nav-number">2.1.</span> <span class="nav-text">abstract和interface</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与解决"><span class="nav-number">3.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#子类与父类的静态代码块的加载"><span class="nav-number">3.1.</span> <span class="nav-text">子类与父类的静态代码块的加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Static与final"><span class="nav-number">3.2.</span> <span class="nav-text">Static与final</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map与list"><span class="nav-number">3.3.</span> <span class="nav-text">map与list</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
