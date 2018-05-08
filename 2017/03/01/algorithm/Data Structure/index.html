@@ -443,7 +443,7 @@
 </ul>
 </li>
 <li>中缀表达式转后缀表达式<ul>
-<li>遇到数组则直接输出。</li>
+<li>遇到数字则直接输出。</li>
 <li>遇到符号，如果优先级比栈顶符号高，则入栈；如果优先级比栈顶的低，则出栈并输出。<ul>
 <li>若是右括号则进行出栈和输出，直至左括号出栈。（不输出左括号，且右括号不入栈）</li>
 <li>若是左括号则入栈。</li>
@@ -500,7 +500,7 @@
 <li>需要强制实现二重循环匹配，缺点在于很多失败的匹配信息没有利用上。</li>
 </ul>
 <h4 id="KMP模式匹配算法"><a href="#KMP模式匹配算法" class="headerlink" title="KMP模式匹配算法"></a>KMP模式匹配算法</h4><ul>
-<li>KMP是三个人的字母，KMP算法能够大大避免重复遍历的情况。当子串中重复部分比较多时，性能优势越明显。</li>
+<li>KMP是三个作者的姓名简写，KMP算法能够大大避免重复遍历的情况。当子串中重复部分比较多时，性能优势越明显。</li>
 <li>朴素的KMP算法，核心思想就是主串的循环不进行回退，用相应的j进行控制。<ul>
 <li>对子串进行计算next数组</li>
 <li>根据子串的next的数组对主串进行匹配</li>
@@ -1198,12 +1198,33 @@
 <li>归并排序：归并排序</li>
 </ul>
 </li>
-<li>排序应用：<ul>
+<li><p>排序应用：</p>
+<ul>
 <li>算法没有最好，只是适合的场景不同，需要考虑数据的初始排序状态、时间限制、空间限制、稳定性限制、算法特性等</li>
 <li>虽然改进算法比简单算法要复杂，但是一些情况下还是简单算法比较高效。如基本有序时用直插更高效。 </li>
 </ul>
 </li>
+<li><p>堆排序</p>
+<ul>
+<li>堆排序一般用最大堆（所有父节点的值&gt;=子结点的值），最小堆一般用于构造优先队列。</li>
+<li></li>
 </ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 堆排序</div><div class="line"> * 建立n次的最大堆，每次输出堆顶，对未输出的数字递归建堆输出。复杂度：建堆是log(n)，乘以n次就是n*log(n)</div><div class="line"> */</div><div class="line">public class HeapSort &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        int[] a = &#123;7, 6, 0, 3, 2, 1, 4&#125;;</div><div class="line">        System.out.println(&quot;开始排序&quot;);</div><div class="line">        int arrayLength = a.length; // 循环建堆</div><div class="line">        for (int i = 0; i &lt; arrayLength - 1; i++) &#123; // 建堆</div><div class="line">            buildMaxHeap(a, arrayLength - 1 - i); // 交换堆顶和最后一个元素</div><div class="line">            swap(a, 0, arrayLength - 1 - i);</div><div class="line">        &#125;</div><div class="line">        System.out.println(Arrays.toString(a));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void swap(int[] data, int i, int j) &#123;</div><div class="line">        int tmp = data[i];</div><div class="line">        data[i] = data[j];</div><div class="line">        data[j] = tmp;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // 对data数组从0到lastIndex建大顶堆</div><div class="line">    private static void buildMaxHeap(int[] data, int lastIndex) &#123;</div><div class="line">        // 从lastIndex处节点（最后一个节点）的父节点开始</div><div class="line">        for (int i = (lastIndex - 1) / 2; i &gt;= 0; i--) &#123;</div><div class="line">            // k保存正在判断的节点</div><div class="line">            int k = i;</div><div class="line">            // 如果当前k节点的子节点存在</div><div class="line">            while (k * 2 + 1 &lt;= lastIndex) &#123;</div><div class="line">                // k节点的左子节点的索引</div><div class="line">                int biggerIndex = 2 * k + 1;</div><div class="line">                // 如果biggerIndex小于lastIndex，即biggerIndex+1代表的k节点的右子节点存在</div><div class="line">                if (biggerIndex &lt; lastIndex) &#123;</div><div class="line">                    // 如果右子节点的值较大</div><div class="line">                    if (data[biggerIndex] &lt; data[biggerIndex + 1]) &#123;</div><div class="line">                        // biggerIndex总是记录较大子节点的索引</div><div class="line">                        biggerIndex++;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                // 如果k节点的值小于其较大的子节点的值</div><div class="line">                if (data[k] &lt; data[biggerIndex]) &#123;</div><div class="line">                    // 交换他们</div><div class="line">                    swap(data, k, biggerIndex);</div><div class="line">                    // 将biggerIndex赋予k，开始while循环的下一次循环，重新保证k节点的值大于其左右子节点的值</div><div class="line">                    k = biggerIndex;</div><div class="line">                &#125; else &#123;</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>快速排序<ul>
+<li>优化方法：<ul>
+<li>base优化：每次的base随机选取（随机化快速排序，适用于已有序的排序）、首尾和随机选取的均值作为base。</li>
+<li>前后逼近策略修改：采用两个指针都从头向后逼近（可避免一些不必要的交换）。</li>
+<li>小数组优化：改用直插排序。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">import java.util.Arrays;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 快速排序：两个指针从前面向后面逼近</div><div class="line"> */</div><div class="line">public class QuickSortFromLeft &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        int[] data = new int[]&#123;1, 2, 6, 5, 4, 3, 7&#125;;</div><div class="line">        quickSort(data, 0, data.length - 1);</div><div class="line">        System.out.println(Arrays.toString(data));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static void quickSort(int[] data, int start, int end) &#123;</div><div class="line">        System.out.println(start + &quot; &quot; + end);</div><div class="line">        if (start == end) return;</div><div class="line">        int index = partition(data, start, end);</div><div class="line">        if (index &gt; start) &#123;</div><div class="line">            quickSort(data, start, index - 1);</div><div class="line">        &#125;</div><div class="line">        if (index &lt; end) &#123;</div><div class="line">            quickSort(data, index + 1, end);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">	// partition就是将base值两侧排序好，并返回base所在index</div><div class="line">    static int partition(int[] data, int start, int end) &#123;</div><div class="line">        // 选取基准，可以头部、中间或者随机选取</div><div class="line">        int index = (start + end) / 2; // index = random(start,end)</div><div class="line">        swap(data, index, end); // 基准放在最后方便编程</div><div class="line"></div><div class="line">        int small = start - 1;</div><div class="line">        for (index = start; index &lt; end; ++index) &#123;</div><div class="line">            if (data[index] &lt; data[end]) &#123;</div><div class="line">                ++small;</div><div class="line">                if (small != index) &#123;</div><div class="line">                    swap(data, index, small);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        ++small;</div><div class="line">        swap(data, small, end);</div><div class="line">        return small;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static void swap(int[] data, int i, int j) &#123;</div><div class="line">        int tmp = data[i];</div><div class="line">        data[i] = data[j];</div><div class="line">        data[j] = tmp;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 快速排序</div><div class="line"> * 每趟排序选一个基准（如第一个值），两端用指针向中间逼近，前面大于base，后面小于base的二者进行交换，直到中间位置。</div><div class="line"> * 递归前面到中间位置、中间位置到后面</div><div class="line"> *</div><div class="line"> */</div><div class="line">public class QuickSort &#123;</div><div class="line">    public static void main(String[] a) &#123;</div><div class="line">        int[] b = new int[]&#123;7, 6, 0, 3, 2, 1, 4&#125;;</div><div class="line">        quickSort(b, 0, b.length - 1);</div><div class="line">        System.out.println(Arrays.toString(b));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void quickSort(int[] numbers, int start, int end) &#123;</div><div class="line">        if (start &lt; end) &#123;</div><div class="line">            int base = numbers[start]; // 选定的基准值（第一个数值作为基准值）</div><div class="line">            int temp; // 记录临时中间值</div><div class="line">            int i = start, j = end;</div><div class="line">            do &#123;</div><div class="line">                while ((numbers[i] &lt; base) &amp;&amp; (i &lt; end))</div><div class="line">                    i++;</div><div class="line">                while ((numbers[j] &gt; base) &amp;&amp; (j &gt; start))</div><div class="line">                    j--;</div><div class="line">                if (i &lt;= j) &#123;</div><div class="line">                    temp = numbers[i];</div><div class="line">                    numbers[i] = numbers[j];</div><div class="line">                    numbers[j] = temp;</div><div class="line">                    i++;</div><div class="line">                    j--;</div><div class="line">                &#125;</div><div class="line">            &#125; while (i &lt;= j);</div><div class="line">            if (start &lt; j)</div><div class="line">                quickSort(numbers, start, j);</div><div class="line">            if (end &gt; i)</div><div class="line">                quickSort(numbers, i, end);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -1235,16 +1256,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/14/AIMechineLearning/Statistical Learning Method/" rel="next" title="Statistical Learning Method">
-                <i class="fa fa-chevron-left"></i> Statistical Learning Method
+              <a href="/2017/01/18/总结/深度学习/" rel="next" title="深度学习">
+                <i class="fa fa-chevron-left"></i> 深度学习
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/01/algorithm/Questions/" rel="prev" title="Question">
-                Question <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/01/algorithm/Data Mining/" rel="prev" title="Data Mining">
+                Data Mining <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1315,7 +1336,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1323,7 +1344,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1332,7 +1353,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1359,11 +1380,15 @@
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://github.com/gatewayzy" title="my-github" target="_blank">my-github</a>
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://baidu.com/" title="百度" target="_blank">百度</a>
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
                 </li>
               
             </ul>

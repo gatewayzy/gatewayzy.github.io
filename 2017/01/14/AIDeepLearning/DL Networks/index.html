@@ -369,10 +369,10 @@
 </li>
 <li>BP神经网络属于简单的网络，拓展的网络有卷积神经网络CNN，深度神经网络，脉冲神经网络(Spiking Neural Networks，SNNs)等。尤其是脉冲神经网络被称为第三代神经网络。</li>
 </ul>
-<hr>
-<h2 id="lstm"><a href="#lstm" class="headerlink" title="lstm"></a>lstm</h2><ul>
-<li>单个LSTM，一个lstm单元对不同时刻的数据进行input，state，输出output和state，对下一个时刻，更新output，state是上一个输出时的output。所以在时序上展开就是一层的样子。</li>
-<li>多层LSTM，一个LSTM单元连接下一个LSTM单元，在一个时序中，上一个的output进入下一个的input，每个单元都有state的输入和输出，多层可以提高抽象能力。</li>
+<h2 id="CNN-卷积神经网络"><a href="#CNN-卷积神经网络" class="headerlink" title="CNN 卷积神经网络"></a>CNN 卷积神经网络</h2><h2 id="RNN-Recurrent-循环神经网络"><a href="#RNN-Recurrent-循环神经网络" class="headerlink" title="RNN Recurrent 循环神经网络"></a>RNN Recurrent 循环神经网络</h2><ul>
+<li>rnn循环神经网络可以看做是1个cell，然后对序列目标进行输入输出，cell有输入、输出、上一次的输入、传递给下一次的输出；根据序列目标展开，就是cell构成的层，然后layer的输入层是序列目标，各cell之间相互关联，这和cnn各个cell之间是独立是不同的。</li>
+<li>rnn在序列中的先后顺序，所以顺序反向的时候就能提取出另一种特征，对应BiRNN、BiLSTM、BiGRU等Bidirectional双向网络。</li>
+<li>一般来说RNN比较慢，LSTM快一些，GRU更快一些，但是越快的效果可能不好。</li>
 </ul>
 
       
@@ -405,8 +405,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/12/software/Web Server/" rel="next" title="Web Server">
-                <i class="fa fa-chevron-left"></i> Web Server
+              <a href="/2017/01/14/AIDeepLearning/DL Hardwares/" rel="next" title="Deep Learning Hardwares">
+                <i class="fa fa-chevron-left"></i> Deep Learning Hardwares
               </a>
             
           </div>
@@ -485,7 +485,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -493,7 +493,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -502,7 +502,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -529,11 +529,15 @@
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://github.com/gatewayzy" title="my-github" target="_blank">my-github</a>
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://baidu.com/" title="百度" target="_blank">百度</a>
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
                 </li>
               
             </ul>
@@ -549,7 +553,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络"><span class="nav-number">1.</span> <span class="nav-text">神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前向反馈与反向传播"><span class="nav-number">1.1.</span> <span class="nav-text">前向反馈与反向传播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lstm"><span class="nav-number">2.</span> <span class="nav-text">lstm</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络"><span class="nav-number">1.</span> <span class="nav-text">神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前向反馈与反向传播"><span class="nav-number">1.1.</span> <span class="nav-text">前向反馈与反向传播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CNN-卷积神经网络"><span class="nav-number">2.</span> <span class="nav-text">CNN 卷积神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RNN-Recurrent-循环神经网络"><span class="nav-number">3.</span> <span class="nav-text">RNN Recurrent 循环神经网络</span></a></li></ol></div>
             
           </div>
         </section>

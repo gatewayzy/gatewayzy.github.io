@@ -321,13 +321,24 @@
 <ul>
 <li>参考文章：</li>
 </ul>
-<h2 id="未分类"><a href="#未分类" class="headerlink" title="未分类"></a>未分类</h2><ul>
+<h3 id="未分类理论"><a href="#未分类理论" class="headerlink" title="未分类理论"></a>未分类理论</h3><ul>
 <li>除法与乘法使用位运算&lt;&lt;、&gt;&gt;，以提高效率，但是注意溢出等问题。</li>
 <li>精度问题，导致=0不能用=0，而是用绝对值小于一个小数</li>
 <li>解决问题需要先处理特殊情况，考虑负面测试、边界测试，再进行功能测试。</li>
 <li>树的优点在于：同时具有快速查找和快速移动，基本都是O(lgN)，算是对数组查找O(1)和删除O(n)以及链表查找O(n)和删除O(1)的折中（或者说是平衡）。</li>
 <li>树的遍历：先序、中序、后续遍历常用递归实现（递归本身就是用栈实现的），可以用非递归的栈和循环实现。层次遍历用队列实现，存放各级并将出队节点的子节点入队尾。</li>
 </ul>
+<h3 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h3><ul>
+<li>s2 单例模式？ 既然是单例，只存在一个对象，那么就用类变量，但是要考虑到多线程和加载时机。多线程可以考虑同步锁，加载时机分为饥饿模式和懒汉模式（预加载和懒加载）<ul>
+<li>只支持单线程的方法：懒汉式、未同步</li>
+<li>支持多线程但加锁消耗太多的方法：懒汉式、同步锁（同步方法块）</li>
+<li>支持多线程并改进加锁消耗的方法：懒汉式、同步锁（同步代码块，比方法块更细粒度）</li>
+<li>静态方法自动加载的方法：饿汉式、类加载机制中的初始化</li>
+<li>静态内部类掉用时才创建的方法：懒汉式、类加载机制中的初始化（改进上面的懒汉式变成饿汉式）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * java 单例模式1</div><div class="line"> * 注解:Singleton的静态属性instance中，只有instance为null的时候才创建一个实例，构造函数私有，确保每次都只创建一个，避免重复创建。&lt;br&gt;</div><div class="line"> * 缺点：只在单线程的情况下正常运行，在多线程的情况下，就会出问题。</div><div class="line"> * 例如：当两个线程同时运行到判断instance是否为空的if语句，并且instance确实没有创建好时，那么两个线程都会创建一个实例。</div><div class="line"> */</div><div class="line">public class $002Singleton1 &#123;</div><div class="line">	private $002Singleton1() &#123;&#125;</div><div class="line">	private static $002Singleton1 instance = null;</div><div class="line">	public static $002Singleton1 getInstance() &#123;</div><div class="line">		if (instance == null) &#123;</div><div class="line">			instance = new $002Singleton1();</div><div class="line">		&#125;</div><div class="line">		return instance;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * java 单例模式2&lt;br&gt; </div><div class="line"> * 不推荐，多线程的情况可以用，但是是懒汉式，同步锁的消耗较大，只在方法1的getInstance()中添加了synchronized关键词&lt;br&gt;</div><div class="line"> * 注解：在解法一的基础上加上了同步锁，使得在多线程的情况下可以用</div><div class="line"> */</div><div class="line">public class $002Singleton2 &#123;</div><div class="line">	private $002Singleton2() &#123;&#125;</div><div class="line">	private static $002Singleton2 instance = null;</div><div class="line">	public static synchronized $002Singleton2 getInstance() &#123;</div><div class="line">		if (instance == null) &#123;</div><div class="line">			instance = new $002Singleton2();</div><div class="line">		&#125;</div><div class="line">		return instance;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * java 单例模式3&lt;br&gt;</div><div class="line"> * 可行，多线程的情况可以用，修改方法2的getInstance()的同步机制，不必进行方法级锁定，在创建实例时锁定即可&lt;br&gt;</div><div class="line"> * 注解：只有当instance为null时，需要获取同步锁，创建一次实例。当实例被创建，则无需试图加锁。&lt;br&gt;</div><div class="line"> * 缺点：用双重if判断，复杂，容易出错。</div><div class="line"> */</div><div class="line">public class $002Singleton3 &#123;</div><div class="line">	private $002Singleton3() &#123;&#125;</div><div class="line">	private static $002Singleton3 instance = null;</div><div class="line">	public static $002Singleton3 getInstance() &#123;</div><div class="line">		if (instance == null) &#123;</div><div class="line">			synchronized ($002Singleton3.class) &#123;</div><div class="line">				if (instance == null) &#123;</div><div class="line">					instance = new $002Singleton3();</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return instance;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * java 单例模式4&lt;br&gt;</div><div class="line"> * 推荐，多线程的情况可以用，饿汉式，不管有没有需要使用instance，都会在类初次调用就会初始化静态instance一次，无法按需创建&lt;br&gt;</div><div class="line"> * 注解：初试化静态的instance创建一次。如果我们在Singleton类里面写一个静态的方法不需要创建实例，它仍然会早早的创建一次实例。而降低内存的使用率。&lt;br&gt;</div><div class="line"> * 缺点：没有lazy loading的效果，从而降低内存的使用率。</div><div class="line"> */</div><div class="line">public class $002Singleton4 &#123;</div><div class="line">	private $002Singleton4() &#123;&#125;</div><div class="line">	private static $002Singleton4 instance = new $002Singleton4();</div><div class="line">	// 类在加载时就已经创建了static的属性一次</div><div class="line">	public static $002Singleton4 getInstance() &#123;</div><div class="line">		return instance;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * java 单例模式5&lt;br&gt;</div><div class="line"> * 推荐，多线程的情况可以用，使用私有内部类，按需创建&lt;br&gt;</div><div class="line"> * 注解：私有内部类singletonHolder，别人无法调用他创建实例&lt;br&gt;</div><div class="line"> * $002Singleton5类在初次调用getInstance()才会调用加载singletonHolder创建实例，$002Singleton5之后不会调用static方法</div><div class="line"> */</div><div class="line">public class $002Singleton5 &#123;</div><div class="line">	private $002Singleton5() &#123;&#125;</div><div class="line"></div><div class="line">	private static class singletonHolder &#123;</div><div class="line">		public static final $002Singleton5 instance = new $002Singleton5();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static $002Singleton5 getInstance() &#123;</div><div class="line">		return singletonHolder.instance;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="查找：各种查找算法与特点"><a href="#查找：各种查找算法与特点" class="headerlink" title="查找：各种查找算法与特点"></a>查找：各种查找算法与特点</h3><ul>
 <li>s3 二维数组从左向右、从上到下递增，查找一个数？先一列一列确定是否在该列，然后在列中查找</li>
 </ul>
@@ -359,7 +370,7 @@
 </ul>
 <h3 id="代码完整性"><a href="#代码完整性" class="headerlink" title="代码完整性"></a>代码完整性</h3><ul>
 <li>代码完整性：功能正常、边界测试、负面测试</li>
-<li>s11 实现数值的证书次方pow函数？ 负面测试：底数为0（浮点数的0判断），功能方面：效率方面使用快速幂运算，如果指数是负数就是计算之后取倒数。</li>
+<li>s11 实现数值的整数次方pow函数？ 负面测试：底数为0（浮点数的0判断），功能方面：效率方面使用快速幂运算，如果指数是负数就是计算之后取倒数。</li>
 <li>s12 打印1到最大的n位数字？ 其实n的范围是一个陷阱，如果超出int或者long等常用整数，会比较麻烦，可以使用字符串或者数组表示一个数字，输出的时候需要考虑起始位的0字符不输出。一种方法是用字符模拟加1和进位输出操作。另一种简单的方法是使用<strong>全组合</strong>，全组合的典型解法是递归(回溯法)，对第一个数字选取所有取值情况，再分别对之后的几位数进行递归。对生成的各个字符串，从左向右从非‘0’开始输出。<strong>全排列问题</strong>，全组合不用考虑顺序，全排列需要考虑顺序，全排列可以先求解全组合，然后对全组合的结果两两交换位置，如123交换12得到213再换后面的得到231，123交换13得到321再换后面得到312，123交换23得到132不能再换后面。</li>
 <li>对于n位数字问题，一定要注意范围，这时需要考虑大数问题，而字符串是简单有效的大数表示方法。</li>
 <li>s13 在O(1)的时间删除链表节点，在一个单向链表中只有一个头指针和一个节点指针？ 链表在删除一个节点的时候，先用O(n)查找到目标，再用O(n)从头查找到目标的上一个节点，所以费时，就是因为没有外部迭代器进行回退。一种解法是查找到目标，然后将下一个节点的数据复制到本节点，然后删除下一个节点，需要考虑是null、删除头部时要更新指针、删除尾部时不要复制的特殊情况。时间复杂度分析：查找一个是O(n)删除一个是O(1)，各个数据的概率是1/n，因此还是O(1)。</li>
@@ -379,11 +390,81 @@
 <li>解决问题时常常通过画图、示例进行具体化，发现解决方法。</li>
 <li>s19 二叉树的镜像，对一个二叉树输出其镜像（左右完全反转）？ 从根节点输出，然后进行递归输出：当前节点的左右子节点交换并输出。如果是循环如何实现？树的遍历一遍使用栈或队列，这里像是层次遍历，使用队列进行。</li>
 <li>s20 顺时针从外向里打印m*n的矩阵？ 画图各种胖窄的形状，发现每一圈都输出上下左右一行一列，每次左上角都是（a，a），每一圈都是从不同的行数列数中输出顺时针四个方向的数据。画图发现一共的圈数满足2a小于列数和2a小于行数，所以每一圈的a进行输出，并根据相对的a和行列数判断后三个方向是不是退化到消失。（如最后一圈是1/1,3/1,1/3,1/2等情况，只要判断相对的起始位置即可确定是否头后3个方向）。</li>
-<li>s20 包含min函数的栈，如何使用栈实现使得插入、删除、获取时，能以O(1)的时间复杂度获取min？ 要求中每次插入一个数据之后，还是能以O(1)的时间获取栈中的min，只用一个stack是很难实现了，可以用一个辅助栈，辅助栈中专门存放与主栈同样高度时，主栈中的最小值。每当插入一个值时，辅助栈添加一个值，且取决于辅助栈顶值与新插入数据的最小值。每当pop一个数，主栈删除栈顶，辅助栈pop栈顶就是pop之前的min，之后的栈顶就是主栈pop之后的min。</li>
-<li>s21 栈的压栈、出栈序列，给定两个序列，第一个是入栈顺序，判断是否能构成第二个出栈序列（不考虑存在相同数字的情况）？  可以使用一个目标栈存放目标的出栈序列，这样相比使用数组更加方便。处理时，将入栈序列（可用数组存）不断进行入栈，记为主栈，并与目标栈的栈顶进行比较，如果相等则主栈pop，且目标栈pop，如果不相等，则主栈不断push直到与目标栈栈顶相同，如果入栈序列结束了但是目标栈还不是空，那么不可能生成目标序列。</li>
-<li>s22 从上向下分层打印二叉树，其中每层按照从左向右的顺序？ 典型的树的层次遍历问题，使用队列，保证先进先出。从根节点开始，添加节点到队列，并将其子节点添加到队尾，不断从队列头部取出节点，将其子节点添加到队尾，直到遍历万所有节点。 </li>
+<li>s21 包含min函数的栈，如何使用栈实现使得插入、删除、获取时，能以O(1)的时间复杂度获取min？ 要求中每次插入一个数据之后，还是能以O(1)的时间获取栈中的min，只用一个stack是很难实现了，可以用一个辅助栈，辅助栈中专门存放与主栈同样高度时，主栈中的最小值。每当插入一个值时，辅助栈添加一个值，且取决于辅助栈顶值与新插入数据的最小值。每当pop一个数，主栈删除栈顶，辅助栈pop栈顶就是pop之前的min，之后的栈顶就是主栈pop之后的min。</li>
+<li>s22 栈的压栈、出栈序列，给定两个序列，第一个是入栈顺序，判断是否能构成第二个出栈序列（不考虑存在相同数字的情况）？  可以使用一个目标栈存放目标的出栈序列，这样相比使用数组更加方便。处理时，将入栈序列（可用数组存）不断进行入栈，记为主栈，并与目标栈的栈顶进行比较，如果相等则主栈pop，且目标栈pop，如果不相等，则主栈不断push直到与目标栈栈顶相同，如果入栈序列结束了但是目标栈还不是空，那么不可能生成目标序列。</li>
+<li>s23 从上向下分层打印二叉树，其中每层按照从左向右的顺序？ 典型的树的层次遍历问题，使用队列，保证先进先出。从根节点开始，添加节点到队列，并将其子节点添加到队尾，不断从队列头部取出节点，将其子节点添加到队尾，直到遍历万所有节点。 </li>
 <li>拓展：如何广度遍历一个有向图？ 广度优先遍历使用队列实现，树是图的一种特殊退化，树的从上到下按层遍历本质上就是广度优先遍历二叉树。</li>
 <li>s24 二叉搜索树Binary Search Tree的后序遍历序列：输入一个整数数组，判断是不是某个BST的后序遍历序列，如{5,7,6,9,11,10,8}是不是一个BST的后序遍历？ </li>
+<li>s25 二叉树中和为s的路径：对一个二叉树，输出所有的路径和为s的路径？  类似于先序遍历，维持一个路径之和，满足就输出路径（可以用数组实现stack辅助输出路径）</li>
+<li>s26 复杂链表的复制：类链表结构有额外连接到其他节点，如何复制？  <ul>
+<li>naive解法：如果先复制基本结点，再复制额外连接，每个节点的额外连接需要O(n)确定，总共需要O(n*n)。</li>
+<li>空间换时间：每次复制的时候，额外空间记录其额外连接，复制完基本结点连接，再从头添加额外连接。</li>
+<li>每当复制一个节点的时候，直接复制到原结点后面；复制完基本结点之后，从头为复制得到的结点添加原来的额外连接（利用原来的额外连接可以直接O(1)找到原始的next和原始的额外连接）；之后抽取偶数的结点即为复制所得。</li>
+</ul>
+</li>
+<li>s27 二叉搜索树与双向链表：将一个二叉搜索树转换成为排序的双向链表？  使用中序遍历，需要注意的是设置双向链表的前后连接。</li>
+<li>s28 字符串的排列：输入a b c等字母，输出可以组成的所有字符串如abc，cba等等？  全排列使用递归处理，第一个位置分别选定一个，对剩余的位置和选择使用递归处理。</li>
+<li>拓展：八皇后问题：8*8的棋盘上，8个皇后要求均不在同一行、同一列、同一对角线，多少种位置？  对每一个行的一个皇后分别验证是否满足要求，也就是用全排列。</li>
+</ul>
+<h3 id="时间与空间优化"><a href="#时间与空间优化" class="headerlink" title="时间与空间优化"></a>时间与空间优化</h3><ul>
+<li>s29 数组中出现次数超过一半的数字：从乱序数组中，找出出现次数超过总量一半的数字？  <ul>
+<li>naive解法：排序，出现频次超过一半，那么中间位置肯定是所求。时间为O(nlog(n))。</li>
+<li>O(n)解法：本题实际上就是乱序中查找中位数。</li>
+<li><strong>成熟的O(n)算法找到n长数组中第k大的数字</strong>：<ul>
+<li>对随机快速排序进行修改：当partition函数返回的值（该位置排序确定）不等于总数一半时不断进行重复</li>
+<li>对快排进行修改：partition函数不断对第一个基准进行排序，返回的值（该位置排序确定）不等于总数一半时不断进行重复</li>
+</ul>
+</li>
+<li>根据数组特点找出O(n)的方法：一个cnt和tmp开始扫描，如果等于tmp就cnt++，否则cnt–，最终肯定是总数超过一半的数字在tmp中。</li>
+</ul>
+</li>
+<li>随机快速排序算法：<ul>
+<li>Partition函数{随机选取start和end之间的index及其对应的数值作为base基准（不采用随机就是普通快排，用第一个或者中间位置），两个指针从前向后扫描，一个比base大，一个比base小的时候，交换二者（比两个指针从两端向中间逼近的好处在于避免基本有序时大量负面移动），最终可以保证比base小的都在左边，比base大的都在base右边，返回base所在位置}</li>
+<li>快速排序先Partition一个，然后对base划分的左半部分和右半部分递归使用Partition即可。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">import java.util.Arrays;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 快速排序：两个指针从前面向后面逼近</div><div class="line"> */</div><div class="line">public class QuickSortFromLeft &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        int[] data = new int[]&#123;1, 2, 6, 5, 4, 3, 7&#125;;</div><div class="line">        quickSort(data, 0, data.length - 1);</div><div class="line">        System.out.println(Arrays.toString(data));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static void quickSort(int[] data, int start, int end) &#123;</div><div class="line">        System.out.println(start + &quot; &quot; + end);</div><div class="line">        if (start == end) return;</div><div class="line">        int index = partition(data, start, end);</div><div class="line">        if (index &gt; start) &#123;</div><div class="line">            quickSort(data, start, index - 1);</div><div class="line">        &#125;</div><div class="line">        if (index &lt; end) &#123;</div><div class="line">            quickSort(data, index + 1, end);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static int partition(int[] data, int start, int end) &#123;</div><div class="line">        // 选取基准，可以头部、中间或者随机选取</div><div class="line">        int index = (start + end) / 2; // index = random(start,end)</div><div class="line">        swap(data, index, end); // 基准放在最后方便编程</div><div class="line"></div><div class="line">        int small = start - 1;</div><div class="line">        for (index = start; index &lt; end; ++index) &#123;</div><div class="line">            if (data[index] &lt; data[end]) &#123;</div><div class="line">                ++small;</div><div class="line">                if (small != index) &#123;</div><div class="line">                    swap(data, index, small);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        ++small;</div><div class="line">        swap(data, small, end);</div><div class="line">        return small;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static void swap(int[] data, int i, int j) &#123;</div><div class="line">        int tmp = data[i];</div><div class="line">        data[i] = data[j];</div><div class="line">        data[j] = tmp;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>s30 数字中最小的k个数：从n个数字中输出最小的k个数？<ul>
+<li>naive解法：O(nlog(n))的排序是最直观的。</li>
+<li>O(n)的解法：使用基于随机快排partition函数的方法：{直到partition返回的是k-1，也就是说k个最小的已经在同一侧了：运行partition，对于大于k和小于k有序的情况进行partition}</li>
+<li>海量数据处理，O(nlog(k))解法：如果是海量数字中找出最小的k个数，需要使用大数据做法，拆分合并之类的。求最小的数字就用最大堆，这样比较的时候只和顶部结点比较，如果小于堆顶就加入重构堆。由于建堆是log(k)，所以n次就是O(nlog(k))。</li>
+</ul>
+</li>
+<li>s31 连续子数组的最大和：输入整形数组，输出和最大的连续子数组，如求{1 -2 3 10 -4 7 2 -5}？<ul>
+<li>naive解法：如果对不同起点进行长度遍历，就是O(n*n)。</li>
+<li>O(n)，动态规划：求出以n为结尾的子数组的和f(n)，然后输出max(f(n))，其中：n=0时，f(n)=data[0]，n&gt;0时，f(n)=max{f(n-1)+data[n],data[n]}。</li>
+</ul>
+</li>
+<li>s32 给定整数范围中，数字1出现的次数，比如从1到12345中1出现的次数？  将数字拆分成端，使用递归求解：递归在于12345包括了小于2345的部分，不过还需要对2346~12345进行统计，2346~9999是一段，10000~12345是一段，分别统计1在个十百千万位置上的次数。</li>
+<li>拓展：1到1000中1出现了几次？  0到999中，个十百位置都是0到9等概率出现为1000/(9-0+1)=100次，所以1在个十百一共3*100=300次，加上1000的1个1，一共301次。</li>
+<li>s33 把数组排成最小的数：输入{13,232,2333} 输出能够成数值最小的数字？  由于是构成，可能存在大数问题，使用字符串解决。对首尾相同的数字，进行分析比较。</li>
+<li>s34 输出第1000个丑数：因子只含有2,3,5的数字称为丑数，输出第1000个丑数？  低效解法：对自然数检验是不是丑数，计数到1000。用空间换时间：生成所有丑数存储到数组中，重点在于分析生成之后的丑数的排序。</li>
+<li>s35 第一个只出现一次的字符：abaccdeff中输出b？  数组data[‘a’]=a第一次出现的位置，再次出现就直接标记掉，第二次从头输出第一个data[x]=1。</li>
+<li>s36 数组中的逆序对：{7,5,6,4}输出逆序对(7,6)(7,5)(7,4)(6,4)(5,4)？  暴力就是O(n*n)。基于归并排序实现O(nlog(n))算法：不断分解，合并的时候使用额外数组辅助输出逆序对。</li>
+<li>s37 两个链表的第一个公共结点：两个链表分别长m，n，输出第一个公共结点，类似于结点顺序为{1,2,3,7,8}与{6,7,8}输出第一个公共的7？  <ul>
+<li>空间换时间，时空都是O(m+n)的解法：分别存入两个栈，都pop直到第一个公共结点。</li>
+<li>时间是O(m+n)的解法：先都遍历得到各自长度，长的一方先走多出来的步数如5-3=2，然后二者一起向后走，直到第一个相同的结点。</li>
+</ul>
+</li>
+</ul>
+<h3 id="知识迁移"><a href="#知识迁移" class="headerlink" title="知识迁移"></a>知识迁移</h3><ul>
+<li>s38 数字在排序数组中出现的次数：如{1,2,3,3,3,3,4,5}中3出现了4次？  naive解法：前后指针向中间逼近，O(n)。O(log(n))基于二分查找：前后分别进行二分查找，前半段用二分查找第一个3，只需向前，后半段二分只向后面找最后一个3。</li>
+<li>s39 二叉树的深度？ 递归返回max(左右子结点深度)。</li>
+<li>拓展：判断一个二叉树是不是平衡二叉树，即任意结点的左右子树的深度差不超过1？  类似于后序遍历，递归对左右子树进行判断，同时传递深度给左右子树作为判断依据。</li>
+<li>s40 数组中两个只出现一次的数字：所有数字都出现两次，但是由两个不同的数字只出现一次，求这两个数字？  全部异或得到一个非0的二进制数如01010，然后将所有数字按照如倒数第二位是不是1分成两组，两组中必然都有一个只出现一次的数字，两组各自全部异或即可。</li>
+<li>s41 在有序数组中找出和为s的两个数字，如{1,2,3,4}找5得到1,4和2,3？ 如果全组合是n平方的复杂度，必须用上有序的特点。两个指针，前后分别逼近，注意向中间逼近的策略即可。如果找到1和4就输出，然后增加small继续找，直到small指针和big指针重合。</li>
+<li>拓展：和为s的连续正整数序列：给定s，输出所有和为s的连续正整数序列，如s=6，输出1，2，3？  在数组s上使用头头指针向尾部逼近，窗口内数字和大于s就增加small，小于s就增加big，这样可以确保输出所有可能。（为什么不用两侧向中间逼近？big的方向会有改变，复杂一些）</li>
+<li>s42 翻转单词顺序：将i am ok翻转为ok am i，只允许1个额外空间？  使用典型的翻转函数，先全部翻转为ko ma i，然后根据空格进行每个单词内翻转即可。翻转函数： <code>reverse(arr, start, end){异常处理；while(s&lt;e){用tmp交换数组的s和e位置，s++，e--};}</code></li>
+<li>拓展：左旋转字符串，如abcde左旋n=2变为cdeba？  对n位的前后分别用翻转函数，得baedc，然后对整体用翻转函数的cdeab。</li>
+<li>s43 骰子的点数之和：n个骰子对应的点数之和为s，计算s的所有可能值的概率？  基于循环，用一个大的数组存放s可能值，第一个骰子对应的点数和s可能次数统计好，第二个骰子更新s数组：每一个s为k的情况就是上一状态s的k-1、k-2、…k-6的和，递推即可。</li>
+<li>s44 扑克牌是否是顺子：从一幅扑克牌抽5张，输出是否可以作为顺子，其中，A做1，J做11，Q做12，K做13，大小王可以做任意数？  五张牌排序，5减去大小王的个数，从前向后在宽度为5的窗口中必须有剩余数量的扑克出现。注意考虑扑克重复、前后界问题。</li>
+<li>s45 圆圈中最后剩下的数字：n个数字排成一圈，每次删掉第m个数字，求最后一个数字？也称为约瑟夫环问题。<ul>
+<li>naive解法：用list模拟删除过程，到了list尾部时接着从头开始。缺点是时间O(mn)。</li>
+<li>找规律，使用递推：n=1时，f(n,m)=0; n&gt;1, f(n,m)=(f(n,m)+m)%n。 使用递归或循环即可。</li>
+</ul>
+</li>
 </ul>
 
       
@@ -423,6 +504,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/01/language/Java-advanced/Java 网络编程/" rel="prev" title="Java 网络编程">
+                Java 网络编程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -492,7 +577,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -500,7 +585,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -509,7 +594,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -536,11 +621,15 @@
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://github.com/gatewayzy" title="my-github" target="_blank">my-github</a>
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://baidu.com/" title="百度" target="_blank">百度</a>
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
                 </li>
               
             </ul>
@@ -556,7 +645,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#未分类"><span class="nav-number">1.</span> <span class="nav-text">未分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找：各种查找算法与特点"><span class="nav-number">1.1.</span> <span class="nav-text">查找：各种查找算法与特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串拷贝的移动问题："><span class="nav-number">1.2.</span> <span class="nav-text">字符串拷贝的移动问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链表"><span class="nav-number">1.3.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#树"><span class="nav-number">1.4.</span> <span class="nav-text">树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栈和队列"><span class="nav-number">1.5.</span> <span class="nav-text">栈和队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找和排序"><span class="nav-number">1.6.</span> <span class="nav-text">查找和排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归与循环"><span class="nav-number">1.7.</span> <span class="nav-text">递归与循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位运算："><span class="nav-number">1.8.</span> <span class="nav-text">位运算：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码完整性"><span class="nav-number">1.9.</span> <span class="nav-text">代码完整性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码鲁棒性-Robust"><span class="nav-number">1.10.</span> <span class="nav-text">代码鲁棒性 Robust</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决问题的思路"><span class="nav-number">1.11.</span> <span class="nav-text">解决问题的思路</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#未分类理论"><span class="nav-number">1.</span> <span class="nav-text">未分类理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语言"><span class="nav-number">2.</span> <span class="nav-text">语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找：各种查找算法与特点"><span class="nav-number">3.</span> <span class="nav-text">查找：各种查找算法与特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串拷贝的移动问题："><span class="nav-number">4.</span> <span class="nav-text">字符串拷贝的移动问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链表"><span class="nav-number">5.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#树"><span class="nav-number">6.</span> <span class="nav-text">树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栈和队列"><span class="nav-number">7.</span> <span class="nav-text">栈和队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找和排序"><span class="nav-number">8.</span> <span class="nav-text">查找和排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归与循环"><span class="nav-number">9.</span> <span class="nav-text">递归与循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位运算："><span class="nav-number">10.</span> <span class="nav-text">位运算：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码完整性"><span class="nav-number">11.</span> <span class="nav-text">代码完整性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码鲁棒性-Robust"><span class="nav-number">12.</span> <span class="nav-text">代码鲁棒性 Robust</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决问题的思路"><span class="nav-number">13.</span> <span class="nav-text">解决问题的思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间与空间优化"><span class="nav-number">14.</span> <span class="nav-text">时间与空间优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识迁移"><span class="nav-number">15.</span> <span class="nav-text">知识迁移</span></a></li></ol></div>
             
           </div>
         </section>

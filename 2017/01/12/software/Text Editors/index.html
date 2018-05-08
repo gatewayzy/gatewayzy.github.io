@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="说明：Text Editors配置使用。包括vi、sublime text等。">
+<meta name="description" content="说明：Text Editors配置使用。包括vi、sublime text、MarkdownPad、LaTex等。">
 <meta name="keywords" content="editor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Text Editors">
 <meta property="og:url" content="http://bebetter.site/2017/01/12/software/Text Editors/index.html">
 <meta property="og:site_name" content="gatewayzy">
-<meta property="og:description" content="说明：Text Editors配置使用。包括vi、sublime text等。">
+<meta property="og:description" content="说明：Text Editors配置使用。包括vi、sublime text、MarkdownPad、LaTex等。">
 <meta property="og:updated_time" content="2017-01-12T05:58:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Text Editors">
-<meta name="twitter:description" content="说明：Text Editors配置使用。包括vi、sublime text等。">
+<meta name="twitter:description" content="说明：Text Editors配置使用。包括vi、sublime text、MarkdownPad、LaTex等。">
 
 
 
@@ -316,7 +316,7 @@
       
 
       
-        <p><strong>说明：</strong>Text Editors配置使用。包括vi、sublime text等。<br><a id="more"></a></p>
+        <p><strong>说明：</strong>Text Editors配置使用。包括vi、sublime text、MarkdownPad、LaTex等。<br><a id="more"></a></p>
 <p>参考文章：</p>
 <h2 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h2><hr>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><hr>
@@ -441,6 +441,62 @@
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;</div><div class="line">   src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2 id="LaTex"><a href="#LaTex" class="headerlink" title="LaTex"></a>LaTex</h2><hr>
+<h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><hr>
+<ul>
+<li>Tex是一种文本描述语言，支持高质量的打印需求。</li>
+<li>Tex有很多具体的语言版本，以Latex等为主流。</li>
+<li>LaTex语法主要用miktex软件，ctex软件基于miktex添加了对其他tex语法支持和中文支持。</li>
+</ul>
+<h3 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h3><hr>
+<ul>
+<li>安装CTEX<ul>
+<li>使用* WinEdt进行文件编写，编译，预览pdf等操作，WinEdt7已经设置免注册，免注册方法参考<a href="http://blog.sina.com.cn/s/blog_64827e4c0100u2a9.html" target="_blank" rel="external">latex WinEdt 6.0 破解方法</a></li>
+<li>注意：安装CTEX可能会导致系统环境变量中的path被CTEX覆盖，应该先将path备份！</li>
+</ul>
+</li>
+<li>工程<ul>
+<li>在project中新建pro，打开该pro，确保在project–project manager中是当前pro </li>
+<li>工程打开文件，进行build tree，设置为main file方便打开主文件</li>
+</ul>
+</li>
+<li>新建文件<ul>
+<li>新建doc保存时保存为:UTF-8选项</li>
+<li>编译文件更换为XeLaTex，对中文支持比较好，点击XeLaTex按钮进行编译，点击pdf预览即可。</li>
+</ul>
+</li>
+<li>修改默认pdf浏览器<ul>
+<li>在options–execution modes–pdfviewer–选择auto-detect并更换为对应的pdf浏览程序，如acrobat.exe</li>
+</ul>
+</li>
+</ul>
+<h3 id="文件控制"><a href="#文件控制" class="headerlink" title="文件控制"></a>文件控制</h3><hr>
+<ul>
+<li>编写源码，经过编译生成pdf可以看到生成的文件，示例如下。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">\documentclass&#123;article&#125;</div><div class="line">\begin&#123;document&#125;</div><div class="line">My first \LaTeX~document.</div><div class="line">My first \TeX~document.</div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure>
+<h3 id="页面布局"><a href="#页面布局" class="headerlink" title="页面布局"></a>页面布局</h3><hr>
+<h3 id="公式符号"><a href="#公式符号" class="headerlink" title="公式符号"></a>公式符号</h3><hr>
+<ul>
+<li>参考文章<ul>
+<li><a href="http://blog.csdn.net/ws_20100/article/details/49159291" target="_blank" rel="external">LaTeX数学公式的符号表示</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><ul>
+<li>如果没有效果，应该确实是否是网络无法访问cdn.mathjax.org对应的js，建议开启全局代理模式以访问国外服务器。<ul>
+<li>$ 表示行内公式：<code>$E=mc^2$</code>  $E=mc^2$</li>
+<li>$$ 表示整行公式：<code>$$\sum_{i=1}^n a_i=0$$</code> $$\sum_{i=1}^n a_i=0$$</li>
+<li><code>$$f(x_1,x_2,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2$$</code> $$f(x_1,x_2,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2$$</li>
+<li><code>$$\alpha (x)=\sum_{m=0}^{m&lt;2^2} \alpha_2m +\mu$$</code> $$\alpha (x)=\sum_{m=0}^{m&lt;2^2} \alpha_2m +\mu$$</li>
+<li><code>$$dudx|x=0$$</code> $$dudx|x=0$$</li>
+<li><code>$$f(x,y,z)=3y2z(3+7x+51+y2)$$</code> $$f(x,y,z)=3y2z(3+7x+51+y2)$$</li>
+<li><code>$$\mbox{对任意的$x&gt;0$}, \mbox{有 }f(x)&gt;0. $$</code>  $$\mbox{对任意的$x&gt;0$}, \mbox{有 }f(x)&gt;0. $$</li>
+<li><code>$$\LaTeX \ast\TeX$$</code> $$\LaTeX \ast\TeX$$</li>
+<li><code>$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$</code> $$x=\frac{-b\pm\sqrt[5]{b^2-4ac}}{2a}$$</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -472,16 +528,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/12/software/Servlet/" rel="next" title="Servlet">
-                <i class="fa fa-chevron-left"></i> Servlet
+              <a href="/2017/01/12/software/SCM/" rel="next" title="SCM">
+                <i class="fa fa-chevron-left"></i> SCM
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/12/software/Ubuntu/" rel="prev" title="Ubuntu">
-                Ubuntu <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/12/software/Web Server/" rel="prev" title="Web Server">
+                Web Server <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -552,7 +608,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -560,7 +616,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -569,7 +625,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -596,11 +652,15 @@
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://github.com/gatewayzy" title="my-github" target="_blank">my-github</a>
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://baidu.com/" title="百度" target="_blank">百度</a>
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
                 </li>
               
             </ul>
@@ -616,7 +676,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Studio-Code"><span class="nav-number">1.</span> <span class="nav-text">Visual Studio Code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装使用"><span class="nav-number">1.2.</span> <span class="nav-text">安装使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快捷键"><span class="nav-number">1.3.</span> <span class="nav-text">快捷键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Atom"><span class="nav-number">2.</span> <span class="nav-text">Atom</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sublime-Text"><span class="nav-number">3.</span> <span class="nav-text">Sublime Text</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sublime-Text简介"><span class="nav-number">3.1.</span> <span class="nav-text">Sublime Text简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Package-control插件"><span class="nav-number">3.2.</span> <span class="nav-text">Package control插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown-Preview插件"><span class="nav-number">3.3.</span> <span class="nav-text">Markdown Preview插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装markdown-preview"><span class="nav-number">3.3.1.</span> <span class="nav-text">安装markdown preview</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义预览快捷键"><span class="nav-number">3.3.2.</span> <span class="nav-text">定义预览快捷键</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编辑markdown与生成预览"><span class="nav-number">3.3.3.</span> <span class="nav-text">编辑markdown与生成预览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#markdown语法"><span class="nav-number">3.3.4.</span> <span class="nav-text">markdown语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他插件"><span class="nav-number">3.4.</span> <span class="nav-text">其他插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题与解决"><span class="nav-number">3.5.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#禁止检查更新"><span class="nav-number">3.5.1.</span> <span class="nav-text">禁止检查更新</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VI"><span class="nav-number">4.</span> <span class="nav-text">VI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vi模式"><span class="nav-number">4.1.</span> <span class="nav-text">vi模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vi使用"><span class="nav-number">4.2.</span> <span class="nav-text">vi使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MarkdownPad"><span class="nav-number">5.</span> <span class="nav-text">MarkdownPad</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装使用-1"><span class="nav-number">5.1.</span> <span class="nav-text">安装使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通用设置"><span class="nav-number">5.1.1.</span> <span class="nav-text">通用设置</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Studio-Code"><span class="nav-number">1.</span> <span class="nav-text">Visual Studio Code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装使用"><span class="nav-number">1.2.</span> <span class="nav-text">安装使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快捷键"><span class="nav-number">1.3.</span> <span class="nav-text">快捷键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Atom"><span class="nav-number">2.</span> <span class="nav-text">Atom</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sublime-Text"><span class="nav-number">3.</span> <span class="nav-text">Sublime Text</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sublime-Text简介"><span class="nav-number">3.1.</span> <span class="nav-text">Sublime Text简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Package-control插件"><span class="nav-number">3.2.</span> <span class="nav-text">Package control插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown-Preview插件"><span class="nav-number">3.3.</span> <span class="nav-text">Markdown Preview插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装markdown-preview"><span class="nav-number">3.3.1.</span> <span class="nav-text">安装markdown preview</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义预览快捷键"><span class="nav-number">3.3.2.</span> <span class="nav-text">定义预览快捷键</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编辑markdown与生成预览"><span class="nav-number">3.3.3.</span> <span class="nav-text">编辑markdown与生成预览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#markdown语法"><span class="nav-number">3.3.4.</span> <span class="nav-text">markdown语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他插件"><span class="nav-number">3.4.</span> <span class="nav-text">其他插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题与解决"><span class="nav-number">3.5.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#禁止检查更新"><span class="nav-number">3.5.1.</span> <span class="nav-text">禁止检查更新</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VI"><span class="nav-number">4.</span> <span class="nav-text">VI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vi模式"><span class="nav-number">4.1.</span> <span class="nav-text">vi模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vi使用"><span class="nav-number">4.2.</span> <span class="nav-text">vi使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MarkdownPad"><span class="nav-number">5.</span> <span class="nav-text">MarkdownPad</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装使用-1"><span class="nav-number">5.1.</span> <span class="nav-text">安装使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通用设置"><span class="nav-number">5.1.1.</span> <span class="nav-text">通用设置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LaTex"><span class="nav-number">6.</span> <span class="nav-text">LaTex</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-2"><span class="nav-number">6.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装配置"><span class="nav-number">6.2.</span> <span class="nav-text">安装配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件控制"><span class="nav-number">6.3.</span> <span class="nav-text">文件控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面布局"><span class="nav-number">6.4.</span> <span class="nav-text">页面布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公式符号"><span class="nav-number">6.5.</span> <span class="nav-text">公式符号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例"><span class="nav-number">6.5.1.</span> <span class="nav-text">示例</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

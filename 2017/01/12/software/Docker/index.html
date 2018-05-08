@@ -612,7 +612,7 @@
 <h3 id="push到私有仓库失败，提示https问题"><a href="#push到私有仓库失败，提示https问题" class="headerlink" title="push到私有仓库失败，提示https问题"></a>push到私有仓库失败，提示https问题</h3><ul>
 <li>这是因为私人的registry服务是http，不是安全的https仓库。</li>
 <li>解决方法：<ul>
-<li>Ubuntu修改/etc/docker/daemon.json，添加<code>{&quot;insecure-registries&quot; : [&quot;myregistrydomain.com:5000&quot;]}</code>，然后docker restart。</li>
+<li>Ubuntu修改/etc/docker/daemon.json，添加<code>{&quot;insecure-registries&quot; : [&quot;myregistrydomain.com:5000&quot;]}</code>，然后service docker restart。</li>
 <li>Windows在C:\ProgramData\docker\config\daemon.json，如docker for windows等软件就设置软件的setting–daemon。（仓库镜像也在这里添加）</li>
 <li>参考<a href="https://docs.docker.com/registry/insecure/" target="_blank" rel="external">Deploying a plain HTTP registry</a>，原文如下，就不翻译了</li>
 </ul>
@@ -660,8 +660,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/12/software/Eclipse/" rel="prev" title="Eclipse">
-                Eclipse <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/12/software/ElasticSearch/" rel="prev" title="ElasticSearch">
+                ElasticSearch <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -732,7 +732,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -740,7 +740,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -749,7 +749,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -776,11 +776,15 @@
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://github.com/gatewayzy" title="my-github" target="_blank">my-github</a>
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://baidu.com/" title="百度" target="_blank">百度</a>
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
                 </li>
               
             </ul>

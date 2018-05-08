@@ -324,29 +324,61 @@
 <li>反向代理（Reverse Proxy）方式是指用代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</li>
 </ul>
 <h2 id="Nginx使用"><a href="#Nginx使用" class="headerlink" title="Nginx使用"></a>Nginx使用</h2><hr>
-<h3 id="Nginx安装配置"><a href="#Nginx安装配置" class="headerlink" title="Nginx安装配置"></a>Nginx安装配置</h3><hr>
+<h3 id="Nginx安装与启动"><a href="#Nginx安装与启动" class="headerlink" title="Nginx安装与启动"></a>Nginx安装与启动</h3><hr>
 <ul>
-<li>Linux安装：sudo apt-get install nginx</li>
-<li>配置文件目录：/etc/nginx/nginx.conf。</li>
-<li>配置文件有events、http、mail等配置模块。</li>
-<li>http配置中可以设置多个虚拟主机，每个主机server可以监听多个域名、ip，并对server设置反向代理的location。其中，location可以指向 <code>http://upstream</code> 或者 <code>http://ip:port</code>，如果使用upstream可以配置多个反向代理server以实现负载均衡。</li>
+<li>Ubuntu安装Nginx： <code>sudo apt-get install nginx</code></li>
+<li>运行状态控制：<code>sudo service nginx restart|stop|start|status|…</code></li>
+<li>查看端口： <code>netstat –ntlp |grep nginx</code> ， 或者<code>ps -aux</code></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line">user www-data;</div><div class="line">worker_processes 4;</div><div class="line">pid /run/nginx.pid;</div><div class="line"></div><div class="line">events &#123;</div><div class="line">	worker_connections 768;</div><div class="line">	# multi_accept on;</div><div class="line">&#125;</div><div class="line"></div><div class="line">http &#123;</div><div class="line"></div><div class="line">	##</div><div class="line">	# Virtual Host Configs</div><div class="line">	# load banlance</div><div class="line">	##</div><div class="line">	upstream ecs &#123;</div><div class="line">		ip_hash;</div><div class="line">		server 10.174.226.188:4000;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	upstream hexo_blog&#123;</div><div class="line">		ip_hash;</div><div class="line">		server 10.174.226.188:4000;</div><div class="line">		#server 127.0.0.1:8082;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	# server config</div><div class="line">	server &#123;</div><div class="line">		listen 80;</div><div class="line">		server_name 121.42.200.178 10.174.226.188 www.bebetter.site bebetter.site;</div><div class="line">	</div><div class="line">		location / &#123;</div><div class="line">        	        proxy_redirect    off;</div><div class="line">			proxy_set_header    Host $host;</div><div class="line">	                proxy_set_header    X-Real-IP $remote_addr;</div><div class="line">        	        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">			proxy_pass   http://127.0.0.1:4000;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		location ~ ^/blog &#123;</div><div class="line">			proxy_pass http://hexo_blog;</div><div class="line">			proxy_set_header    Host $host;</div><div class="line">	                proxy_set_header    X-Real-IP $remote_addr;</div><div class="line">        	        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	include /etc/nginx/conf.d/*.conf;</div><div class="line">	include /etc/nginx/sites-enabled/*;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">#mail &#123;</div><div class="line">#	# See sample authentication script at:</div><div class="line">#	# http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript</div><div class="line"># </div><div class="line">#	# auth_http localhost/auth.php;</div><div class="line">#	# pop3_capabilities &quot;TOP&quot; &quot;USER&quot;;</div><div class="line">#	# imap_capabilities &quot;IMAP4rev1&quot; &quot;UIDPLUS&quot;;</div><div class="line"># </div><div class="line">#	server &#123;</div><div class="line">#		listen     localhost:110;</div><div class="line">#		protocol   pop3;</div><div class="line">#		proxy      on;</div><div class="line">#	&#125;</div><div class="line"># </div><div class="line">#	server &#123;</div><div class="line">#		listen     localhost:143;</div><div class="line">#		protocol   imap;</div><div class="line">#		proxy      on;</div><div class="line">#	&#125;</div><div class="line">#&#125;</div></pre></td></tr></table></figure>
-<h3 id="Nginx命令"><a href="#Nginx命令" class="headerlink" title="Nginx命令"></a>Nginx命令</h3><hr>
+<h3 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h3><hr>
 <ul>
-<li>运行状态控制：sudo service nginx restart|stop|start|status|…</li>
-<li>查看端口：netstat –ntlp |grep nginx， 或者ps -aux</li>
-<li>修改配置文件：sudo vi /etc/nginx/nginx.conf</li>
-</ul>
-<h3 id="Nginx配置多个虚拟主机"><a href="#Nginx配置多个虚拟主机" class="headerlink" title="Nginx配置多个虚拟主机"></a>Nginx配置多个虚拟主机</h3><hr>
-<ul>
-<li>参考文章<ul>
-<li><a href="https://gist.github.com/soheilhy/8b94347ff8336d971ad0" target="_blank" rel="external">Virtual Hosts on nginx</a></li>
-<li><a href="http://7424593.blog.51cto.com/7414593/1762432" target="_blank" rel="external">Nginx反向代理后端多个Tomcat、Nginx+PHP服务器</a></li>
+<li>修改配置文件：<code>sudo vi /etc/nginx/nginx.conf</code>， 配置文件含有events、http、mail等配置模块。<ul>
+<li>通用配置模块：nginx服务的processor、pid等配置。</li>
+<li>events：连接数设置等。</li>
+<li>http：用于http服务。http下面一般包括：<ul>
+<li>upstream：负载均衡模块，可以有很多upstream。每个upstream有一个别名，内部默认使用ip_hash算法从多个server中提供负载均衡服务。</li>
+<li>可以设置多个虚拟主机server，对于每一个server：<ul>
+<li>server必须监听一个Nginx服务器的端口，通常是http的80、https的443.</li>
+<li>server可以绑定多个域名、ip，用空格分开。</li>
+<li>server可以代理多个location。location可以指向 <code>http://upstream</code> 或者 <code>http://ip:port</code>。location的配置见下文。</li>
 </ul>
 </li>
-<li>需求描述：有多个ip:port需要使用一个nginx进行代理。比如说想用域名mydomain.com代理几个nodejs工程10.10.10.10:4000、10.10.10.22:8000.</li>
-<li>解决方法</li>
+<li>include：添加配置文件，如果server很多，为每个server写一个配置文件，放到对应目录下，添加到sites-enabled文件。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="location-的配置与使用"><a href="#location-的配置与使用" class="headerlink" title="location 的配置与使用"></a>location 的配置与使用</h3><p>参考文章<a href="http://blog.csdn.net/a519640026/article/details/9138487" target="_blank" rel="external">nginx 正则表达式匹配入门篇</a></p>
+<h4 id="location-匹配命令"><a href="#location-匹配命令" class="headerlink" title="location 匹配命令"></a>location 匹配命令</h4><ul>
+<li><code>~</code>   表示执行一个正则匹配，区分大小写</li>
+<li><code>~*</code>  表示执行一个正则匹配，不区分大小写</li>
+<li><code>^~</code>  表示普通字符匹配，如果该选项匹配，只匹配该选项，不匹配别的选项，一般用来匹配目录</li>
+<li><code>=</code>   进行普通字符精确匹配</li>
+<li><code>@</code>   定义一个命名的 location，使用在内部定向时，例如 error_page, try_files</li>
+<li><code>^</code>    匹配字符串的开始位置</li>
+<li><code>$</code>    匹配结束位置</li>
+<li><code>\</code>    转义字符。可以转. * ?等</li>
+<li><code>*</code>    代表任意字符，<code>.</code> <code>*</code> <code>?</code> 与常用正则匹配相似</li>
+</ul>
+<h4 id="location匹配优先级"><a href="#location匹配优先级" class="headerlink" title="location匹配优先级:"></a>location匹配优先级:</h4><ul>
+<li>=前缀的指令严格匹配这个查询。如果找到，停止搜索。</li>
+<li>所有剩下的常规字符串，最长的匹配。如果这个匹配使用^〜前缀，搜索停止。</li>
+<li>正则表达式，在配置文件中定义的顺序。</li>
+<li>如果第3条规则产生匹配的话，结果被使用。否则，使用第2条规则的结果。（类似于：匹配到了就使用，匹配不到就使用最长匹配）</li>
+</ul>
+<h4 id="location高级用法"><a href="#location高级用法" class="headerlink" title="location高级用法"></a>location高级用法</h4><ul>
+<li>if指令</li>
+<li>proxy_redirect</li>
+<li>proxy_pass</li>
+<li>rewrite</li>
+<li>……</li>
+</ul>
+<h3 id="Nginx配置文件示例"><a href="#Nginx配置文件示例" class="headerlink" title="Nginx配置文件示例"></a>Nginx配置文件示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line">#### nginx配置文件 /etc/nginx/nginx.conf</div><div class="line">user www-data;</div><div class="line">worker_processes 4;</div><div class="line">pid /run/nginx.pid;</div><div class="line"></div><div class="line">events &#123;</div><div class="line">	worker_connections 768;</div><div class="line">	# multi_accept on;</div><div class="line">&#125;</div><div class="line"></div><div class="line">http &#123;</div><div class="line">	#### http 里面可以设置upstream负载均衡，默认用ip_hash算法进行负载均衡</div><div class="line">	upstream stream_hexo_blog&#123;</div><div class="line">		ip_hash;</div><div class="line">		server 10.174.226.188:4000;</div><div class="line">		server 127.0.0.1:8082;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	#### server 1，由于监听80，可访问bebetter.site:80/blog的形式</div><div class="line">	server &#123;</div><div class="line">		listen 80;</div><div class="line">		server_name 121.42.200.178 10.174.226.188 www.bebetter.site bebetter.site;</div><div class="line">	</div><div class="line">		location / &#123;</div><div class="line">        	proxy_redirect    off;</div><div class="line">			proxy_set_header    Host $host;</div><div class="line">	        proxy_set_header    X-Real-IP $remote_addr;</div><div class="line">        	proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">			proxy_pass   http://127.0.0.1:4000;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		location ~ ^/blog &#123;  # 地址重定向，参考nginx的location匹配说明</div><div class="line">			proxy_pass http://stream_hexo_blog;   # 使用upstream负载均衡</div><div class="line">			proxy_set_header    Host $host;</div><div class="line">	        proxy_set_header    X-Real-IP $remote_addr;</div><div class="line">        	proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	#### server 2，由于监听81，可访问bebetter.site:81/assets的形式</div><div class="line">	server &#123;</div><div class="line">            listen 81;</div><div class="line">            proxy_cache_valid  200  20m;</div><div class="line">            proxy_max_temp_file_size   0k;</div><div class="line">            server_name bebetter.site;</div><div class="line"></div><div class="line">            location ~ ^(/|/assets) &#123;</div><div class="line">                   proxy_pass http://10.15.62.118:4000;</div><div class="line">                   proxy_set_header    Host $host;</div><div class="line">                   proxy_set_header    X-Real-IP  $remote_addr;</div><div class="line">                   proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">            &#125;</div><div class="line">            access_log  off;</div><div class="line">            error_log   off;</div><div class="line">     &#125;</div><div class="line">	</div><div class="line">	#### 如果配置文件太长，或者有多个server，可以使用下面的include分开配置</div><div class="line">	include /etc/nginx/conf.d/*.conf;</div><div class="line">	include /etc/nginx/sites-enabled/*;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">#mail &#123;</div><div class="line">#	# See sample authentication script at:</div><div class="line">#	# http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript</div><div class="line"># </div><div class="line">#	# auth_http localhost/auth.php;</div><div class="line">#	# pop3_capabilities &quot;TOP&quot; &quot;USER&quot;;</div><div class="line">#	# imap_capabilities &quot;IMAP4rev1&quot; &quot;UIDPLUS&quot;;</div><div class="line"># </div><div class="line">#	server &#123;</div><div class="line">#		listen     localhost:110;</div><div class="line">#		protocol   pop3;</div><div class="line">#		proxy      on;</div><div class="line">#	&#125;</div><div class="line"># </div><div class="line">#	server &#123;</div><div class="line">#		listen     localhost:143;</div><div class="line">#		protocol   imap;</div><div class="line">#		proxy      on;</div><div class="line">#	&#125;</div><div class="line">#&#125;</div></pre></td></tr></table></figure>
+<h3 id="问题与解决"><a href="#问题与解决" class="headerlink" title="问题与解决"></a>问题与解决</h3><hr>
+<h4 id="Nginx配置多个虚拟主机"><a href="#Nginx配置多个虚拟主机" class="headerlink" title="Nginx配置多个虚拟主机"></a>Nginx配置多个虚拟主机</h4><ul>
+<li>需求描述：有多个ip:port需要使用一个nginx进行代理。比如说想用域名mydomain.com代理几个nodejs工程10.10.10.10:4000、10.10.10.22:8000。</li>
+<li>解决方法：为nginx创建多个server，监听不同的端口（80、81等），每个server的/proxy为对应的ip:port，可参考nginx配置示例，这样访问nginx的不同server端口即可。缺点在于浏览器访问端口不是80端口了。</li>
 </ul>
 
       
@@ -379,16 +411,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/12/software/Mybatis/" rel="next" title="Mybatis">
-                <i class="fa fa-chevron-left"></i> Mybatis
+              <a href="/2017/01/12/software/Maven/" rel="next" title="Maven">
+                <i class="fa fa-chevron-left"></i> Maven
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/12/software/Redis/" rel="prev" title="Redis">
-                Redis <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/12/software/OS/" rel="prev" title="OS">
+                OS <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -459,7 +491,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -467,7 +499,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -476,7 +508,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -503,11 +535,15 @@
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://github.com/gatewayzy" title="my-github" target="_blank">my-github</a>
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://baidu.com/" title="百度" target="_blank">百度</a>
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
                 </li>
               
             </ul>
@@ -523,7 +559,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx使用"><span class="nav-number">2.</span> <span class="nav-text">Nginx使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx安装配置"><span class="nav-number">2.1.</span> <span class="nav-text">Nginx安装配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx命令"><span class="nav-number">2.2.</span> <span class="nav-text">Nginx命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx配置多个虚拟主机"><span class="nav-number">2.3.</span> <span class="nav-text">Nginx配置多个虚拟主机</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx使用"><span class="nav-number">2.</span> <span class="nav-text">Nginx使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx安装与启动"><span class="nav-number">2.1.</span> <span class="nav-text">Nginx安装与启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx配置"><span class="nav-number">2.2.</span> <span class="nav-text">Nginx配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#location-的配置与使用"><span class="nav-number">2.3.</span> <span class="nav-text">location 的配置与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#location-匹配命令"><span class="nav-number">2.3.1.</span> <span class="nav-text">location 匹配命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#location匹配优先级"><span class="nav-number">2.3.2.</span> <span class="nav-text">location匹配优先级:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#location高级用法"><span class="nav-number">2.3.3.</span> <span class="nav-text">location高级用法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx配置文件示例"><span class="nav-number">2.4.</span> <span class="nav-text">Nginx配置文件示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题与解决"><span class="nav-number">2.5.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx配置多个虚拟主机"><span class="nav-number">2.5.1.</span> <span class="nav-text">Nginx配置多个虚拟主机</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

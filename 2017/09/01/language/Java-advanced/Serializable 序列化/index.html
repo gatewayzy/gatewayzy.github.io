@@ -1,0 +1,685 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Java Serializable 序列化：java.io.Serializable接口。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Serializable 序列化">
+<meta property="og:url" content="http://bebetter.site/2017/09/01/language/Java-advanced/Serializable 序列化/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：Java Serializable 序列化：java.io.Serializable接口。">
+<meta property="og:updated_time" content="2017-09-01T05:58:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Serializable 序列化">
+<meta name="twitter:description" content="说明：Java Serializable 序列化：java.io.Serializable接口。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/09/01/language/Java-advanced/Serializable 序列化/"/>
+
+  <title> Serializable 序列化 | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Serializable 序列化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-01T13:58:10+08:00" content="2017-09-01">
+              2017-09-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Language/" itemprop="url" rel="index">
+                    <span itemprop="name">Language</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>Java Serializable 序列化：java.io.Serializable接口。<br><a id="more"></a></p>
+<p>参考文章：</p>
+<h2 id="序列化说明"><a href="#序列化说明" class="headerlink" title="序列化说明"></a>序列化说明</h2><ul>
+<li>当数据中的java对象通过网络传输、或者存储到文件，另一方进行数据解析的时候需要解析数据的格式，为此java提供了对象序列化机制。</li>
+<li>序列化：在一个序列化的对象被写进文件之后，它能在文件中被读出并被反序列化为类型信息和表示对象的字节，并且它的数据可以被用来重新创建在内存中的对象。</li>
+</ul>
+<h2 id="序列化用法"><a href="#序列化用法" class="headerlink" title="序列化用法"></a>序列化用法</h2><ul>
+<li>可序列化的对象定义要求：<ul>
+<li>类必须实现 java.io.Serializable 接口。</li>
+<li>类中所有的字段必须被序列化。如果一个字段没有被序列化，它必须被标记为瞬态的transient。(序列化时，transient变量的值不会被存储，会使用相应的0、null等)</li>
+</ul>
+</li>
+<li>序列化使用java.io.ObjectOutputStream。ObjectOutputStream获取输出流，然后ObjectOutputStream使用writeObject(object)方法，或其他write方法。</li>
+<li>反序列化使用java.io.ObjectInputStream。ObjectInputStream获取输入流，然后ObjectInputStream使用readObject()方法，或其他read方法。</li>
+</ul>
+<h2 id="serialVersionUID的作用"><a href="#serialVersionUID的作用" class="headerlink" title="serialVersionUID的作用"></a>serialVersionUID的作用</h2><ul>
+<li>Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。比如A端增加或删除了类的一个成员变量，B端的类没有相应修改，二者传输时就会版本不一致，所以两端的类中都有序列化版本号，用于验证版本一致。</li>
+<li>在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应类的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常(InvalidCastException)。</li>
+</ul>
+<h3 id="serialVersionUID的显示声明"><a href="#serialVersionUID的显示声明" class="headerlink" title="serialVersionUID的显示声明"></a>serialVersionUID的显示声明</h3><ul>
+<li>如果实现类没有显示声明<code>long serialVersionUID</code>，Java序列化机制会根据编译的class自动生成一个serialVersionUID作序列化版本比较用(它通过类名，方法名等诸多因素经过计算而得，不同class会有唯一的默认序列号)。这种情况下，如果class文件没有发生变化(增加空格,换行,增加注释,等等都算变化)，serialVersionUID不会变化。这也就有一个问题，如果一端的类变化，就会导致两端默认版本号不同，无法兼容工作。</li>
+<li>serialVersionUID有两种显示的声明方式如下。显示声明版本号的好处就是可以进行版本兼容。当旧版实现类设置了版本号，新版类只要版本号与旧版号一致，二者就可以相互序列化和反序列化，允许新版兼容旧版。<ul>
+<li>默认1L，如：<code>private static final long serialVersionUID = 1L;</code>如果可兼容，可以保留旧版本号，如果不兼容，或者想让它不兼容，就手工递增版本号。</li>
+<li>根据类名、接口名、成员方法及属性等生成64位的哈希字段，如：<code>private static final long serialVersionUID = 123L;</code>可以在每次修改类后就重新生成新的版本号，不向下兼容。</li>
+</ul>
+</li>
+</ul>
+<h3 id="IDE生成serialVersionUID的方法"><a href="#IDE生成serialVersionUID的方法" class="headerlink" title="IDE生成serialVersionUID的方法"></a>IDE生成serialVersionUID的方法</h3><ul>
+<li>Intellij IDEA默认关闭了继承了Serializable接口的类生成serialVersionUID的警告。如果需要ide提示生成serialVersionUID，那么需要做以下设置：<ul>
+<li>setting-&gt;Inspections-&gt;Serialization issues，将serialzable class without “serialVersionUID”打上勾；</li>
+<li>将光标放到类名上，按atl＋enter键，就会提示生成serialVersionUID了</li>
+</ul>
+</li>
+<li>Eclipse默认开启Serializable实现类的serialVersionUID的警告。</li>
+</ul>
+<h2 id="序列化与反序列化Demo"><a href="#序列化与反序列化Demo" class="headerlink" title="序列化与反序列化Demo"></a>序列化与反序列化Demo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">package javaAdvanced;</div><div class="line"></div><div class="line">import java.io.FileInputStream;</div><div class="line">import java.io.FileOutputStream;</div><div class="line">import java.io.ObjectInputStream;</div><div class="line">import java.io.ObjectOutputStream;</div><div class="line"></div><div class="line">public class _01Serializable &#123;</div><div class="line"></div><div class="line">    static class Employee implements java.io.Serializable &#123;</div><div class="line"></div><div class="line">        private static final long serialVersionUID = -602932866640093016L;</div><div class="line">        public String name;</div><div class="line">        public String address;</div><div class="line">        public transient int SSN;</div><div class="line">        public int number;</div><div class="line"></div><div class="line">        public void print() &#123;</div><div class="line">            System.out.println(&quot;name：&quot; + name + &quot;\naddress：&quot; + address + &quot;\nSSN：&quot; + SSN + &quot;\nnumber：&quot; + number);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) throws Exception &#123;</div><div class="line">        serialization();</div><div class="line">        ser();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // 序列化，使用java.io.ObjectOutputStream获取输出流，然后使用writeObject()方法序列化对象</div><div class="line">    static void serialization() throws Exception &#123;</div><div class="line">        System.out.println(&quot;====== 开始序列化&quot;);</div><div class="line">        Employee employee = new Employee();</div><div class="line">        employee.name = &quot;name-Ali&quot;;</div><div class="line">        employee.address = &quot;address-Where&quot;;</div><div class="line">        employee.SSN = 11122333;</div><div class="line">        employee.number = 101;</div><div class="line"></div><div class="line">        FileOutputStream fileOut = new FileOutputStream(&quot;/employee.ser&quot;);</div><div class="line">        ObjectOutputStream out = new ObjectOutputStream(fileOut);</div><div class="line">        out.writeObject(employee);</div><div class="line"></div><div class="line">        out.close();</div><div class="line">        fileOut.close();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // 反序列化，使用java.io.ObjectInputStream获取输入流，然后使用readObject()方法反序列化对象</div><div class="line">    static void ser() throws Exception &#123;</div><div class="line">        System.out.println(&quot;====== 开始反序列化&quot;);</div><div class="line">        Employee employee = null;</div><div class="line"></div><div class="line">        FileInputStream fileIn = new FileInputStream(&quot;/employee.ser&quot;);</div><div class="line">        ObjectInputStream in = new ObjectInputStream(fileIn);</div><div class="line">        employee = (Employee) in.readObject();</div><div class="line"></div><div class="line">        in.close();</div><div class="line">        fileIn.close();</div><div class="line">        employee.print();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/01/NetWork/OSI-7 TCP-IP Socket/" rel="next" title="OSI 7层网络模型与TCP/IP模型">
+                <i class="fa fa-chevron-left"></i> OSI 7层网络模型与TCP/IP模型
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/01/language/Java-basic/Throwable 类及其继承体系/" rel="prev" title="Throwable 类及其继承体系">
+                Throwable 类及其继承体系 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化说明"><span class="nav-number">1.</span> <span class="nav-text">序列化说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化用法"><span class="nav-number">2.</span> <span class="nav-text">序列化用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#serialVersionUID的作用"><span class="nav-number">3.</span> <span class="nav-text">serialVersionUID的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#serialVersionUID的显示声明"><span class="nav-number">3.1.</span> <span class="nav-text">serialVersionUID的显示声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IDE生成serialVersionUID的方法"><span class="nav-number">3.2.</span> <span class="nav-text">IDE生成serialVersionUID的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化与反序列化Demo"><span class="nav-number">4.</span> <span class="nav-text">序列化与反序列化Demo</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+
+</body>
+</html>
