@@ -1,0 +1,789 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Text editors," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Markdown语法简单、面向纯文本、文本与渲染分离，强大而通用。介绍markdown语法，以及一些md编辑器。">
+<meta name="keywords" content="Text editors">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown syntax">
+<meta property="og:url" content="http://bebetter.site/2017/01/12/Software/Text editors 文本编辑/Markdown syntax/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：Markdown语法简单、面向纯文本、文本与渲染分离，强大而通用。介绍markdown语法，以及一些md编辑器。">
+<meta property="og:image" content="http://图片地址.com">
+<meta property="og:image" content="http://图片地址.com">
+<meta property="og:image" content="http://图片地址.com">
+<meta property="og:image" content="http://图片地址.com">
+<meta property="og:updated_time" content="2017-01-12T05:58:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Markdown syntax">
+<meta name="twitter:description" content="说明：Markdown语法简单、面向纯文本、文本与渲染分离，强大而通用。介绍markdown语法，以及一些md编辑器。">
+<meta name="twitter:image" content="http://图片地址.com">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/01/12/Software/Text editors 文本编辑/Markdown syntax/"/>
+
+  <title> Markdown syntax | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Markdown syntax
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T13:58:20+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Softwares/" itemprop="url" rel="index">
+                    <span itemprop="name">Softwares</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>Markdown语法简单、面向纯文本、文本与渲染分离，强大而通用。介绍markdown语法，以及一些md编辑器。<br><a id="more"></a></p>
+<p>参考文章：</p>
+<h2 id="Markdown简介"><a href="#Markdown简介" class="headerlink" title="Markdown简介"></a>Markdown简介</h2><hr>
+<ul>
+<li>markdown好处在于较为通用的文本样式，如多级列表、多级标题等非常简单，有Github等网站的大力支持。</li>
+<li>缺点在于表格书写麻烦、图片只能以链接引入，所以图片只能先上传到公网，如免费的图片服务网站<a href="http://imgur.com/" target="_blank" rel="external">imgur</a>。</li>
+<li>本文markdown简写为md。</li>
+</ul>
+<h2 id="MD语法显示及对应的源码"><a href="#MD语法显示及对应的源码" class="headerlink" title="MD语法显示及对应的源码"></a>MD语法显示及对应的源码</h2><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">## MD语法显示及对应的源码</div><div class="line">---</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">### 三级标题</div></pre></td></tr></table></figure>
+<p>不同级别的标题，使用不同数量的1-5个#就可以了</p>
+<hr>
+<h3 id="斜体加粗与block"><a href="#斜体加粗与block" class="headerlink" title="斜体加粗与block"></a>斜体加粗与block</h3><p><em>italic 斜体</em>，<strong>bold 加粗</strong>, <code>monospace here 特殊字体</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_italic 斜体_，**bold 加粗**, `monospace here 特殊字体`。</div></pre></td></tr></table></figure>
+<pre><code>Block 正常文本以tab开头表示是代码块，
+Block里面的内容不会被md识别，比如`你好`
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Block 正常文本以tab开头表示是代码块，</div><div class="line">Block里面的内容不会被md识别，比如`你好`</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><ul>
+<li>使用星号或者减号罗列无序列表</li>
+<li>pears<ul>
+<li>下一级；</li>
+<li>下一级。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">### 无序列表</div><div class="line">* 使用星号或者减号罗列无序列表</div><div class="line">* pears</div><div class="line">	* 下一级；</div><div class="line">	* 下一级。</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><ol>
+<li>使用数字和点号罗列有序列表，数字不用连续，会自动递增</li>
+<li>oranges</li>
+<li>pears</li>
+<li>如果这里还有下一级，下一级列表之前使用更多一个tab或者2到4个空格<ol>
+<li>这是2.1</li>
+<li>这是2.2</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">### 有序列表</div><div class="line">1. 使用数字和点号罗列有序列表，数字不用连续，会自动递增</div><div class="line">2. oranges</div><div class="line">3. pears</div><div class="line">4. 如果这里还有下一级，下一级列表之前使用更多一个tab或者2到4个空格</div><div class="line">	1. 这是2.1</div><div class="line">	1. 这是2.2</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="表格示例"><a href="#表格示例" class="headerlink" title="表格示例"></a>表格示例</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">表格前一行必须为空行</th>
+<th style="text-align:center">地址</th>
+<th style="text-align:right">账号密码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">居左</td>
+<td style="text-align:center">默认居中</td>
+<td style="text-align:right">居右</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">### 表格示例</div><div class="line">|表格前一行必须为空行|地址|账号密码|</div><div class="line">|:----|:---:|---:|</div><div class="line">|居左|默认居中|居右|</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="链接、图片、代码块等示例"><a href="#链接、图片、代码块等示例" class="headerlink" title="链接、图片、代码块等示例"></a>链接、图片、代码块等示例</h3><ul>
+<li><code>部分md支持&lt;br&gt;强制换行和表格中换行。</code>部分md支持<br>强制换行和表格中换行。</li>
+<li>但是大多数情况下，md文件中还是使用换行符进行换行，所以源码会有很多换行。</li>
+<li>比如表格、标题等样式的前面最好是一个换行的空行，以防止显示样式错误。</li>
+</ul>
+<ul>
+<li><strong>引用块</strong>示例：<blockquote>
+<p>你好<br>hello</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- 引用块示例：</div><div class="line">&gt; 你好</div><div class="line">&gt; hello</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>引用</strong>示例(monospace)： <code>*job*</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- 引用示例(monospace)： `*job*`</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>代码块</strong>示例：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hello</div><div class="line">你好(代码块的前后两行都只写三个连接号[即英文的accent符号])</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>分割线</strong>：在单独的一行中使用3个或更多的*、-或_添加分割线。</li>
+</ul>
+<hr>
+<hr>
+<hr>
+<ul>
+<li><strong>链接</strong>示例：<ul>
+<li><strong>自动链接</strong>：<a href="http://www.google.com/" target="_blank" rel="external">http://www.google.com/</a></li>
+<li><strong>行内链接</strong>：链接的title是可以不写的，可以用单引号、双引号和括号包围title，推荐使用引号。<ul>
+<li>括号方式 <a href="https://www.baidu.com/" title="百度title" target="_blank" rel="external">百度链接</a></li>
+<li>冒号方式 [百度链接]:<a href="https://www.baidu.com/" target="_blank" rel="external">https://www.baidu.com/</a> “百度title”</li>
+</ul>
+</li>
+<li><strong>引用链接</strong>：<ul>
+<li>引用链接可以使用标识符进行识别，也可以直接使用标题进行识别。</li>
+<li>但是链接需要使用冒号的方式，不要使用括号。</li>
+<li>引用链接可以多出引用，但是只在一个地方写链接地址，便于统一修改，而且链接的位置放在前文或后文都可以。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.google.com/" title="谷歌真正的链接" target="_blank" rel="external">谷歌</a>用标识符引用之后的链接，第二个中括号里的是标识符</p>
+<p><a href="https://www.google.com/" title="谷歌真正的链接" target="_blank" rel="external">Google</a>用标识符引用之前的链接</p>
+<p><a href="https://www.baidu.com/" title="百度一下title" target="_blank" rel="external">百度一下</a>用链接文本引用之前的链接</p>
+<p><a href="https://www.baidu.com/" title="百度一下title" target="_blank" rel="external">百度一下</a>再次引用链接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">- 链接示例：</div><div class="line">	* 自动链接：&lt;http://www.google.com/&gt;</div><div class="line">	* 行内链接：链接的title是可以不写的，可以用单引号、双引号和括号包围title，推荐使用引号。</div><div class="line">		* 括号方式 [百度链接](https://www.baidu.com/ &quot;百度title&quot;)</div><div class="line">		* 冒号方式 [百度链接]:https://www.baidu.com/ &quot;百度title&quot;</div><div class="line">	* 引用链接：</div><div class="line">		* 引用链接可以使用标识符进行识别，也可以直接使用标题进行识别。</div><div class="line">		* 但是链接需要使用冒号的方式，不要使用括号。</div><div class="line">		* 引用链接可以多出引用，但是只在一个地方写链接地址，便于统一修改，而且链接的位置放在前文或后文都可以。</div><div class="line"></div><div class="line">[谷歌][Google]用标识符引用之后的链接，第二个中括号里的是标识符</div><div class="line"></div><div class="line">[Google]:https://www.google.com/ &quot;谷歌真正的链接&quot;</div><div class="line"></div><div class="line">[Google]用标识符引用之前的链接</div><div class="line"></div><div class="line">[百度一下]:https://www.baidu.com/ &quot;百度一下title&quot;</div><div class="line"></div><div class="line">[百度一下][]用链接文本引用之前的链接</div><div class="line"></div><div class="line">[百度一下][]再次引用链接</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="图片链接"><a href="#图片链接" class="headerlink" title="图片链接"></a>图片链接</h3><p>图片链接也支持直接式与参考式链接。直接式会以感叹号开始，表示是一个图片。</p>
+<p><img src="http://图片地址.com" alt="感叹号表示图片，链接找不到时会显示本文字"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![感叹号表示图片，链接找不到时会显示本文字](http://图片地址.com)</div></pre></td></tr></table></figure>
+<p>参考式也和参考式链接类似，用一个链接的方式定义实际地址，引用的时候使用标识符或者链接文本，并且实际地址的定义在文中无要求。</p>
+<p><img src="http://图片地址.com" alt="显示文本" title="引用图片地址"></p>
+<p><img src="http://图片地址.com" alt="再次引用图片" title="引用图片地址"></p>
+<p><img src="http://图片地址.com" alt="引用图片链接" title="引用图片地址"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[引用图片链接]: http://图片地址.com &quot;引用图片地址&quot;</div><div class="line"></div><div class="line">![显示文本][引用图片链接]</div><div class="line"></div><div class="line">![再次引用图片][引用图片链接]</div><div class="line"></div><div class="line">![引用图片链接]</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="公式编辑"><a href="#公式编辑" class="headerlink" title="公式编辑"></a>公式编辑</h3><p>md的公式编辑与LaTex语法相似。注意需要文本编辑器支持公式解析才能正确显示。比如VSCode可以安装插件<code>Markdown+Math</code>。</p>
+<p>$ 表示行内公式：<code>$E=mc^2$</code>  $E=mc^2$</p>
+<p>$$ 表示整行公式：<code>$$\sum_{i=1}^n a_i=0$$</code> </p>
+<p>$$\sum_{i=1}^n a_i=0$$</p>
+<p><code>$$f(x_1,x_2,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2$$</code> </p>
+<p>$$f(x_1,x_2,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2$$</p>
+<p><code>$$\alpha (x)=\sum_{m=0}^{m&lt;2^2} \alpha_2m +\mu$$</code> </p>
+<p>$$\alpha (x)=\sum_{m=0}^{m&lt;2^2} \alpha_2m +\mu$$</p>
+<p><code>$$dudx|x=0$$</code> </p>
+<p>$$dudx|x=0$$</p>
+<p><code>$$f(x,y,z)=3y2z(3+7x+51+y2)$$</code> </p>
+<p>$$f(x,y,z)=3y2z(3+7x+51+y2)$$</p>
+<p><code>$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$</code> </p>
+<p>$$x=\frac{-b\pm\sqrt[5]{b^2-4ac}}{2a}$$</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Text-editors/" rel="tag">#Text editors</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/Software/Text editors 文本编辑/Vi and Vim/" rel="next" title="Vi and Vim">
+                <i class="fa fa-chevron-left"></i> Vi and Vim
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/12/Software/Text editors 文本编辑/常用的文本编辑器/" rel="prev" title="常用的文本编辑器">
+                常用的文本编辑器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Markdown简介"><span class="nav-number">1.</span> <span class="nav-text">Markdown简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MD语法显示及对应的源码"><span class="nav-number">2.</span> <span class="nav-text">MD语法显示及对应的源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三级标题"><span class="nav-number">2.1.</span> <span class="nav-text">三级标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#斜体加粗与block"><span class="nav-number">2.2.</span> <span class="nav-text">斜体加粗与block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无序列表"><span class="nav-number">2.3.</span> <span class="nav-text">无序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序列表"><span class="nav-number">2.4.</span> <span class="nav-text">有序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格示例"><span class="nav-number">2.5.</span> <span class="nav-text">表格示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接、图片、代码块等示例"><span class="nav-number">2.6.</span> <span class="nav-text">链接、图片、代码块等示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片链接"><span class="nav-number">2.7.</span> <span class="nav-text">图片链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公式编辑"><span class="nav-number">2.8.</span> <span class="nav-text">公式编辑</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

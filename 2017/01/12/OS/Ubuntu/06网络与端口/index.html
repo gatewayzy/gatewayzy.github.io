@@ -1,0 +1,701 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="OS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Ubuntu网络与端口配置。">
+<meta name="keywords" content="OS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu网络与端口">
+<meta property="og:url" content="http://bebetter.site/2017/01/12/OS/Ubuntu/06网络与端口/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：Ubuntu网络与端口配置。">
+<meta property="og:updated_time" content="2017-01-12T05:58:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu网络与端口">
+<meta name="twitter:description" content="说明：Ubuntu网络与端口配置。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/01/12/OS/Ubuntu/06网络与端口/"/>
+
+  <title> Ubuntu网络与端口 | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Ubuntu网络与端口
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T13:58:06+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>Ubuntu网络与端口配置。<br><a id="more"></a></p>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><hr>
+<h3 id="网络IP设置"><a href="#网络IP设置" class="headerlink" title="网络IP设置"></a>网络IP设置</h3><hr>
+<ul>
+<li>修改ip地址<ul>
+<li>即时生效: ifconfig eth0 192.168.1.155 netmask 255.255.255.0</li>
+<li>重启生效: 修改/etc/network/interfaces，修改如下内容即可，然后重启服务service networking restart或者sudo /etc/init.d/networking restart。如果都不支持，使用 <code>sudo ifdown em1 &amp;&amp; sudo ifup em1</code> 重启指定的网卡。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">auto em1</div><div class="line">iface em1 inet static</div><div class="line">address 10.15.82.64</div><div class="line">gateway 10.15.82.53</div><div class="line">netmask 255.255.255.0</div><div class="line">network 10.15.82.0</div><div class="line">broadcast 10.15.82.255</div><div class="line">dns-nameservers 10.10.0.21</div></pre></td></tr></table></figure>
+<ul>
+<li>使用zju-vpn-ubuntu 进行 vpn-connect<ol>
+<li>下载一个全自动vpn安装包。<a href="http://zjufiles.lifetoy.org/linux/vpn/xl2tpd_1.2.5+zju-1_i386.deb" target="_blank" rel="external">http://zjufiles.lifetoy.org/linux/vpn/xl2tpd_1.2.5+zju-1_i386.deb</a> (ftp205和org等找)</li>
+<li>安装之前先删除原来的xl2tpd包。命令：<code>sudo dpkg --purge xl2tpd</code></li>
+<li>安装。命令：<code>sudo dpkg -i xl2tpd_1.2.5-zju1_i386.deb</code> (根据提示或错误信息完成安装)</li>
+<li>配置。命令：sudo vpn-connect -c (用户名后面一定要加@a)。</li>
+<li>连接。命令：sudo vpn-connect</li>
+<li>断开。命令：sudo vpn-connect -d</li>
+</ol>
+</li>
+<li>自动连接的脚本如下所示。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo &quot;&gt;&gt;&gt;&gt; disconnecting vpn &gt;&gt;&gt;&gt;&quot;</div><div class="line">sudo vpn-connect -d</div><div class="line">echo 首次使用时，需要启用下面一行内容配置账号信息</div><div class="line">#vpn-connect -c </div><div class="line">echo &quot;&gt;&gt;&gt;&gt; using 21326@a &gt;&gt;&gt;&gt;&quot;</div><div class="line">sudo vpn-connect</div></pre></td></tr></table></figure>
+<h3 id="端口控制"><a href="#端口控制" class="headerlink" title="端口控制"></a>端口控制</h3><hr>
+<ul>
+<li><p>防火墙，使用ufw进行端口设置</p>
+<ul>
+<li>sudo apt-get install ufw  安装ufw</li>
+<li>sudo ufw enable| disable | default deny |status ，对ufw的运行控制</li>
+<li>sudo ufw allow 8080 | delete allow 80 | allow from 192.168.1.1 | deny smtp ，控制ufw的规则</li>
+</ul>
+</li>
+<li><p>端口查看</p>
+<ul>
+<li>ps –aux | grep 8080 |grep java | grep tomcat | grep tcm ，使用ps查看，结合grep进行筛选</li>
+<li>netstat -ap | grep 8080  网络端口运行状态</li>
+<li>lsof -i:8888  查看端口状态</li>
+</ul>
+</li>
+<li><p>关闭端口对应的进程</p>
+<ul>
+<li>使用kill -9 PID 关闭进程，PID为进程号，-9表示发送信号让其正常关闭。如果不知道PID，可用上面查看端口的命令查看对应的PID。</li>
+<li>下面的脚本就是删除8100-8102的所有进程：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ID=`lsof -i:8100 -i:8101 -i:8102 | awk &apos;&#123;print $2&#125;&apos;`</div><div class="line">echo $ID</div><div class="line">echo &quot;To kill all the tomcat processes:&quot;</div><div class="line">echo &quot;##############################&quot;</div><div class="line">for id in $ID</div><div class="line">do</div><div class="line">  kill -9 $id</div><div class="line">  echo &quot;killed $id&quot;</div><div class="line">done</div><div class="line">echo &quot;#############################&quot;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OS/" rel="tag">#OS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/OS/Ubuntu/05磁盘文件文件夹/" rel="next" title="Ubuntu磁盘文件文件夹">
+                <i class="fa fa-chevron-left"></i> Ubuntu磁盘文件文件夹
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/12/OS/Ubuntu/07网关服务器/" rel="prev" title="Ubuntu网关服务器">
+                Ubuntu网关服务器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">1.</span> <span class="nav-text">网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络IP设置"><span class="nav-number">1.1.</span> <span class="nav-text">网络IP设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口控制"><span class="nav-number">1.2.</span> <span class="nav-text">端口控制</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

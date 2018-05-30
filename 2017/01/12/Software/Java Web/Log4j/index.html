@@ -1,0 +1,763 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java web," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Log4j的配置使用。">
+<meta name="keywords" content="Java web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Log4j">
+<meta property="og:url" content="http://bebetter.site/2017/01/12/Software/Java Web/Log4j/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：Log4j的配置使用。">
+<meta property="og:updated_time" content="2017-01-12T05:58:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Log4j">
+<meta name="twitter:description" content="说明：Log4j的配置使用。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/01/12/Software/Java Web/Log4j/"/>
+
+  <title> Log4j | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Log4j
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T13:58:12+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Softwares/" itemprop="url" rel="index">
+                    <span itemprop="name">Softwares</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>Log4j的配置使用。<br><a id="more"></a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
+<p>Log4j 是Apache的一个开放源代码项目。控制日志信息输送的目的地是控制台、文件、GUI组件、甚至是套接口服务器、NT的事件记录器、UNIX Syslog守护进程等；可以控制每一条日志的输出格式；能够更加细致地控制日志的生成过程和级别；这些可以通过一个配置文件来灵活地进行配置，而不需要修改应用的代码。</p>
+<h3 id="Log4j优点"><a href="#Log4j优点" class="headerlink" title="Log4j优点"></a>Log4j优点</h3><ul>
+<li>Log4j受大多数web应用服务器的拥护，tomcat，weblogic，websphere，jboss等都支持log4j。</li>
+<li>快速，功能强大：Log4J配置文件实现了输出到控制台、文件、回滚文件、发送日志邮件、输出到数据库日志表、自定义标签等全套功能。log4j在速度上也很快。</li>
+<li>使用简单、方便：只需要导入一个简单的log4j-1.2.x.jar，然后在程序类的开头写上下面一句private final static Logger log =Logger.getLogger(ClassName.class) 这样就得到了一个日志对象log，可以轻松输出日志了。</li>
+</ul>
+<h3 id="为什么需要Log4j"><a href="#为什么需要Log4j" class="headerlink" title="为什么需要Log4j"></a>为什么需要Log4j</h3><ul>
+<li>项目的调试是log4j产生的内在驱动力。</li>
+<li>一般调试方法是：把信息输出到屏幕（console），比如利用JDK提供的System.out.println。但是，这样做的坏处是显而易见的：<ul>
+<li>信息的输出不够灵活，并且繁琐。比如，要输出执行处的文件名，行数，当前时间等，println显得很原始。</li>
+<li>如果要改变输出的内容和格式，需要重新编译源程序。</li>
+<li>更严重的是，println影响程序的性能。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Logger-getLogger-和LogFactory-getLog-的区别"><a href="#Logger-getLogger-和LogFactory-getLog-的区别" class="headerlink" title="Logger.getLogger()和LogFactory.getLog()的区别"></a>Logger.getLogger()和LogFactory.getLog()的区别</h3><p>Logger.getLogger()是使用log4j的方式记录日志；<br>LogFactory.getLog()则来自apache的common-logging包。</p>
+<h2 id="common-logging组件"><a href="#common-logging组件" class="headerlink" title="common-logging组件"></a>common-logging组件</h2><p>Jakarta Commons Logging (JCL)提供的是一个日志(Log)接口(interface)，同时兼顾轻量级和不依赖于具体的日志实现工具。它提供给中间件/日志工具开发者一个简单的日志操作抽象，允许程序开发人员使用不同的具体日志实现工具。Log(基本记录器)和LogFactory(负责创建Log实例)是两个基类。该API直接提供对下列底层日志记录工具的支持：Jdk14Logger，Log4JLogger，LogKitLogger，NoOpLogger （直接丢弃所有日志信息），还有一个SimpleLog。有必要详细说明一下调用LogFactory.getLog()时发生的事情。调用该函数会启动一个发现过程，即找出必需的底层日志记录功能的实现，具体的发现过程在下面列出：(换句话说就是，有这么多工具，common-logging该使用哪一个呢？这取决于系统的设置，common-logging将按以下顺序决定使用哪个日志记录工具)：</p>
+<ul>
+<li>common-logging首先在CLASSPATH中查找commons-logging.properties文件。这个属性文件至少定义org.apache.commons.logging.Log属性，它的值应该是上述任意Log接口实现的完整限定名称。如果找到 org.apache.commons.logging.Log属相，则使用该属相对应的日志组件。结束发现过程。</li>
+<li>如果上面的步骤失败（文件不存在或属相不存在），common-logging接着检查系统属性org.apache.commons.logging.Log。如果找到org.apache.commons.logging.Log系统属性，则使用该系统属性对应的日志组件。结束发现过程。<ul>
+<li>如果找不到org.apache.commons.logging.Log系统属性，common-logging接着在CLASSPATH中寻找log4j的类。如果找到了就假定应用要使用的是log4j。不过这时log4j本身的属性仍要通过log4j.properties文件正确配置。结束发现过程。</li>
+<li>如果上述查找均不能找到适当的Logging API，但应用程序正运行在JRE 1.4或更高版本上，则默认使用JRE 1.4的日志记录功能。结束发现过程。</li>
+<li>最后，如果上述操作都失败（JRE 版本也低于1.4），则应用将使用内建的SimpleLog。SimpleLog把所有日志信息直接输出到System.err。结束发现过程。</li>
+</ul>
+</li>
+</ul>
+<p>为了简化配置 commons-logging ，一般不使用 commons-logging 的配置文件，也不设置与 commons-logging 相关的系统环境变量，而只需将 Log4j 的 Jar 包放置到 classpash 中就可以了。这样就很简单地完成了 commons-logging 与 Log4j 的融合。</p>
+<h2 id="Log4j使用及配置"><a href="#Log4j使用及配置" class="headerlink" title="Log4j使用及配置"></a>Log4j使用及配置</h2><h3 id="Log4j使用步骤"><a href="#Log4j使用步骤" class="headerlink" title="Log4j使用步骤"></a>Log4j使用步骤</h3><ul>
+<li>先要下载相应的jar包（log4j.jar）。</li>
+<li>配置web.xml，在web.xml中引入log4j配置文件、log4j的监听器。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;context-param&gt;     </div><div class="line">   &lt;param-name&gt;log4jConfigLocation&lt;/param-name&gt;     </div><div class="line">   &lt;param-value&gt;/WEB-INF/props/log4j.properties&lt;/param-value&gt;     </div><div class="line">&lt;/context-param&gt;     </div><div class="line">&lt;context-param&gt;     </div><div class="line">   &lt;param-name&gt;log4jRefreshInterval&lt;/param-name&gt;     </div><div class="line">   &lt;param-value&gt;6000&lt;/param-value&gt;     </div><div class="line">&lt;/context-param&gt;</div><div class="line"> &lt;listener&gt; </div><div class="line">   &lt;listener-class&gt; </div><div class="line">      org.springframework.web.util.Log4jConfigListener </div><div class="line">   &lt;/listener-class&gt; </div><div class="line">&lt;/listener&gt;</div></pre></td></tr></table></figure>
+<p>说明：这里Log4jConfigListener会去WEB- INF/props/log4j.propeties 读取配置文件，开一条watchdog线程每60秒扫描一下配置文件的变化（这样在web服务启动后再去修改配置文件也不用重新启动web服务了），并把 web目录的路径压入一个叫webapp.root的系统变量（webapp.root将在log4j.properties文件中使用）。</p>
+<ul>
+<li>接下来是log4j.properties配置文件了，把它放在WEB-INF/props下，具体配置如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#log4j.rootLogger = [ level ] , appenderName, appenderName, ...</div><div class="line">log4j.rootLogger = INFO, console, R</div><div class="line">#level=INFO,all can be output</div><div class="line"></div><div class="line">#console is set to be a ConsoleAppender</div><div class="line">log4j.appender.console = org.apache.log4j.ConsoleAppender</div><div class="line">#console have four patterns</div><div class="line">#org.apache.log4j.HTMLLayout</div><div class="line">#org.apache.log4j.PatternLayout</div><div class="line">#org.apache.log4j.SimpleLayout</div><div class="line">#org.apache.log4j.TTCCLayout</div><div class="line">log4j.appender.console.layout = org.apache.log4j.PatternLayout</div><div class="line">#define the output type</div><div class="line">log4j.appender.console.layout.ConversionPattern = %-d&#123;yyyy-MM-dd HH:mm:ss&#125; [%c]-[%p] %m%n</div><div class="line"></div><div class="line">#file is set to output to a extra file</div><div class="line">log4j.appender.R = org.apache.log4j.RollingFileAppender</div><div class="line">#the absolute route of the log4j file</div><div class="line">log4j.appender.R.File = /log.txt</div><div class="line">#the size</div><div class="line">log4j.appender.R.MaxFileSize = 500KB</div><div class="line">#back up a file</div><div class="line">log4j.appender.R.MaxBackupIndex = 1</div><div class="line">log4j.appender.R.layout = org.apache.log4j.PatternLayout</div><div class="line">log4j.appender.R.layout.ConversionPattern=%-d&#123;yyyy-MM-dd HH:mm:ss&#125; [%c]-[%p] - %m%n</div></pre></td></tr></table></figure>
+<p>上面的配置文件说明log信息将以两种方式输出（文件和控制台），表示应用的根目录下（例如本应用名称为ABC，则log.txt的位置为tomact\webapp\ABC下）</p>
+<ul>
+<li>最后在程序中想要输出log的地方加入log4j的支持</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import org.apache.log4j.Logger</div><div class="line"></div><div class="line">private static Logger logger = Logger.getLogger(ClassName.class);</div><div class="line">logger.info(&quot;用户登录:&quot;+user.getAccount());</div></pre></td></tr></table></figure>
+<p>当有登录时会在控制台和文件中同时输出log信息：<code>2007-01-10 16:02:54 [com.my.web.UserAction]-[INFO] 用户登录:yangsq</code></p>
+<h3 id="Log4j配置说明"><a href="#Log4j配置说明" class="headerlink" title="Log4j配置说明"></a>Log4j配置说明</h3><p>Log4j核心包括记录器（Logger），输出端（appender）和布局（layout）。</p>
+<h4 id="logger-记录器"><a href="#logger-记录器" class="headerlink" title="logger 记录器"></a>logger 记录器</h4><ul>
+<li>Logger类是日志包的核心，Logger的名称是大小写敏感的，并且名称之间有继承关系。子名由父名做前缀，用点号“.”分隔，如x.y是x.y.z的父亲Logger。Logger系统中有个rootLogger，是所有logger的祖先，它总是存在的，并且不可以通过名字获取，可以通过Logger.getRootLogger()来获取。获取Logger对象的方法很多，可以参考API文档，在某对象中，用该对象所属的类作为参数，调用Logger.getLogger(Class clazz)以获取logger对象被认为是目前所知最理智的命名logger方法。</li>
+<li>每个logger都有一个日志级别，用来控制日志的输出。未分配级别的logger将自动继承它最近的父logger的日志级别。Logger的由低到高级别如下：<br>ALL&lt;DEBUG&lt;INFO&lt;WARN&lt;ERROR&lt;FATAL&lt;OFF</li>
+<li>log4j建议只使用4个级别:DEBUG&lt;INFO&lt;WARN&lt;ERROR。假设定义的级别是info，那么会显示error和warn的信息，但不显示debug信息（只显示更加严重的信息）。</li>
+<li>根记录器与自定义记录器的格式稍微不同，根记录器是<code>log4j.rootLogger=[level], appendName1, appendName2, …appendNameN</code></li>
+<li>非rootLogger可以使用类名、包名、自定义logger名来设置logger的名称，一个logger可以包含多个appender，一个appender可以被多个logger使用。</li>
+<li>包含appender的logger都会自动调用rootLogger，所以rootLogger的appender不必重复。</li>
+<li>每一个logger都可有多个输出端。RootLogger当然也可以有多个appender。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">log4j.rootLogger=INFO,Console1,log4j	#根记录器，这里设置Console和log4j一共2个appender</div><div class="line">log4j.logger.myLogger1=INFO,myFile1	#自定义名的logger，级别为info，比info低级的不显示，一个appender</div><div class="line">log4j.logger.myLogger2=debug,myFile2</div><div class="line">log4j.logger.log4j.mypk=INFO,mypk	#也可以利用包名设置相应的logger</div><div class="line">log4j.logger.log4j.mypk.dbpk=debug,dbpk	#包名设置logger，会继承上级的appender和根的</div><div class="line">log4j.logger.log4j.mypk.MyDb=INFO,mydb	#类名设置logger，会继承上级包的appender和根的</div></pre></td></tr></table></figure>
+<h4 id="appender-输出端"><a href="#appender-输出端" class="headerlink" title="appender 输出端"></a>appender 输出端</h4><blockquote>
+<p>log4j.appender.appenderName = fully.qualified.name.of.appender.class<br>log4j提供了以下几种常用的输出目的地：</p>
+<ul>
+<li>org.apache.log4j.ConsoleAppender，将日志信息输出到控制台 </li>
+<li>org.apache.log4j.FileAppender，将日志信息输出到一个文件</li>
+<li>org.apache.log4j.DailyRollingFileAppender，将日志信息输出到一个文件，并且每个次日都会生成新的日志文件。注意如果第二天没有日志操作，就不会自动创建昨天的文件，原因在于log4j的设计者考虑24点的时候项目不一定在运行中，所以无法保证每一天都生成。</li>
+<li>org.apache.log4j.RollingFileAppender，将日志信息输出到一个文件，通过指定文件的的尺寸，当文件大小到达指定尺寸的时候会自动把文件改名，如名为example.log的文件会改名为 example.log.1，同时产生一个新的example.log文件。如果新的文件再次达到指定尺寸，又会自动把文件改名为 example.log.2，同时产生一个example.log文件。依此类推，直到example.log. MaxBackupIndex， MaxBackupIndex的值可在配置文件中定义。 </li>
+<li>org.apache.log4j.WriterAppender，将日志信息以流格式发送到任意指定的地方。</li>
+<li>org.apache.log4j.jdbc.JDBCAppender，通过JDBC把日志信息输出到数据库中。 </li>
+</ul>
+</blockquote>
+<h4 id="layout-布局"><a href="#layout-布局" class="headerlink" title="layout  布局"></a>layout  布局</h4><p>Log4j提供了一下几种布局： </p>
+<ul>
+<li>org.apache.log4j.HTMLLayout，以HTML表格形式布局 </li>
+<li>org.apache.log4j.PatternLayout，可以灵活地指定布局模式 </li>
+<li>org.apache.log4j.SimpleLayout，包含日志信息的级别和信息字符串<br>定义一个PatternLayout布局的语句为： <blockquote>
+<p>log4j.appender.stdout.layout=org.apache.log4j.PatternLayout<br>log4j.appender.stdout.layout.ConversionPattern=%d{ABSOLUTE} %5p %c{1} - %m%n </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="ConversionPattern参数的格式含义"><a href="#ConversionPattern参数的格式含义" class="headerlink" title="ConversionPattern参数的格式含义"></a>ConversionPattern参数的格式含义</h3><pre><code>%c 输出日志信息所属的类的全名 
+%d 输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyy-MM-dd HH:mm:ss }
+%f 输出日志信息所属的类的类名 
+%l 输出日志事件的发生位置，即输出日志信息的语句处于它所在的类的第几行 
+%m 输出代码中指定的信息，如log(message)中的message 
+%n 输出一个回车换行符，Windows平台为“\r\n”，Unix平台为“\n” 
+%p 输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL。如果是调用debug()输出的，则为DEBUG，依此类推 
+%r 输出自应用启动到输出该日志信息所耗费的毫秒数 
+%t 输出产生该日志事件的线程名 
+</code></pre><h3 id="log4j的配置文件"><a href="#log4j的配置文件" class="headerlink" title="log4j的配置文件"></a>log4j的配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 一个log4j.properties文件示例 </div><div class="line">log4j.rootLogger=INFO, stdout, logfile</div><div class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender</div><div class="line">log4j.appender.stdout.layout=org.apache.log4j.PatternLayout</div><div class="line">log4j.appender.stdout.layout.ConversionPattern=%d %p [%c] - &lt;%m&gt;%n</div><div class="line">log4j.appender.logfile=org.apache.log4j.RollingFileAppender</div><div class="line">log4j.appender.logfile.File=/webserver/specialTraining3/wangzj.log</div><div class="line">log4j.appender.logfile.MaxFileSize=51200KB</div><div class="line">log4j.appender.logfile.MaxBackupIndex=3</div><div class="line">log4j.appender.logfile.layout=org.apache.log4j.PatternLayout</div><div class="line">log4j.appender.logfile.layout.ConversionPattern=%d %p [%c] - &lt;%m&gt;%n</div></pre></td></tr></table></figure>
+<h3 id="log4j的日志文件保存位置解决方案"><a href="#log4j的日志文件保存位置解决方案" class="headerlink" title="log4j的日志文件保存位置解决方案"></a>log4j的日志文件保存位置解决方案</h3><h4 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h4><p>log4j.appender.A1.File=D:/apache-tomcat-6.0.18/webapps/项目/logs/app.log<br>但这种写法灵活性很差。</p>
+<h4 id="使用已有jvm变量"><a href="#使用已有jvm变量" class="headerlink" title="使用已有jvm变量"></a>使用已有jvm变量</h4><p>log4j.appender.logfile.File=${user.home}/logs/app.log<br>日志将位于：例如windows：C:\Documents and Settings\joe\logs\app.log</p>
+<h4 id="项目启动时通过System-setProperty设置"><a href="#项目启动时通过System-setProperty设置" class="headerlink" title="项目启动时通过System.setProperty设置"></a>项目启动时通过System.setProperty设置</h4><p>通过实现ServletContextListener来解决：例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class log4jlistener implements ServletContextListener &#123;</div><div class="line"> public static final String log4jdirkey = &quot;log4jdir&quot;;</div><div class="line"> public void contextDestroyed(ServletContextEvent servletcontextevent) &#123;</div><div class="line">  System.getProperties().remove(log4jdirkey);</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> public void contextInitialized(ServletContextEvent servletcontextevent) &#123;</div><div class="line">  String log4jdir = servletcontextevent.getServletContext().getRealPath(&quot;/&quot;);</div><div class="line">  //System.out.println(&quot;log4jdir:&quot;+log4jdir);</div><div class="line">  System.setProperty(log4jdirkey, log4jdir);</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>web.xml配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;listener&gt;</div><div class="line">  &lt;listener-class&gt;com.log4j.log4jlistener&lt;/listener-class&gt;</div><div class="line">&lt;/listener&gt;</div></pre></td></tr></table></figure></p>
+<p>log4j.prtperties 配置：<code>log4j.appender.A1.File=${log4jdir}/WEB-INF/logs/app1.log</code></p>
+<h2 id="Log4j-与架构结合"><a href="#Log4j-与架构结合" class="headerlink" title="Log4j 与架构结合"></a>Log4j 与架构结合</h2><ul>
+<li>不同的架构在使用log4j时一般只有配置文件的差别，如properties、xml、aop等差别。</li>
+<li><p>注意，可能使用common-logging的包获取logger，使用log4j获取logger实例化对象的方式是相似的，这里不再区分。这两之间的比较如下：</p>
+<blockquote>
+<p>private static Log logger = LogFactory.getLog(CommonLoggingRootLogger.class);//没有配置该类的logger.自动使用rootlogger<br>private static Logger logger =  Logger.getRootLogger();<br>private static Log logger1 = LogFactory.getLog(“myLogger1”);//通过名称获取logger<br>private static Logger logger1 =  Logger.getLogger(“myLogger1”);</p>
+</blockquote>
+</li>
+<li><p>在java中获取logger的方法可以使用LogFactory.getLog(“loggerName”)或者LogFactory.getLog(MyDb.class)。</p>
+</li>
+<li>LogFactory.getLog(MyDb.class)会获取到的logger包括rootLogger，以及该类名对应的以及该类所在包的各个父包所对应的logger。</li>
+<li>LogFactory.getLog(“loggerName”)会获取loggerName对应的logger，以及rootLogger，可以避免使用类名或者包名获取logger时带来的多层级logger问题。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">######下面开始定义多个logger</div><div class="line">log4j.rootLogger=INFO,Console1,log4j	#根记录器，这里设置Console和log4j一共2个appender</div><div class="line">log4j.logger.myLogger1=INFO,myFile1	#自定义名的logger，级别为info，比info低级的不显示，一个appender</div><div class="line">log4j.logger.myLogger2=debug,myFile2</div><div class="line">log4j.logger.log4j.mypk=INFO,mypk	#也可以利用包名设置相应的logger</div><div class="line">log4j.logger.log4j.mypk.dbpk=debug,dbpk	#包名设置logger，会继承上级的appender和根的</div><div class="line">log4j.logger.log4j.mypk.MyDb=INFO,mydb	#类名设置logger，会继承上级包的appender和根的</div><div class="line"></div><div class="line">#######下面开始定义各个输出流appender</div><div class="line">#Console1 appender</div><div class="line">log4j.appender.Console1=org.apache.log4j.ConsoleAppender</div><div class="line">log4j.appender.Console1.Target=System.out</div><div class="line">log4j.appender.Console1.layout = org.apache.log4j.PatternLayout</div><div class="line">log4j.appender.Console1.layout.ConversionPattern=[%c] - %m%n</div></pre></td></tr></table></figure>
+<h2 id="问题与解决"><a href="#问题与解决" class="headerlink" title="问题与解决"></a>问题与解决</h2><hr>
+<h3 id="DailyRollingFileAppender不生成昨天日志"><a href="#DailyRollingFileAppender不生成昨天日志" class="headerlink" title="DailyRollingFileAppender不生成昨天日志"></a>DailyRollingFileAppender不生成昨天日志</h3><ul>
+<li>虽然按理说是每个次日生成昨天的日志，但其实在次日必须有日志文件操作才会触发生成。</li>
+<li>Log4j设计这种机制的原因在于设计者考虑24点的时候，项目不一定在运行中，所以无法保证每一天都有文件生成。</li>
+<li>解决方法：写一个在次日定时任务触发日志操作的任务，保证会产生新日志。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java-web/" rel="tag">#Java web</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/Software/Java Web/Lucene/" rel="next" title="Lucene">
+                <i class="fa fa-chevron-left"></i> Lucene
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/12/Software/Automated build tools 自动化构建工具/Maven/" rel="prev" title="Maven">
+                Maven <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Log4j优点"><span class="nav-number">1.1.</span> <span class="nav-text">Log4j优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要Log4j"><span class="nav-number">1.2.</span> <span class="nav-text">为什么需要Log4j</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logger-getLogger-和LogFactory-getLog-的区别"><span class="nav-number">1.3.</span> <span class="nav-text">Logger.getLogger()和LogFactory.getLog()的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#common-logging组件"><span class="nav-number">2.</span> <span class="nav-text">common-logging组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log4j使用及配置"><span class="nav-number">3.</span> <span class="nav-text">Log4j使用及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Log4j使用步骤"><span class="nav-number">3.1.</span> <span class="nav-text">Log4j使用步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Log4j配置说明"><span class="nav-number">3.2.</span> <span class="nav-text">Log4j配置说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#logger-记录器"><span class="nav-number">3.2.1.</span> <span class="nav-text">logger 记录器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#appender-输出端"><span class="nav-number">3.2.2.</span> <span class="nav-text">appender 输出端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#layout-布局"><span class="nav-number">3.2.3.</span> <span class="nav-text">layout  布局</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConversionPattern参数的格式含义"><span class="nav-number">3.3.</span> <span class="nav-text">ConversionPattern参数的格式含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#log4j的配置文件"><span class="nav-number">3.4.</span> <span class="nav-text">log4j的配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#log4j的日志文件保存位置解决方案"><span class="nav-number">3.5.</span> <span class="nav-text">log4j的日志文件保存位置解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#绝对路径"><span class="nav-number">3.5.1.</span> <span class="nav-text">绝对路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用已有jvm变量"><span class="nav-number">3.5.2.</span> <span class="nav-text">使用已有jvm变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目启动时通过System-setProperty设置"><span class="nav-number">3.5.3.</span> <span class="nav-text">项目启动时通过System.setProperty设置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log4j-与架构结合"><span class="nav-number">4.</span> <span class="nav-text">Log4j 与架构结合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与解决"><span class="nav-number">5.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DailyRollingFileAppender不生成昨天日志"><span class="nav-number">5.1.</span> <span class="nav-text">DailyRollingFileAppender不生成昨天日志</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

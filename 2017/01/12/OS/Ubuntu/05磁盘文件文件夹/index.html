@@ -1,0 +1,766 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="OS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Ubuntu磁盘文件文件夹。">
+<meta name="keywords" content="OS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu磁盘文件文件夹">
+<meta property="og:url" content="http://bebetter.site/2017/01/12/OS/Ubuntu/05磁盘文件文件夹/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：Ubuntu磁盘文件文件夹。">
+<meta property="og:updated_time" content="2017-01-12T05:58:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu磁盘文件文件夹">
+<meta name="twitter:description" content="说明：Ubuntu磁盘文件文件夹。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/01/12/OS/Ubuntu/05磁盘文件文件夹/"/>
+
+  <title> Ubuntu磁盘文件文件夹 | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Ubuntu磁盘文件文件夹
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T13:58:05+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>Ubuntu磁盘文件文件夹。<br><a id="more"></a></p>
+<h3 id="磁盘内存"><a href="#磁盘内存" class="headerlink" title="磁盘内存"></a>磁盘内存</h3><hr>
+<ul>
+<li>df  查看磁盘使用情况，df -lh 格式化查看磁盘 df -TH查看挂载磁盘情况。</li>
+<li>free -g 查看内存使用情况，可以按照k/m/g为单位显示KB/MB/GB大小</li>
+<li>du  查看当前文件夹下的文件占用磁盘大小，-s /etc列出目录下所有目录一级，-S对子目录进行占用大小统计展示</li>
+</ul>
+<p>新添加一个磁盘之后，一般经过：磁盘分区、格式化、挂载。</p>
+<ol>
+<li>查看磁盘和分区挂载情况<ul>
+<li>查看所有磁盘：<code>sudo ls /dev/sd*</code> 其中各个物理盘依据a，b，c标记为sda，sdb，sdc；各个磁盘的分区使用数字标记，比如a盘分区为sda1，sda2，b盘分区为sdb1，sdb2等等。a盘只有一个分区的话，会显示为sda和sda1。</li>
+<li>查看所有磁盘和分区情况：<code>sudo fdisk -lu</code> 可以查看所有硬盘以及所有的分区，如果没有分区也可以看到。</li>
+<li>查看所有已挂载分区情况：<code>df -TH</code> 可以查看现有磁盘中已经挂载的分区信息，包括使用率、文件系统等，但是未挂载的分区是看不到的。</li>
+</ul>
+</li>
+<li>对磁盘进行分区    <ul>
+<li>查看磁盘<code>sudo ls /dev/sd*</code>，确定要分区的磁盘，比如新加的磁盘是sdb</li>
+<li>对硬盘进行分区：<code>sudo fdisk /dev/sdb</code><ul>
+<li>在Command (m for help)提示符后面输入n，执行 add a new partition 指令给硬盘增加一个新分区。</li>
+<li>出现Command action时，输入e，指定分区为扩展分区（extended）。默认是p。</li>
+<li>出现Partition number(1-4)时，输入１表示只分一个区。默认分一个区。</li>
+<li>后续指定起启柱面（cylinder）号完成分区。默认就可以。</li>
+<li>输入p，查看分区表。输入w，保存分区表，然后就会完成分区。可以查看分区信息，如sudo fdisk -lu。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>磁盘格式化<ul>
+<li>查看分区情况和挂载情况，确定要格式化的分区，比如上面的sdb1</li>
+<li>将分区格式化为ext4格式：<code>sudo mkfs -t ext4 /dev/sdb</code>(使用磁盘而不是分区的话，会警告将所有分区都进行操作，默认是按分区的)，确定即可。文件系统使用ext4或者xfs不讨论，主流用ext4吧。</li>
+</ul>
+</li>
+<li>挂载分区<ul>
+<li>临时性挂载（重启后失效）：<ul>
+<li>添加挂载点：sudo mkdir /data2</li>
+<li>挂载：<code>sudo mount -t ext4 /dev/sdb /data2</code>，挂载时指定格式和挂载源与目标。如果用extended盘，只能挂载整个盘，如果用p，可以使用/dev/sdb1这种方式。</li>
+<li>卸载：<code>sudo umount /data2</code></li>
+</ul>
+</li>
+<li>系统自启动挂载：<ul>
+<li>配置文件： <code>sudo vim /etc/fstab</code></li>
+<li>添加一行<code>/dev/sdb    /data2 ext4 defaults 0 0</code>，分别是挂载源和目标，文件系统类型，是否用dump备份磁盘，是否进行dsck检查。查看或者重启都ok表明没问题。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>遇到的问题<ol>
+<li>修改/etc/fstab之后，无法正常重启<ul>
+<li>原因是自启动挂载的配置有问题，启动停留在是否手动修复挂载的界面。</li>
+<li>解决方法是选择手动修复（提示是输入M），然后登录root，修改磁盘配置：基本就是尝试手动mount，排查提示的错误。</li>
+</ul>
+</li>
+<li>修改磁盘分区之后，数据丢失<ul>
+<li>原因是没注意到我的文件夹/svn是挂载在sdb1的，导致我删除了sdb1并格式化sdb1。</li>
+<li>ext4一旦格式化，还没有有效的数据恢复方法，都是泪，还是平时多备份一下吧。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="新建文件文件夹"><a href="#新建文件文件夹" class="headerlink" title="新建文件文件夹"></a>新建文件文件夹</h3><hr>
+<ul>
+<li>只要目标文件不存在，很多情况下都会自动创建目标文件，如cp、mv、&gt;。<ul>
+<li>touch a.txt  创建文件，再用vi编辑</li>
+<li>vi a.txt  创建文件再保存等等</li>
+</ul>
+</li>
+<li>创建新文件夹：mkdir dir1，使用路径：mkdir -p /home/user1(-p指示路径)</li>
+</ul>
+<h3 id="显示文件文件夹"><a href="#显示文件文件夹" class="headerlink" title="显示文件文件夹"></a>显示文件文件夹</h3><hr>
+<ul>
+<li>查看文件夹的文件列表<ul>
+<li>列出当前路径下文档目录：l、ls、ls -a、ls -l等，ll查看文件及权限</li>
+<li>sort 进行排序，-n按照数字排序，-r按照最大数字排序，如du -S /var/ |sort -rn</li>
+</ul>
+</li>
+<li>查看文件内容<ul>
+<li>cat 显示一个文档的内容，反过来的tac命令将文档内容倒着显示</li>
+<li>more 分页显示，enter是下一行，space是下一页，不能向上回滚，如ls –l|more 管道再分页显示   more prog1.c分页显示文件内容</li>
+<li>less 分页显示，与more类似，但支持上下查看，比more强大，支持向上回滚，“less is more”</li>
+<li>head -20 a.log  显示前20行，默认显示10行</li>
+<li>tail -10 a.log  显示最后10行；tail +2 a.log  显示从第2行到最后</li>
+</ul>
+</li>
+</ul>
+<h3 id="查找文件与命令"><a href="#查找文件与命令" class="headerlink" title="查找文件与命令"></a>查找文件与命令</h3><hr>
+<ul>
+<li>find /etc -name “*.cnf”  在指定目录下查找文件名</li>
+<li>which mysql  查找命令所在位置</li>
+<li>whereis mysql  查找软件使用的相关路径 </li>
+</ul>
+<h3 id="拷贝剪切压缩"><a href="#拷贝剪切压缩" class="headerlink" title="拷贝剪切压缩"></a>拷贝剪切压缩</h3><hr>
+<ul>
+<li>拷贝<ul>
+<li>拷贝本地文件：cp src.c  to.c，cp -r ./*  /tmp(当前目录下所有都拷贝到/tmp)</li>
+<li>从远程服务器复制文件到当前目录(.)：scp zhangsan@10.15.62.108:/home/zheda/1.sh ./ </li>
+</ul>
+</li>
+<li>压缩<ul>
+<li>压缩 tar -czvf 压缩后文件.tar.gz 要压缩的文件夹</li>
+<li>解压缩 tar -xzvf 压缩文件.tar.gz</li>
+</ul>
+</li>
+<li>剪切、重命名文件或文件夹使用移动即可，mv old new </li>
+</ul>
+<h3 id="删除文件文件夹"><a href="#删除文件文件夹" class="headerlink" title="删除文件文件夹"></a>删除文件文件夹</h3><hr>
+<ul>
+<li>删除文件：rm file1，删除当前目录下所有：rm *</li>
+<li>删除空文件夹： rm -d dir1 或者 rmdir work</li>
+<li>递归删除一个文件夹及内部文件： rm -rf  dir1，其中-r递归，-f强制删除，一定要谨慎使用</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OS/" rel="tag">#OS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/Software/Distributed cluster and big data 分布式集群与大数据/ElasticSearch ELK/" rel="next" title="ElasticSearch">
+                <i class="fa fa-chevron-left"></i> ElasticSearch
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/12/OS/Ubuntu/06网络与端口/" rel="prev" title="Ubuntu网络与端口">
+                Ubuntu网络与端口 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#磁盘内存"><span class="nav-number">1.</span> <span class="nav-text">磁盘内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建文件文件夹"><span class="nav-number">2.</span> <span class="nav-text">新建文件文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示文件文件夹"><span class="nav-number">3.</span> <span class="nav-text">显示文件文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找文件与命令"><span class="nav-number">4.</span> <span class="nav-text">查找文件与命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝剪切压缩"><span class="nav-number">5.</span> <span class="nav-text">拷贝剪切压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件文件夹"><span class="nav-number">6.</span> <span class="nav-text">删除文件文件夹</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

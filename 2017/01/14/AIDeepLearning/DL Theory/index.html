@@ -1,0 +1,711 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Deep Learning," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Deep Learning 理论和基本原理。">
+<meta name="keywords" content="Deep Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning Theory">
+<meta property="og:url" content="http://bebetter.site/2017/01/14/AIDeepLearning/DL Theory/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：Deep Learning 理论和基本原理。">
+<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/4/5/3/4539f5f00edca977011089b902670513.png">
+<meta property="og:updated_time" content="2017-01-14T05:58:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Deep Learning Theory">
+<meta name="twitter:description" content="说明：Deep Learning 理论和基本原理。">
+<meta name="twitter:image" content="http://deeplearning.stanford.edu/wiki/images/math/4/5/3/4539f5f00edca977011089b902670513.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/01/14/AIDeepLearning/DL Theory/"/>
+
+  <title> Deep Learning Theory | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Deep Learning Theory
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-14T13:58:04+08:00" content="2017-01-14">
+              2017-01-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AI-Deep-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">AI Deep Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>Deep Learning 理论和基本原理。<br><a id="more"></a></p>
+<p>参考文章：</p>
+<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><ul>
+<li>必看文章:<ul>
+<li><a href="http://deeplearning.stanford.edu/wiki/index.php/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C" target="_blank" rel="external">standfor.wiki-神经网络</a></li>
+<li><a href="http://deeplearning.stanford.edu/wiki/index.php/%E5%8F%8D%E5%90%91%E4%BC%A0%E5%AF%BC%E7%AE%97%E6%B3%95" target="_blank" rel="external">standfor.wiki-反向传播算法</a></li>
+</ul>
+</li>
+<li>个人理解：神经网络一般包括Feedforward信号正向传递、BackPropagation误差反向传播的过程。只有一个输入层、隐藏层和输出层的是最简单的网络，每一个结点都是 wx+b + 非线性激活 的网络结构。 多层的话一般又叫Feedforward NN /FNN/前馈网络，又叫BP网络/BackPropagation网络。前馈神经网络一般就是指这种没有闭环或者回路的神经网络。</li>
+</ul>
+<h3 id="前向反馈与反向传播"><a href="#前向反馈与反向传播" class="headerlink" title="前向反馈与反向传播"></a>前向反馈与反向传播</h3><ul>
+<li>神经网络分为两个过程：工作信号正向传递、误差信号反向传递。</li>
+<li><strong>前向传播</strong>：信号正向传播，见<a href="http://deeplearning.stanford.edu/wiki/index.php/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C" target="_blank" rel="external">standfor.wiki-神经网络</a><ul>
+<li>设定Wij和bi，每一个结点的输出都是上一层相连的所有结点的输出和并进行非线性激活，</li>
+</ul>
+</li>
+</ul>
+<p>$$<br>\begin{align}<br>a<em>1^{(2)} &amp;= f(W</em>{11}^{(1)}x<em>1 + W</em>{12}^{(1)} x<em>2 + W</em>{13}^{(1)} x_3 + b_1^{(1)})<br>a<em>2^{(2)} &amp;= f(W</em>{21}^{(1)}x<em>1 + W</em>{22}^{(1)} x<em>2 + W</em>{23}^{(1)} x_3 + b_2^{(1)})<br>a<em>3^{(2)} &amp;= f(W</em>{31}^{(1)}x<em>1 + W</em>{32}^{(1)} x<em>2 + W</em>{33}^{(1)} x_3 + b<em>3^{(1)})<br>h</em>{W,b}(x) &amp;= a<em>1^{(3)} =  f(W</em>{11}^{(2)}a<em>1^{(2)} + W</em>{12}^{(2)} a<em>2^{(2)} + W</em>{13}^{(2)} a_3^{(2)} + b_1^{(2)})<br>\end{align}<br>$$</p>
+<ul>
+<li><strong>反向传播</strong>：误差反向传播，见<a href="http://deeplearning.stanford.edu/wiki/index.php/%E5%8F%8D%E5%90%91%E4%BC%A0%E5%AF%BC%E7%AE%97%E6%B3%95" target="_blank" rel="external">standfor.wiki-反向传播算法</a><ul>
+<li>一次批量梯度下降法的过程：<ul>
+<li>每层的w’(w的偏导累计)和b’(b的偏导累计)设置为0</li>
+<li>对于1到m个样本：<ul>
+<li>用BP算法求解loss对各层w和b的偏导值。</li>
+<li>计算w的偏导累计w’=w’+ 此时loss对w偏导</li>
+<li>计算b的偏导累计b’=b’+ 此时loss对b偏导</li>
+</ul>
+</li>
+<li>更新各层的权重参数：w=w-alpha<em>[(w’/m) + lamda</em>w] b=b-alpha*(b’/m).</li>
+</ul>
+</li>
+<li>批量梯度下降法应该是说：对一批训练样本，先设置所有的w和b都是随机初始化以实现对称失效。然后对这批的每个样本，求出它产生的loss对所有w和b的偏导，并用一个w’和b’累计这批数据的偏导。然后将这批的偏导之和更新到所有的w和b：w-表示梯度下降，w’/m是累计误差求均值，<code>lamda*w</code>可用于动量因子以加速下降；b的更新类似，只是更简单。训练多批数据之后就可以让模型的loss尽可能小。</li>
+<li>BP算法求解Loss对各层w和b的偏导，前向传导算法：<ul>
+<li>对每批数据求解输出的loss函数，由m个训练数据的方差+正则化项构成，强烈建议看原文，公式不好写。Loss函数如下，强烈建议查看原文的后续推导过程<a href="http://deeplearning.stanford.edu/wiki/index.php/%E5%8F%8D%E5%90%91%E4%BC%A0%E5%AF%BC%E7%AE%97%E6%B3%95" target="_blank" rel="external">standfor.wiki-反向传播算法</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://deeplearning.stanford.edu/wiki/images/math/4/5/3/4539f5f00edca977011089b902670513.png" alt=""></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>如果一个BP网络只有单一的输入层，隐含层和输出层，一般可以选取隐含层节点数为m=sqrt(in+out)+(0~10) 或者 m=sqrt(in*out) 或者 m=log_2^out。</li>
+<li>1989年Robert证明了对于任何闭区间内的一个连续函数都可以用一个隐含层的BP网络来逼近，这就是万能逼近定理。</li>
+<li>单层网络无法解决XOR异或这种非线性可分问题，为此使用多层网络，并对每一层使用非线性激活函数。非线性激活函数的目的在于：引入非线性，如果每层都是线性的，如W1W2X=WX仍是线性，引入非线性才能逼近各种线性和非线性的函数。</li>
+<li>BP神经网络的特点：<ul>
+<li>存在局部极小值：多层BP网络的误差曲面可能有多个局部极小值，导致梯度下降陷入局部极小值。缓解方法：梯度下降增加动量因子，构成冲量项；多次使用不同的初始权值w和阈值b。</li>
+<li>权值过多：层数越多，权值w和b就越多，可能导致训练很慢，产生过拟合。缓解方法：使用动量项加速梯度下降。但是隐藏层的选择没有科学的依据。</li>
+</ul>
+</li>
+<li>BP神经网络属于简单的网络，拓展的网络有卷积神经网络CNN，深度神经网络，脉冲神经网络(Spiking Neural Networks，SNNs)等。尤其是脉冲神经网络被称为第三代神经网络。</li>
+</ul>
+<h2 id="CNN-卷积神经网络"><a href="#CNN-卷积神经网络" class="headerlink" title="CNN 卷积神经网络"></a>CNN 卷积神经网络</h2><h2 id="RNN-Recurrent-循环神经网络"><a href="#RNN-Recurrent-循环神经网络" class="headerlink" title="RNN Recurrent 循环神经网络"></a>RNN Recurrent 循环神经网络</h2><ul>
+<li>rnn循环神经网络可以看做是1个cell，然后对序列目标进行输入输出，cell有输入、输出、上一次的输入、传递给下一次的输出；根据序列目标展开，就是cell构成的层，然后layer的输入层是序列目标，各cell之间相互关联，这和cnn各个cell之间是独立是不同的。</li>
+<li>rnn在序列中的先后顺序，所以顺序反向的时候就能提取出另一种特征，对应BiRNN、BiLSTM、BiGRU等Bidirectional双向网络。</li>
+<li>一般来说RNN比较慢，LSTM快一些，GRU更快一些，但是越快的效果可能不好。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Deep-Learning/" rel="tag">#Deep Learning</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/14/AIDeepLearning/DL Hardwares And Drivers/" rel="next" title="Deep Learning Hardwares And Drivers">
+                <i class="fa fa-chevron-left"></i> Deep Learning Hardwares And Drivers
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/14/AIDeepLearning/DL Frames/" rel="prev" title="Deep Learning Tools">
+                Deep Learning Tools <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络"><span class="nav-number">1.</span> <span class="nav-text">神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前向反馈与反向传播"><span class="nav-number">1.1.</span> <span class="nav-text">前向反馈与反向传播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CNN-卷积神经网络"><span class="nav-number">2.</span> <span class="nav-text">CNN 卷积神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RNN-Recurrent-循环神经网络"><span class="nav-number">3.</span> <span class="nav-text">RNN Recurrent 循环神经网络</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

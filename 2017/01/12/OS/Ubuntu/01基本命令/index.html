@@ -1,0 +1,718 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Ubuntu," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Ubuntu基本命令等。">
+<meta name="keywords" content="Ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu基本命令">
+<meta property="og:url" content="http://bebetter.site/2017/01/12/OS/Ubuntu/01基本命令/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：Ubuntu基本命令等。">
+<meta property="og:updated_time" content="2017-01-12T05:58:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu基本命令">
+<meta name="twitter:description" content="说明：Ubuntu基本命令等。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/01/12/OS/Ubuntu/01基本命令/"/>
+
+  <title> Ubuntu基本命令 | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Ubuntu基本命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T13:58:01+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>Ubuntu基本命令等。<br><a id="more"></a></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><hr>
+<ul>
+<li>echo “密码” | sudo -S apt-get install firefox gedit filezilla -y  #使用密码安装多个软件并默认yes</li>
+<li>初始设置root密码:sudo passwd root,修改密码：passwd</li>
+<li>su – 切换到root，-表示加载root的环境变量，su user 切换到user账户</li>
+<li>新建一个terminal,按键：  ctr+alt+t  中断：ctrl+Z 退出：ctrl+C</li>
+<li>命令帮助，man（manual），如：man cd</li>
+<li>login:用户名，密码; 以root登录：su; 退出root:exit; 退出用户：logout</li>
+<li>改变当前路径：cd,到根目录为cd /,上一级为cd ..,当前一级为cd .</li>
+<li>磁盘使用情况：df -a</li>
+<li>安装iptux.deb软件包sudo dpkg -i iptux.deb（其中-i等价于–install）</li>
+<li>自启动程序终端运行：gnome-session-properties</li>
+<li>显示当前所在目录：pwd</li>
+<li>ifconfig查看/设置网卡 netstat查看网络连接状态 route查看/设置路由</li>
+<li>ping检查网络是否可达 tcpdump抓包命令</li>
+<li>./hello 为什么在可执行文件前加./，与PATH环境变量相关，env或echo $PATH</li>
+<li>添加路径export PATH=$PATH:/home/test</li>
+<li>可以使用任何文本编辑器,比如gedit 文件名</li>
+<li>查看安装的有desktop程序的命令：ls /usr/share/applications/</li>
+<li>切换已打开程序：alt+tab</li>
+<li>查看之前安装过旧版本：dpkg -l | grep qq</li>
+<li>显示隐藏的qq界面:Ctrl + Alt + z  退出QQ：qq -k  添加桌面图标：dash图标拖拽</li>
+<li>推荐分区：/8g,/boot500M,/var4g,/usr15g(程序),/home20g(用户下载文件)</li>
+<li>MP3播放列表乱码：进入mp3文件所在目录，然后运行：mid3iconv -e GBK *.mp3 </li>
+<li>在linux命令行中使命令行程序后台运行，在命令后加个&amp;即可，如启动fcitx并使其后台运行：fcitx &amp;</li>
+<li>ls; pwd; passwd root 使用分号可以运行多个命令，属于shell编程</li>
+<li>设置命令别名：alias ll=’ls -l’</li>
+<li>service –status-all  显示所有服务</li>
+<li>date  日期时间</li>
+<li>ps -A 显示所有运行中的进程</li>
+<li>shell编程<ul>
+<li>echo “passwd” | sudo -S reboot可以实现脚本中执行sudo，-S sudo从标准输入读取密码</li>
+<li>nohup ./test &amp; 用&amp;后台运行，用nohup保证关闭当前shell不会关闭运行中的程序</li>
+<li>jobs  显示当前shell中的所有作业信息，包括运行状态等，-l列出pid、作业号，-r运行中的，-s指stopped</li>
+<li>bg 2 以后台模式重启作业号为2的作业</li>
+<li>fg 以前台模式重启默认作业，可指定作业号</li>
+<li>nice renice用于调整作业优先级</li>
+<li>at -f test.sh +25 定时任务25分钟后运行文件中的命令，结合atq查看列表，atrm删除</li>
+<li>crontab -l  显示cron定时任务时刻表，-e编辑时刻表，使用的是m h dom mon dow command，其中dom是day of month表示几号1-31，dow表示week周几0-6。 crontab -e进行编辑任务，注意普通用户与sudo用户的crontab是不同的腾雾列表，例如每隔3小时：1 <em>/3 </em> <em> </em> python /path/my.py</li>
+<li>anacron 可以弥补cron停机期间错过定时任务的问题</li>
+<li><code>$?</code> 返回上一条执行语句的状态返回值，<code>$0</code>代表程序名，<code>$1</code>为第一个参数类推，<code>$#</code>表示参数个数（不含程序名）</li>
+<li>read -p “hello” a 输出hello并读取用户输入存放到a变量</li>
+<li>文件描述符fd：每个进程最多9个fd，且0是STDIN，1是STDOUT，2是STDREE，可进行重定向<ul>
+<li>lsof 查看所有文件描述符，可能被隐藏，用/usr/sbin/lsof全路径才能运行</li>
+<li>exec 4&gt;&amp;1 创建fd4存放默认的fd1，exec 1&gt;test 将fd1的输出指向test， exec 1&gt;&amp;4 还原fd1默认值，exec 4&gt;&amp;- 关闭fd4  </li>
+<li>安装shetool含有常用的shell命令和函数等，用于shell编程</li>
+</ul>
+</li>
+<li>sed流编辑器，每次读取一行进行命令匹配和修改，结果输出到STDOUT<ul>
+<li>sed ‘s/dog/cat/;s/big/small/‘ data1 将data1文件内容所有cat换为dog输出，不影响原文件</li>
+<li>sed -f script1.sed data1 用文件中的规则处理一个文件</li>
+<li>sed 还有删除d、插入i、追加o、修改c、转换y等功能</li>
+<li>sed 支持N、D、P等多行文本操作</li>
+</ul>
+</li>
+<li>gawk是awk的gnu版本，提供了流编辑器的编程语言，支持复杂编程和格式化输出，处理也是按行输入处理，<code>$0</code>表示整行，<code>$1</code>表示第一个字段（默认用空白符分割字段）<ul>
+<li>gawk ‘{print “hello “ $1;$2=”bb”}’ data1 输出hello 第一个字段</li>
+<li>gawk ‘BEGIN {print “before dealing: “}{print $0}’ data1 运行前输出以及文本处理</li>
+<li>gawk -f test.gawk data1 使用gawk脚本文件处理data1文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ubuntu/" rel="tag">#Ubuntu</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/10/language/Python/" rel="next" title="Python">
+                <i class="fa fa-chevron-left"></i> Python
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/12/OS/Ubuntu/02软件与常用软件/" rel="prev" title="Ubuntu软件与常用软件">
+                Ubuntu软件与常用软件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

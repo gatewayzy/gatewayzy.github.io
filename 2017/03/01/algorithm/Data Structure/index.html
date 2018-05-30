@@ -884,6 +884,7 @@
 <li>关键思想：中间数比较，等于则输出；不等于则确定对左边或右边进行二分查找</li>
 <li>时间O阶O(log(n))</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">/** </div><div class="line"> * 二分查找又称折半查找，它是一种效率较高的查找方法。【要求】：1.必须用顺序存储结构 2.必须按关键字有序排列。</div><div class="line"> */  </div><div class="line">public class BinarySearch &#123;   </div><div class="line">    public static void main(String[] args) &#123;  </div><div class="line">        int[] src = new int[] &#123;1, 3, 5, 7, 8, 9&#125;;   </div><div class="line">        System.out.println(binarySearch(src, 3));  </div><div class="line">        System.out.println(binarySearch(src,3,0,src.length-1));  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    /** </div><div class="line">     * 二分查找算法(循环实现)</div><div class="line">     */   </div><div class="line">   public static int binarySearch(int[] srcArray, int des)&#123;</div><div class="line">        int low = 0;   </div><div class="line">        int high = srcArray.length-1;   </div><div class="line">        while(low &lt;= high) &#123;   </div><div class="line">            int middle = (low + high)/2;   </div><div class="line">            if(des == srcArray[middle]) &#123;   </div><div class="line">                return middle;   </div><div class="line">            &#125;else if(des &lt;srcArray[middle]) &#123;   </div><div class="line">                high = middle - 1;   </div><div class="line">            &#125;else &#123;   </div><div class="line">                low = middle + 1;   </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">        return -1;  </div><div class="line">   &#125;  </div><div class="line">        </div><div class="line">      /**   </div><div class="line">     *二分查找特定整数在整型数组中的位置(递归实现)</div><div class="line">     */  </div><div class="line">    public static int binarySearch(int[] dataset,int data,int beginIndex,int endIndex)&#123;    </div><div class="line">       int midIndex = (beginIndex+endIndex)/2;    </div><div class="line">       if(data &lt;dataset[beginIndex]||data&gt;dataset[endIndex]||beginIndex&gt;endIndex)&#123;  </div><div class="line">           return -1;    </div><div class="line">       &#125;  </div><div class="line">       if(data &lt;dataset[midIndex])&#123;    </div><div class="line">           return binarySearch(dataset,data,beginIndex,midIndex-1);    </div><div class="line">       &#125;else if(data&gt;dataset[midIndex])&#123;    </div><div class="line">           return binarySearch(dataset,data,midIndex+1,endIndex);    </div><div class="line">       &#125;else &#123;    </div><div class="line">           return midIndex;    </div><div class="line">       &#125;    </div><div class="line">   &#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h4><ul>
 <li>在二分查找中，对下一级的半部分进行查找时选用的是头和尾的0.5，如果将0.5改为（key-a[low]）/（a[high]-a[low]），就叫插值查找。</li>
 <li>插值查找时间O阶O(log(n))</li>
@@ -1256,8 +1257,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/18/总结/深度学习/" rel="next" title="深度学习">
-                <i class="fa fa-chevron-left"></i> 深度学习
+              <a href="/2017/01/14/AIMachineLearning/Statistical Learning Method/" rel="next" title="Statistical Learning Method">
+                <i class="fa fa-chevron-left"></i> Statistical Learning Method
               </a>
             
           </div>
@@ -1336,7 +1337,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-count">71</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1344,7 +1345,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1353,7 +1354,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1423,7 +1424,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1554,6 +1555,9 @@
   
 
   
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
 
 </body>
 </html>

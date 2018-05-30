@@ -1,0 +1,694 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="OS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Ubuntu配置成网关服务器。">
+<meta name="keywords" content="OS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu网关服务器">
+<meta property="og:url" content="http://bebetter.site/2017/01/12/OS/Ubuntu/07网关服务器/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：Ubuntu配置成网关服务器。">
+<meta property="og:updated_time" content="2017-01-12T05:58:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu网关服务器">
+<meta name="twitter:description" content="说明：Ubuntu配置成网关服务器。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/01/12/OS/Ubuntu/07网关服务器/"/>
+
+  <title> Ubuntu网关服务器 | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Ubuntu网关服务器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T13:58:07+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>Ubuntu配置成网关服务器。<br><a id="more"></a></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li>使用 <code>sudo ifdown em1 &amp;&amp; sudo ifup em1</code> 重启指定的网卡。</li>
+<li>使用 <code>echo &quot;密码&quot; | sudo -S apt-get install firefox gedit filezilla -y</code>  使用root密码安装多个软件并默认yes</li>
+</ul>
+<h2 id="配置服务器的网络连接"><a href="#配置服务器的网络连接" class="headerlink" title="配置服务器的网络连接"></a>配置服务器的网络连接</h2><ul>
+<li>服务器使用iptables配置为网关，与服务器自身联网并没有必然的先后顺序。配置为网关前后，都可以完成服务器的联网。</li>
+<li>【配置好网关服务器的网络设置】设置网络连接，如果使用vpn连接外网，需要设置网关是10.15.82.1，而不是其他服务器网关。修改/etc/network/interfaces，部分信息如下。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line"></div><div class="line">auto em1</div><div class="line">iface em1 inet static</div><div class="line">address 10.15.82.63</div><div class="line">gateway 10.15.82.1</div><div class="line">netmask 255.255.255.0</div><div class="line">network 10.15.82.0</div><div class="line">broadcast 10.15.82.255</div><div class="line"></div><div class="line">dns-nameservers 10.10.0.21</div></pre></td></tr></table></figure>
+<ul>
+<li>【网关服务器使用vpn连接】服务器使用zju-vpn-ubuntu 进行 vpn-connect<ol>
+<li>下载一个全自动vpn安装包。<a href="http://zjufiles.lifetoy.org/linux/vpn/xl2tpd_1.2.5+zju-1_i386.deb" target="_blank" rel="external">http://zjufiles.lifetoy.org/linux/vpn/xl2tpd_1.2.5+zju-1_i386.deb</a> (ftp205和org等找)</li>
+<li>安装之前先删除原来的xl2tpd包。命令：<code>sudo dpkg --purge xl2tpd</code></li>
+<li>安装。命令：<code>sudo dpkg -i xl2tpd_1.2.5-zju1_i386.deb</code> (根据提示或错误信息完成安装)</li>
+<li>配置。命令：sudo vpn-connect -c (用户名后面一定要加@a)。</li>
+<li>连接。命令：sudo vpn-connect</li>
+<li>断开。命令：sudo vpn-connect -d</li>
+</ol>
+</li>
+<li>自动连接的脚本如下所示。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo &quot;&gt;&gt;&gt;&gt; disconnecting vpn &gt;&gt;&gt;&gt;&quot;</div><div class="line">sudo vpn-connect -d</div><div class="line">echo 想配置用户名密码的话，启用下一句</div><div class="line">#vpn-connect -c</div><div class="line">echo &quot;&gt;&gt;&gt;&gt; using 21326@a &gt;&gt;&gt;&gt;&quot;</div><div class="line">sudo vpn-connect</div></pre></td></tr></table></figure>
+<h2 id="将服务器配置为网关"><a href="#将服务器配置为网关" class="headerlink" title="将服务器配置为网关"></a>将服务器配置为网关</h2><ul>
+<li>【服务器配置为网关服务器】服务器配置为网关的基本方法为：<ul>
+<li>安装iptables</li>
+<li>配置iptables转发服务，作为网关</li>
+<li>将iptables配置存储到文件，并设置/etc/network/interfaces自启动时加载网关配置，以实现“网关自启动”。</li>
+</ul>
+</li>
+<li>使用下面的脚本设置iptables的规则，防止iptables清空配置的过程中无法连接服务器，运行<code>sudo ./gateway.sh</code>即可，注意相应修改。 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo gateway.sh need root access!</div><div class="line"># 注意更改为相应的网卡</div><div class="line">IFACE_LAN=em1</div><div class="line">IFACE_WAN=ppp0</div><div class="line"></div><div class="line">iptables -t nat -F   </div><div class="line">iptables -t nat -X   </div><div class="line">iptables -t nat -P PREROUTING ACCEPT   </div><div class="line">iptables -t nat -P POSTROUTING ACCEPT   </div><div class="line">iptables -t nat -P OUTPUT ACCEPT   </div><div class="line"></div><div class="line">iptables -t mangle -F   </div><div class="line">iptables -t mangle -X   </div><div class="line">iptables -t mangle -P PREROUTING ACCEPT  </div><div class="line">iptables -t mangle -P INPUT ACCEPT   </div><div class="line">iptables -t mangle -P FORWARD ACCEPT   </div><div class="line">iptables -t mangle -P OUTPUT ACCEPT   </div><div class="line">iptables -t mangle -P POSTROUTING ACCEPT  </div><div class="line"> </div><div class="line">iptables -F  </div><div class="line">iptables -X  </div><div class="line">iptables -P FORWARD ACCEPT   </div><div class="line">iptables -P INPUT ACCEPT   </div><div class="line">iptables -P OUTPUT ACCEPT  </div><div class="line"> </div><div class="line">iptables -t raw -F   </div><div class="line">iptables -t raw -X   </div><div class="line">iptables -t raw -P PREROUTING ACCEPT </div><div class="line">iptables -t raw -P OUTPUT ACCEPT  </div><div class="line"># 允许接入的请求</div><div class="line">iptables -P INPUT ACCEPT</div><div class="line">iptables -P OUTPUT ACCEPT</div><div class="line">iptables -P FORWARD ACCEPT</div><div class="line">iptables -A INPUT -i lo -j ACCEPT</div><div class="line">iptables -A INPUT -i $IFACE_LAN -m state --state RELATED,ESTABLISHED -j ACCEPT</div><div class="line">iptables -A INPUT -i $IFACE_LAN -s 10.15.62.0/24 -j ACCEPT</div><div class="line">iptables -A INPUT -m iprange --src-range 10.15.82.50-10.15.82.100 -j ACCEPT</div><div class="line"># 限定转发的请求</div><div class="line">iptables -t nat -A POSTROUTING -m iprange --src-range 10.15.82.50-10.15.82.52 -o $IFACE_WAN -j MASQUERADE</div><div class="line">iptables -t nat -A POSTROUTING -m iprange --src-range 10.15.82.54-10.15.82.100 -o $IFACE_WAN -j MASQUERADE</div><div class="line">iptables -t nat -A POSTROUTING -s 10.15.62.29 -o $IFACE_WAN -j MASQUERADE</div><div class="line">iptables -t nat -A POSTROUTING -s 10.15.62.32 -o $IFACE_WAN -j MASQUERADE</div><div class="line">iptables -t nat -A POSTROUTING -s 10.15.62.205 -o $IFACE_WAN -j MASQUERADE</div><div class="line"># 将配置导出，注意更改对应的文件路径</div><div class="line">iptables-save &gt; /home/zju/firewall/iptables-rules</div></pre></td></tr></table></figure>
+<ul>
+<li>【注意设置为自启动网关服务器】，编辑 /etc/network/interfaces 添加em1下面内容自加载iptables配置，以及添加路由</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">auto em1</div><div class="line">...</div><div class="line">up route add -net 10.0.0.0 netmask 255.0.0.0 gw 10.15.82.1 dev em1</div><div class="line">up route add -net 222.205.46.0 netmask 255.255.254.0 gw 10.15.82.1 dev em1</div><div class="line">up route add -net 222.205.48.0 netmask 255.255.248.0 gw  10.15.82.1 dev em1</div><div class="line">up route add -net 222.205.56.0 netmask 255.255.252.0 gw 10.15.82.1 dev em1</div><div class="line">up route add -net 58.206.0.0 netmask 255.255.0.0 gw 10.15.82.1 dev em1</div><div class="line">up route add -net 222.205.123.0 netmask 255.255.255.0 gw 10.15.82.1 dev em1</div><div class="line">pre-up iptables-restore &lt; /home/zheda/firewall/iptables-rules</div><div class="line">post-down iptables-save &gt; /home/zheda/firewall/iptables-rules</div></pre></td></tr></table></figure>
+<h2 id="其他服务器使用网关服务器连接外网"><a href="#其他服务器使用网关服务器连接外网" class="headerlink" title="其他服务器使用网关服务器连接外网"></a>其他服务器使用网关服务器连接外网</h2><ul>
+<li>其他服务器配置自己的网络设置，gateway修改为网关服务器即可。修改/etc/network/interfaces，部分信息如下。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line"></div><div class="line">auto em1</div><div class="line">iface em1 inet static</div><div class="line">address 10.15.82.67</div><div class="line">gateway 10.15.82.63</div><div class="line">netmask 255.255.255.0</div><div class="line">network 10.15.82.0</div><div class="line">broadcast 10.15.82.255</div><div class="line"></div><div class="line">dns-nameservers 10.10.0.21</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OS/" rel="tag">#OS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/OS/Ubuntu/06网络与端口/" rel="next" title="Ubuntu网络与端口">
+                <i class="fa fa-chevron-left"></i> Ubuntu网络与端口
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/12/Software/Automated build tools 自动化构建工具/Gradle/" rel="prev" title="Gradle">
+                Gradle <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置服务器的网络连接"><span class="nav-number">2.</span> <span class="nav-text">配置服务器的网络连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将服务器配置为网关"><span class="nav-number">3.</span> <span class="nav-text">将服务器配置为网关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他服务器使用网关服务器连接外网"><span class="nav-number">4.</span> <span class="nav-text">其他服务器使用网关服务器连接外网</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

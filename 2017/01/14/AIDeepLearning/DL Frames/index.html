@@ -1,0 +1,943 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Deep Learning," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Deep Learning 编程框架。">
+<meta name="keywords" content="Deep Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning Tools">
+<meta property="og:url" content="http://bebetter.site/2017/01/14/AIDeepLearning/DL Frames/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：Deep Learning 编程框架。">
+<meta property="og:updated_time" content="2017-01-14T05:58:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Deep Learning Tools">
+<meta name="twitter:description" content="说明：Deep Learning 编程框架。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/01/14/AIDeepLearning/DL Frames/"/>
+
+  <title> Deep Learning Tools | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Deep Learning Tools
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-14T13:58:04+08:00" content="2017-01-14">
+              2017-01-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AI-Deep-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">AI Deep Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>Deep Learning 编程框架。<br><a id="more"></a></p>
+<p>参考文章：</p>
+<h2 id="深度学习开源框架"><a href="#深度学习开源框架" class="headerlink" title="深度学习开源框架"></a>深度学习开源框架</h2><hr>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="http://www.cnblogs.com/bluestorm/p/5328585.html" target="_blank" rel="external">十个值得一试的开源深度学习框架</a></li>
+<li><a href="http://www.infoq.com/cn/news/2016/01/evaluation-comparison-deep-learn?utm_campaign=infoq_content&amp;" target="_blank" rel="external">深度学习框架的评估与比较</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">学习框架</th>
+<th style="text-align:center">开发语言</th>
+<th style="text-align:center">接口语言</th>
+<th style="text-align:center">特点</th>
+<th>支持模型</th>
+<th>部署环境</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Caffe</td>
+<td style="text-align:center">C++/cuda</td>
+<td style="text-align:center">C++/python</td>
+<td style="text-align:center">稳定</td>
+<td>CNN</td>
+<td>win/linux</td>
+</tr>
+<tr>
+<td style="text-align:center">TensorFlow</td>
+<td style="text-align:center">C++/cuda/python</td>
+<td style="text-align:center">C++/python</td>
+<td style="text-align:center"></td>
+<td>CNN/RNN/…</td>
+<td>linux</td>
+</tr>
+<tr>
+<td style="text-align:center">MXNet</td>
+<td style="text-align:center">C++/cuda</td>
+<td style="text-align:center">python/R/Julia</td>
+<td style="text-align:center">可以自己折腾</td>
+<td>CNN/RNN</td>
+<td>win/linux</td>
+</tr>
+<tr>
+<td style="text-align:center">CNTK</td>
+<td style="text-align:center">C++</td>
+<td style="text-align:center">C++</td>
+<td style="text-align:center"></td>
+<td></td>
+<td>win/linux</td>
+</tr>
+<tr>
+<td style="text-align:center">Marvin</td>
+<td style="text-align:center">C++</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">Theano</td>
+<td style="text-align:center">Python</td>
+<td style="text-align:center">Python</td>
+<td style="text-align:center">派生出Blocks和Keras等框架</td>
+<td></td>
+<td>win/linux</td>
+</tr>
+<tr>
+<td style="text-align:center">Torch</td>
+<td style="text-align:center">Lua</td>
+<td style="text-align:center">Lua/Python</td>
+<td style="text-align:center"></td>
+<td></td>
+<td>linux</td>
+</tr>
+<tr>
+<td style="text-align:center">Deeplearning4j</td>
+<td style="text-align:center">Java</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">可与Hadoop和Spark集成，即插即用</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>在单GPU的场景下，多数工具集都调用了CuDNN。CuDNN(CUDA Deep Neural Network library)是Nvidia显卡专门针对Deep Learning框架设计的一套GPU计算加速方案，目前支持的DL库包括Caffe, TensorFlow, Theano, Torch, CNTK等。</p>
+<h2 id="框架对比"><a href="#框架对比" class="headerlink" title="框架对比"></a>框架对比</h2><hr>
+<ol>
+<li>封装层次<ul>
+<li>TensorFlow、theano属于底层data flow，属于陈述式的（declarative），所以学习成本高，可修改性高。</li>
+<li>Caffe、Torch、MXNet、Keras等属于高层，属于命令式的，所以直接调用使用简单，但是不易修改调参。</li>
+</ul>
+</li>
+<li>流行性<ol>
+<li>Theano是Bengio和GoodFellow写的，出现早，在学界广泛。keras等框架是基于Theano等封装来的。</li>
+</ol>
+<ul>
+<li>TensorFlow出现晚，有谷歌支持，使用更广泛，GoodFellow也去了TF。职业开发推荐用TF。一种说法是Theano和TF属于数据流架构，算不上真正的深度学习框架。</li>
+<li>Caffe原本是进行图像卷积的，但是后来也支持更多网络。优点是python交互界面漂亮，但是安装麻烦，缺乏商业支持。</li>
+<li>Torch基于Lua（Facebook等在用），MXnet基于R（亚马逊等在用），他们也在提供更多语言的接口。Pytorch也非常流行。</li>
+</ul>
+</li>
+<li>其他内容<ol>
+<li>SciKit-learn是python的一个机器学习库，又叫sklearn，实现了一些回归、聚类等算法，类似于java的weka。</li>
+</ol>
+</li>
+</ol>
+<h2 id="TensorFlow"><a href="#TensorFlow" class="headerlink" title="TensorFlow"></a>TensorFlow</h2><hr>
+<h3 id="tf安装过程"><a href="#tf安装过程" class="headerlink" title="tf安装过程"></a>tf安装过程</h3><ul>
+<li>一般是先安装显卡、安装显卡驱动，安装cuda，安装cudnn(tf要求必须安装)，安装anaconda(python)，安装tensorflow。</li>
+<li>注意cuda、cudnn、tf、python之间的版本关系，版本需要相互支持。比如合适的搭配：cuda8、libcudnn6_cuda8、python3.6、tf1.3.0。比较新的比如tf1.4可能就对py3.6支持上不是特别好，所以版本一般不要选最新的。</li>
+</ul>
+<h3 id="安装tf"><a href="#安装tf" class="headerlink" title="安装tf"></a>安装tf</h3><hr>
+<ul>
+<li>安装多个python，系统环境变量默认选一个，不用改。每次运行时指定到对应python/bin目录下使用./pip或者./python进行操作。</li>
+<li>安装anaconda3，在其python位置运行./pip install 各种工具如scipy、tf.whl等。</li>
+<li><p>安装tensorflow：使用./pip安装tf.whl，注意tf.whl支持的python版本如cp35/cp34表示py3.5/py3.4，是cpu还是gpu，是linux还是windows，是32位还是x86_64位。安装过程中，少什么就装什么。</p>
+</li>
+<li><p>tf中文官网：<a href="https://www.tensorflow.org/install/install_linux" target="_blank" rel="external">https://www.tensorflow.org/install/install_linux</a></p>
+</li>
+</ul>
+<h4 id="Windows使用pip简单"><a href="#Windows使用pip简单" class="headerlink" title="Windows使用pip简单"></a>Windows使用pip简单</h4><p><code>pip3 search tensorflow</code> 查看到的<code>tensorflow</code>是cpu版本，<code>tensorflow-gpu</code>是gpu版本，<code>tf-nightly</code>和<code>tf-nightly-gpu</code>是nightly版本。但是windows下只能装64位且py3.5+的tf。</p>
+<h4 id="Linux下载whl包"><a href="#Linux下载whl包" class="headerlink" title="Linux下载whl包"></a>Linux下载whl包</h4><ul>
+<li>中文官网上有各种介绍，下载也比较快。下载whl包网站：<a href="https://pypi.python.org/pypi/tensorflow-gpu" target="_blank" rel="external">https://pypi.python.org/pypi/tensorflow-gpu</a></li>
+<li><p>确定python版本，确定cpu/gpu，确定tf版本，访问下面网站即可。</p>
+</li>
+<li><p>CPU support for linux cpu py3.6.0 tf1.4.0<br>  <a href="https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.4.0-cp36-cp36m-linux_x86_64.whl" target="_blank" rel="external">https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.4.0-cp36-cp36m-linux_x86_64.whl</a></p>
+</li>
+<li><p>GPU support for linux gpu py3.6.0 tf1.4.0<br>  <a href="https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.4.0-cp36-cp36m-linux_x86_64.whl" target="_blank" rel="external">https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.4.0-cp36-cp36m-linux_x86_64.whl</a></p>
+</li>
+</ul>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><hr>
+<ul>
+<li><a href="http://docs.pythontab.com/tensorflow/" target="_blank" rel="external">TensorFlow 官方文档中文版</a></li>
+<li><a href="http://wiki.jikexueyuan.com/project/tensorflow-zh/" target="_blank" rel="external">TensorFlow 官方文档中文版-wiki</a></li>
+<li>tensorboard –logdir save/ 查看模型的tensorboard</li>
+</ul>
+<h2 id="Keras"><a href="#Keras" class="headerlink" title="Keras"></a>Keras</h2><hr>
+<ul>
+<li><a href="https://keras-cn.readthedocs.io/en/latest/" target="_blank" rel="external">Keras中文文档</a></li>
+</ul>
+<hr>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><h3 id="train-dev-test"><a href="#train-dev-test" class="headerlink" title="train/dev/test"></a>train/dev/test</h3><ul>
+<li>训练集 train ：主要是用来训练模型的。</li>
+<li>开发集 develop：主要用于模型参数调优。</li>
+<li>验证集 validate：模型的最终优化和最终确定，比如选取效果最好的模型。</li>
+<li>测试集 test：用于测试模型的泛化能力。</li>
+</ul>
+<h3 id="batch、iteration、epoch、minibatch"><a href="#batch、iteration、epoch、minibatch" class="headerlink" title="batch、iteration、epoch、minibatch"></a>batch、iteration、epoch、minibatch</h3><ul>
+<li>batch、iteration、epoch、minibatch<ul>
+<li>不同的人叫法不同：每次SGD称为一个iteration(迭代，更新参数)，但是对于full training data和每次SGD使用的data不同的人称为：epoch/batch、batch/minibatch、epoch/minibatch。反正就是epoch指最大的，如果minibatch指最小的，batch视情况而定。</li>
+<li>拿epoch/batch举例：<ul>
+<li>epoch：训练集中的所有样本都训练完成一次称为一个epoch。</li>
+<li>batch：在一次SGD中，使用训练集中的batchsize个样本，称为batch。</li>
+<li>举例：训练集有1000个样本，选取batchsize=10，那么训练完一次整个样本需要100次iteration，1epoch。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="layer"><a href="#layer" class="headerlink" title="layer"></a>layer</h2><h3 id="conv2d"><a href="#conv2d" class="headerlink" title="conv2d"></a>conv2d</h3><ul>
+<li>二维卷积操作，输入的两个维度和channel，输出的两个维度和channel。卷积优点在于：参数共享、窗口稀疏(filter之外的稀疏为0)等。</li>
+<li>卷积的核称为kernel、filter、patch.</li>
+<li>conv2d的参数解释：tf.nn.conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None, name=None)<ul>
+<li>第一个参数input：指需要做卷积的输入图像，它要求是一个Tensor，具有<code>[batch, in_height, in_width, in_channels]</code>这样的shape，具体含义是[训练时一个batch的图片数量, 图片高度, 图片宽度, 图像通道数]，注意这是一个4维的Tensor，要求类型为float32和float64其中之一</li>
+<li>第二个参数filter：相当于CNN中的卷积核，它要求是一个Tensor，具有<code>[filter_height, filter_width, in_channels, out_channels]</code>这样的shape，具体含义是[卷积核的高度，卷积核的宽度，图像通道数，卷积核个数]，要求类型与参数input相同,filter的通道数要求与input的<code>in_channels</code>一致，有一个地方需要注意，第三维<code>in_channels</code>，就是参数input的第四维</li>
+<li>第三个参数strides：卷积时在图像每一维的步长，这是一个一维的向量，长度4，具有<code>[1, strides[1], strides[2], 1]</code>，strides[0]=strides[3]=1</li>
+<li>第四个参数padding：string类型的量，只能是”SAME”,”VALID”其中之一，这个值决定了不同的卷积方式。</li>
+<li>第五个参数：<code>use_cudnn_on_gpu</code>:bool类型，是否使用cudnn加速，默认为true</li>
+<li>conv2d结果返回一个Tensor，这个输出，就是我们常说的feature map，尺寸为<code>[batch, out_height, out_width, out_channels]</code> 比长宽in，长宽in out，1s长s宽1，比长宽out<ul>
+<li>SAME padding有：<code>out_height = ceil(float(in_height) / float(strides[1]))</code> 长/stride长 <code>out_width = ceil(float(in_width) / float(strides[2]))</code> 宽/stride宽</li>
+<li>VALID padding有：<code>out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))</code>(长-长+1)/stride长 <code>out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))</code>(宽-宽+1)/stride宽</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Pooling：将多个维度的数值进行合并，降维降噪，防止过拟合。常见<code>max_pooing</code>、<code>average_pooling</code>、<code>min_pooling</code>。<ul>
+<li>tf.nn.max_pool(input, ksize, strides, padding )<ul>
+<li>input是输入，形状为<code>[batch_size, height, width, channels]</code>，</li>
+<li>ksize是kernel_size，形状为<code>[1, k_height, k_width, 1]</code></li>
+<li>strides是步长，形状为<code>[1, stride[1], stride[2], 1]</code></li>
+<li>padding是补全方式，有VALID和SAME，</li>
+<li>输出是tensor，形状为<code>[batch_size, feature_height, fearure_width, channels]</code>。使用VALID-padding时，输出的大小与conv2d计算类似，<code>out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dropout：随机断开目标网络的连接，随机断开的机率是1-keep_prob。训练时进行dropout以防止训练过拟合，测试和预测时关闭dropout，因为模型已经定型了。</li>
+</ul>
+<h2 id="loss"><a href="#loss" class="headerlink" title="loss"></a>loss</h2><ul>
+<li><code>cross_entropy_loss</code> 交叉熵 ：适用于已知真实分布的情况下，评估预测的效果。比如已知图片训练集的分类，使用交叉熵计算预测的结果的熵。</li>
+<li><code>nce_loss</code> 噪声对比估计损失函数(noise-contrastive estimation, NCE)</li>
+<li><code>sampled_softmax_loss</code></li>
+</ul>
+<h2 id="Gradient-Descent-GD梯度下降"><a href="#Gradient-Descent-GD梯度下降" class="headerlink" title="Gradient Descent GD梯度下降"></a>Gradient Descent GD梯度下降</h2><ul>
+<li><a href="http://www.cnblogs.com/richqian/p/4549590.html" target="_blank" rel="external">batch-GD,Mini-batch-GD,SGD,Online-GD 大数据背景下的梯度训练算法</a></li>
+<li>常见optimizer优化器：<ul>
+<li>Adam 快速，常用</li>
+<li>Batch GD：计算loss函数在整个训练集上的梯度方向，沿着该方向进行迭代。缺点：大数据集上复杂度过高。</li>
+<li>Mini-batch GD：每次选取训练集的子集进行训练。较为常用。</li>
+<li>Stochastic GD：SGD随机梯度下降，每次只选一个数据进行训练。优点：速度比较快。缺点：收敛性不好，可能引起目标函数剧烈震荡，可能hit不到最优点。</li>
+<li>Online GD：所有训练数据只使用1次，然后丢弃。优点：利用实时数据，可以得到模型的变化趋势。</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">梯度下降算法</th>
+<th style="text-align:center">batch gd</th>
+<th style="text-align:center">mini-batch gd</th>
+<th style="text-align:center">stochastic gd</th>
+<th style="text-align:center">online gd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">训练集</td>
+<td style="text-align:center">固定</td>
+<td style="text-align:center">固定</td>
+<td style="text-align:center">固定</td>
+<td style="text-align:center">实时更新</td>
+</tr>
+<tr>
+<td style="text-align:center">单次迭代样本数</td>
+<td style="text-align:center">整个训练集</td>
+<td style="text-align:center">训练集的子集</td>
+<td style="text-align:center">单个样本</td>
+<td style="text-align:center">根据具体算法定</td>
+</tr>
+<tr>
+<td style="text-align:center">算法复杂度</td>
+<td style="text-align:center">高</td>
+<td style="text-align:center">一般</td>
+<td style="text-align:center">低</td>
+<td style="text-align:center">低</td>
+</tr>
+<tr>
+<td style="text-align:center">时效性</td>
+<td style="text-align:center">低</td>
+<td style="text-align:center">一般(delta模型)</td>
+<td style="text-align:center">一般(delta模型)</td>
+<td style="text-align:center">高</td>
+</tr>
+<tr>
+<td style="text-align:center">收敛性</td>
+<td style="text-align:center">稳定</td>
+<td style="text-align:center">稳定</td>
+<td style="text-align:center">不稳定</td>
+<td style="text-align:center">不稳定</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>SGD 随机梯度下降，大数据集用不错。SGD改进，使用动量。<br>L-BFGS 在小数据集上不错，改进的Large-batch L-BFGS不错。<br>Conjugate Gradients 也在小数据集也不错。<br>Mini-batch GD 一般选20-1000大。</li>
+</ul>
+<h2 id="activation"><a href="#activation" class="headerlink" title="activation"></a>activation</h2><h3 id="常见激活函数"><a href="#常见激活函数" class="headerlink" title="常见激活函数"></a>常见激活函数</h3><ul>
+<li>ReLU (Rectified Linear Unit) ：用于隐层神经元输出 <code>relu(x)=max(0,x)</code> 优点：计算简单；单侧抑制；兴奋边界更宽；稀疏激活性。<ul>
+<li>优点：</li>
+<li>缺点：没有进行数据压缩，数据范围可能很大。很容易改变数据的分布。</li>
+<li>改进：<ul>
+<li>Leaky ReLU：在小于0的部分不直接设置为0，而是斜率较小的曲线，如y=-0.01x。</li>
+<li>pReLU、random ReLU等，ReLU后面加上Batch Normalization优化数据分布。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Sigmoid：用于隐层神经元输出 <code>sigmoid(x)=1/(1+e^(-x))</code> 缺点：饱和区导数趋近0，容易梯度消失；</li>
+<li>Softmax：用于多分类神经网络输出 <code>softmax(x)=e^x/sum_i(e^(x_i)))</code> 计算各个类别的可能性，进行概率归一化，概率高的为判断依据。只用于多于一个输出的神经元.</li>
+<li>tanh：<code>tanh(x)=(1-e^(-x))/(1+e^(-x))</code> 计算复杂。</li>
+<li>SeLU：用于隐层神经元输出 论文指出能保证分布为<code>均值为0，方差为1</code>，所以梯度更不易消失，支持更深网络，效果更好。</li>
+</ul>
+<h3 id="激活函数的-Normalization"><a href="#激活函数的-Normalization" class="headerlink" title="激活函数的 Normalization"></a>激活函数的 Normalization</h3><ul>
+<li><p>1502.03167 Batch normalization论文指出，尽可能保证每一层的输入有相同的分布。因此在activation之后经常进行batch normalization(selu有相似功能，见snn论文)</p>
+</li>
+<li><p>Batch normalization</p>
+</li>
+<li>Layer normalization</li>
+<li>Weight normalization</li>
+</ul>
+<h2 id="问题与解决"><a href="#问题与解决" class="headerlink" title="问题与解决"></a>问题与解决</h2><h3 id="libcudnn找不到"><a href="#libcudnn找不到" class="headerlink" title="libcudnn找不到"></a>libcudnn找不到</h3><ul>
+<li>解决：编辑~/.bashrc，添加<code>export LD_LIBRARY_PATH=/usr/local/cuda/lib64/</code>，主要就是由于cuda虽然安装，但是没有添加到环境变量。一般cuda是链接到cuda-8.0文件夹这种形式，用于实现cuda通用版本链接。</li>
+</ul>
+<h3 id="tf版本导致的一些问题"><a href="#tf版本导致的一些问题" class="headerlink" title="tf版本导致的一些问题"></a>tf版本导致的一些问题</h3><ul>
+<li>由于tf1.0之后的版本中，对很多方法进行了重新梳理和调整，代码上需要一些修改，比如：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">* tf.concat()参数顺序与老版本相反</div><div class="line">* tf.mul()变成tf.multiply()</div><div class="line">* tf.sub()变成tf.subtract()</div><div class="line">* tf.initialize_all_variables() 改为：tf.global_variables_initializer()</div><div class="line">* tf.all_variables() 改成 tf.global_variables()</div><div class="line">* summary接口也改变很多：</div><div class="line">* tf.histogram_summary 改为：tf.summary.histogram</div><div class="line">* tf.scalar_summary 改为：tf.summary.scalar</div><div class="line">* tf.train.SummaryWriter 改为：tf.summary.FileWriter</div><div class="line">* tf.merge_all_summaries() 改为：summary_op = tf.summary.merge_all()</div><div class="line">* tf.merge_summaries() 改为：summary_op = tf.summary.merge()</div></pre></td></tr></table></figure>
+<h3 id="tf的summaryWriter提示check-failed-size-2-VS-1"><a href="#tf的summaryWriter提示check-failed-size-2-VS-1" class="headerlink" title="tf的summaryWriter提示check failed size(2 VS 1)"></a>tf的summaryWriter提示check failed size(2 VS 1)</h3><ul>
+<li>我是因为batch_size太大，导致GPU溢出，从100改成64就可以了。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Deep-Learning/" rel="tag">#Deep Learning</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/14/AIDeepLearning/DL Theory/" rel="next" title="Deep Learning Theory">
+                <i class="fa fa-chevron-left"></i> Deep Learning Theory
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/14/AIMachineLearning/Machine Learning Overview/" rel="prev" title="Machine Learning Overview">
+                Machine Learning Overview <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#深度学习开源框架"><span class="nav-number">1.</span> <span class="nav-text">深度学习开源框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章"><span class="nav-number">1.1.</span> <span class="nav-text">参考文章</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架对比"><span class="nav-number">2.</span> <span class="nav-text">框架对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TensorFlow"><span class="nav-number">3.</span> <span class="nav-text">TensorFlow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tf安装过程"><span class="nav-number">3.1.</span> <span class="nav-text">tf安装过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装tf"><span class="nav-number">3.2.</span> <span class="nav-text">安装tf</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows使用pip简单"><span class="nav-number">3.2.1.</span> <span class="nav-text">Windows使用pip简单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux下载whl包"><span class="nav-number">3.2.2.</span> <span class="nav-text">Linux下载whl包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">3.3.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Keras"><span class="nav-number">4.</span> <span class="nav-text">Keras</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集"><span class="nav-number">5.</span> <span class="nav-text">数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#train-dev-test"><span class="nav-number">5.1.</span> <span class="nav-text">train/dev/test</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#batch、iteration、epoch、minibatch"><span class="nav-number">5.2.</span> <span class="nav-text">batch、iteration、epoch、minibatch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#layer"><span class="nav-number">6.</span> <span class="nav-text">layer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#conv2d"><span class="nav-number">6.1.</span> <span class="nav-text">conv2d</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loss"><span class="nav-number">7.</span> <span class="nav-text">loss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-Descent-GD梯度下降"><span class="nav-number">8.</span> <span class="nav-text">Gradient Descent GD梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#activation"><span class="nav-number">9.</span> <span class="nav-text">activation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见激活函数"><span class="nav-number">9.1.</span> <span class="nav-text">常见激活函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激活函数的-Normalization"><span class="nav-number">9.2.</span> <span class="nav-text">激活函数的 Normalization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与解决"><span class="nav-number">10.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#libcudnn找不到"><span class="nav-number">10.1.</span> <span class="nav-text">libcudnn找不到</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf版本导致的一些问题"><span class="nav-number">10.2.</span> <span class="nav-text">tf版本导致的一些问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf的summaryWriter提示check-failed-size-2-VS-1"><span class="nav-number">10.3.</span> <span class="nav-text">tf的summaryWriter提示check failed size(2 VS 1)</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

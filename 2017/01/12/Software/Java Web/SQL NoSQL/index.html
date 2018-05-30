@@ -1,0 +1,854 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java web," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：SQL和NoSQL的配置使用，包括MySQL、SQL Server、Redis、MongoDB等。">
+<meta name="keywords" content="Java web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL NoSQL">
+<meta property="og:url" content="http://bebetter.site/2017/01/12/Software/Java Web/SQL NoSQL/index.html">
+<meta property="og:site_name" content="gatewayzy">
+<meta property="og:description" content="说明：SQL和NoSQL的配置使用，包括MySQL、SQL Server、Redis、MongoDB等。">
+<meta property="og:updated_time" content="2017-01-12T05:58:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL NoSQL">
+<meta name="twitter:description" content="说明：SQL和NoSQL的配置使用，包括MySQL、SQL Server、Redis、MongoDB等。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://bebetter.site/2017/01/12/Software/Java Web/SQL NoSQL/"/>
+
+  <title> SQL NoSQL | gatewayzy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">gatewayzy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">blog of gatewayzy</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SQL NoSQL
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T13:58:19+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Softwares/" itemprop="url" rel="index">
+                    <span itemprop="name">Softwares</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：</strong>SQL和NoSQL的配置使用，包括MySQL、SQL Server、Redis、MongoDB等。<br><a id="more"></a></p>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><hr>
+<h2 id="sql-语法"><a href="#sql-语法" class="headerlink" title="sql 语法"></a>sql 语法</h2><hr>
+<h3 id="sql-内容"><a href="#sql-内容" class="headerlink" title="sql 内容"></a>sql 内容</h3><ul>
+<li>ddl、dml、</li>
+<li>设置自增起始值：alter table mytable AUTO_INCREMENT=1</li>
+</ul>
+<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><hr>
+<h3 id="Date-formate日期格式转换"><a href="#Date-formate日期格式转换" class="headerlink" title="Date_formate日期格式转换"></a>Date_formate日期格式转换</h3><hr>
+<p>将datetime转换为字符串： <code>Select date_format(feedback_time,&#39;%Y-%c-%d %h:%i:%s&#39;) AS feedbackTime</code></p>
+<h3 id="Concat拼接函数"><a href="#Concat拼接函数" class="headerlink" title="Concat拼接函数"></a>Concat拼接函数</h3><hr>
+<ul>
+<li>拼接条件 <code>Select * from table1 where title like concat(&#39;%&#39;, #{title} ,&#39;%&#39;)</code> </li>
+<li>拼接字符串 <code>SELECT CONCAT(&#39;HELLO&#39;, &#39; WORLD&#39;) AS exp</code></li>
+<li>将符合条件的同一列中的不同行数据拼接, 以逗号分隔 <code>SELECT GROUP_CONCAT(name) AS names FROM xxx GROUP BY yy</code></li>
+</ul>
+<h3 id="中文排序问题"><a href="#中文排序问题" class="headerlink" title="中文排序问题"></a>中文排序问题</h3><hr>
+<ul>
+<li>如果存储使用gbk字符集，直接order by就不会出现中文拼音排序的问题。如果mysql使用UTF-8存储中文，则order by中文拼音排序有问题，需要变换编码。<br><code>select * from user order by convert(username USING gbk) asc;</code></li>
+</ul>
+<h3 id="服务器状态信息"><a href="#服务器状态信息" class="headerlink" title="服务器状态信息"></a>服务器状态信息</h3><hr>
+<ul>
+<li>常用show status查看运行统计状态。</li>
+<li>show status like ‘%queries%’</li>
+</ul>
+<h3 id="Explain语句解析"><a href="#Explain语句解析" class="headerlink" title="Explain语句解析"></a>Explain语句解析</h3><hr>
+<ul>
+<li>使用explain查看sql 语句的解析。</li>
+<li>explain select * from… </li>
+</ul>
+<h3 id="选取存在重复项的数据"><a href="#选取存在重复项的数据" class="headerlink" title="选取存在重复项的数据"></a>选取存在重复项的数据</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * from qa_dis_dic_code a where EXISTS (SELECT 1 from qa_dis_dic_code b where a.category_2= b.category_2 and b.id&lt;a.id)</div></pre></td></tr></table></figure>
+<h2 id="命令行操作"><a href="#命令行操作" class="headerlink" title="命令行操作"></a>命令行操作</h2><hr>
+<ul>
+<li>mysql登陆root：mysql -u root -p<ul>
+<li>在Linux下mysql使用$HOME/.my.cnf读取特定的启动命令和设置，可以在里面设置连接mysql的默认密码，然后将配置文件设置为本人权限 chmod 700 .my.cnf 就可以用默认密码登录，方便shell编程等</li>
+</ul>
+</li>
+<li>显示数据库：mysql&gt; show databases;</li>
+<li>创建用户及授权：<br>mysql&gt; create database zyy; mysql&gt; create user zyy; mysql&gt; use mysql; mysql&gt; update user set Password values PASSWORD(“112233445566”) where user=’zyy’; mysql&gt; flush privileges;</li>
+<li>使用更改<br>mysql&gt; grant all on zyy.* to ‘zyy’@’localhost’ ;  mysql&gt; flush privileges; mysql&gt; show grants for snort@localhost; localhost换为%指可以远程登陆。</li>
+<li>修改用户密码：<br>root登陆，mysql&gt;update mysql.user set password=password(‘新密码’) where User=”test” and Host=”localhost”;mysql&gt;flush privileges;</li>
+<li>删除用户密码<br>mysql&gt;Delete FROM user Where User=’test’ and Host=’localhost’;<br>mysql&gt;flush privileges;<br>mysql&gt;drop database testDB; //删除用户的数据库</li>
+<li>删除账户及权限：<br>drop user 用户名@’%’;<br>drop user 用户名@ localhost; </li>
+<li>查看表结构信息方法：<br>1.desc 表名;<br>2.show columns from 表名;<br>3.describe 表名;</li>
+<li>修改类型：ALTER TABLE S MODIFY sno SMALLINT NOT NULL;</li>
+<li>支持汉字：创表前：set names utf8;或者创建数据库时：create database yan2 default character set utf8;就可以在varchar字段里写汉字了。</li>
+</ul>
+<h3 id="shell编程"><a href="#shell编程" class="headerlink" title="shell编程"></a>shell编程</h3><p>假设设置了默认连接的密码，进行下面的shell编程</p>
+<ul>
+<li>使用单行编程</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">mysql1=$(which mysql)</div><div class="line"># 查找mysql命令的位置</div><div class="line">$mysql1 defaultdb -u root -X -e &apos;select * from students&apos;</div><div class="line"># 使用默认的密码连接数据库并运行一行命令，运行该脚本即可查看结果，与正常在mysql中运行效果一样</div><div class="line"># -X使用XML输出结果</div></pre></td></tr></table></figure>
+<ul>
+<li>使用多行编程</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">mysql1=$(which mysql)</div><div class="line"># 查找mysql命令的位置</div><div class="line">$mysql1 defaultdb -u root &lt;&lt;EOF</div><div class="line">show tables;</div><div class="line">select * from students;</div><div class="line">insert ...</div><div class="line">EOF</div><div class="line">echo &quot;运行该文件即对mysql进行shell多行，注意多行需要添加EOF开始，结束时的EOF必须为开头&quot;</div></pre></td></tr></table></figure>
+<h3 id="定时备份"><a href="#定时备份" class="headerlink" title="定时备份"></a>定时备份</h3><ul>
+<li>windows下添加计划任务，运行如下示例脚本。</li>
+</ul>
+<p>``<br>rem 数据库备份<br>set target_db=tcm<br>set file_dir=G:/MySQL_backup/%target_db%<br>rem 备份文件所在的目录<br>set file_name=%target<em>db%</em>%date:~0,4%-%date:~5,2%-%date:~8,2%<br>rem 备份文件名<br>C:<br>cd C:/Program Files/MySQL/MySQL Server 5.5/bin/<br>echo 备份到文件：%file_dir%/%file_name%.sql<br>mysqldump.exe -uroot -p123 %target_db%&gt;%file_dir%/%file_name%.sql<br>rem D:/develop/MySQL/MySQL Server 5.5/bin/mysqldump.exe为mysqldump程序所在地址，root为用户名，mysql为密码，tcm为待备份的数据库名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"># SQL Server</div><div class="line">--------------------------------------------------------------------------------------------------------</div><div class="line">## 简介</div><div class="line"></div><div class="line">## 安装启动</div><div class="line">---</div><div class="line">* 安装</div><div class="line">	* 安装sql server2016等版本，安装功能选择包括服务器和管理工具。</div><div class="line">* 启动</div><div class="line">	* 启动sql server 管理配置工具配置进行服务状态管理</div><div class="line"></div><div class="line">## 管理配置</div><div class="line">---</div><div class="line">启动sql server management studio连接数据库，进行数据库、安全性、管理等方面的配置。</div><div class="line"></div><div class="line">* 数据库：进行数据库、数据的增查改删等操作。</div><div class="line">* 安全性：进行登录用户名管理、角色管理、加密等管理。</div><div class="line"></div><div class="line"># MongoDB</div><div class="line">--------------------------------------------------------------------------------------------------------</div><div class="line">## server安装</div><div class="line">---</div><div class="line">###  Windows下</div><div class="line">---</div><div class="line">一般将解压后的MongoDB安装为windows服务</div><div class="line">* 用管理员cmd进入其bin目录，运行：</div><div class="line">`mongod --logpath &quot;D:\Program Files\mongodb\data\mongo.log&quot; --logappend --dbpath &quot;D:\Program Files\mongodb\data&quot; --directoryperdb --serviceName &quot;MongoDB&quot; --serviceDisplayName &quot;MongoDB&quot; –install`</div><div class="line">其中两个路径分别设置日志路径、数据文件路径，还设置了日志是追加方式、服务命名、服务名。- -directoryperdb说明每个DB都会新建一个目录。- -install安装，mongod - -remove删除服务。</div><div class="line"></div><div class="line">* 或者将上面的配置值写入新建的mongodb.config中，内容如下。修改并添加好对应的文件路径，到mongod.exe所在目录使用管理员cmd运行：</div><div class="line">`mongod --config “D:\Program Files\mongodb-win32-x86_64-2008plus\mongodb.config” -install`</div></pre></td></tr></table></figure>
+<p>dbpath=D:\ProgramData\mongodb<br>logpath=D:\Program Files\mongodb-win32-x86_64-2008plus\log\mongo.log<br>serviceName=MongoDB<br>serviceDisplayName=MongoDB</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">注意：server启动失败的话，应该通过查看日志解决问题。</div><div class="line"></div><div class="line">##  server配置</div><div class="line">---</div><div class="line">### 配置文件</div><div class="line">* 密码设置</div><div class="line"></div><div class="line">## client使用</div><div class="line">---</div><div class="line">### client连接server</div><div class="line">* 浏览器访问http://127.0.0.1:27017/显示“It looks like you are...”说明server正在运行。</div><div class="line">* Windows下可以运行自带的mongo.exe(直接执行exe或者命令行执行exe)，默认连接本地server，或运行`mongo --port27017`或`mongo 10.15.82.57:27017`</div><div class="line">* 可视化管理工具Robomongo(客户端管理)、Mongovision(网页管理)。</div><div class="line"></div><div class="line">### 常用命令</div><div class="line">* 手册：mongod数据库设置，mongo是mongo shell……</div><div class="line">* 访问网络mongodb：mongo 10.15.82.57:27017 #端口默认27017</div><div class="line">* show dbs #显示数据库</div><div class="line">* use myTest不存在数据库会默认创建</div><div class="line">* db 显示当前使用的db</div><div class="line">* db.disease.findOne() #显示一条数据，默认使用与db同名的collection</div><div class="line">* db.createCollection(&quot;classes &quot;) 在当前db创建数据集，有众多索引选项等</div><div class="line">* show collections 显示当前db的collections</div><div class="line">* db.getCollection(&quot;classes&quot;).insert(&#123;&quot;id&quot;:1,&quot;name&quot;:&quot;zhangsan1&quot;&#125;) 在当前db的所选集合中添加一条数据，与下面写法相等，若集合不存在会默认使用db名作为集合名</div><div class="line">* db.classes.insert(&#123;&quot;id&quot;:2,&quot;name&quot;:&quot;zhangsan2&quot;&#125;)</div><div class="line">* db.classes.find() 显示所有数据，不能省略集合名</div><div class="line">* db.classes.findone() 显示一个数据</div><div class="line">* 退出连接：cmd：exit</div><div class="line"></div><div class="line">###  MongoDB的第三方驱动</div><div class="line">*  Mongodb-java-driver</div><div class="line">	*  Mongodb的java版本实现中，3.4版本对之前2.x版本有很大改动。3.4的示例代码如下。</div></pre></td></tr></table></figure>
+<p>package study.frame.mongoDB;</p>
+<p>import com.mongodb.*;<br>import com.mongodb.client.FindIterable;<br>import com.mongodb.client.MongoCollection;<br>import com.mongodb.client.MongoCursor;<br>import com.mongodb.client.MongoDatabase;<br>import com.mongodb.client.model.Filters;<br>import com.mongodb.client.model.Updates;<br>import com.mongodb.client.model.geojson.Point;<br>import com.mongodb.client.model.geojson.Position;<br>import org.bson.Document;</p>
+<p>import java.util.*;<br>import java.util.logging.Filter;</p>
+<p>/**</p>
+<ul>
+<li>Created by dell on 2016/12/12.<br></li>
+<li>注意： mongodb 3.x对之前版本进行了大量改动</li>
+<li><p>参考文章： <a href="http://blog.csdn.net/autfish/article/details/51356537" target="_blank" rel="external">http://blog.csdn.net/autfish/article/details/51356537</a><br>*/<br>public class TestMongoDB {</p>
+<p> public static void main(String[] args) {</p>
+<pre><code>System.out.println(&quot;[info] starting...&quot;);
+</code></pre></li>
+</ul>
+<pre><code>    // 使用用户名、数据库、密码连接数据库
+    //MongoCredential credential = MongoCredential.createCredential(&quot;guoxin01&quot;, &quot;guoxin&quot;, &quot;123456&quot;.toCharArray());
+    //ServerAddress addr = new ServerAddress(&quot;192.168.1.137&quot;, 27017);
+    //MongoClient passwdClient = new MongoClient(&quot;10.15.82.57&quot;, 27017);
+
+    //MongoClient mongoClient = new MongoClient(&quot;10.15.82.57&quot;, 27017);
+
+    MongoClient mongoClient = new MongoClient(&quot;127.0.0.1&quot;, 27017);
+    MongoDatabase mongoDatabase = mongoClient.getDatabase(&quot;myTest&quot;);
+    System.err.println(&quot;[info] connection ok! use database&quot;);
+    mongoDatabase.drop();//删除db下所有集合，但是同名的集合默认会存在的
+    mongoDatabase.createCollection(&quot;myTest&quot;);//创建一个集合
+    MongoCollection&lt;Document&gt; collection = mongoDatabase.getCollection(&quot;classes&quot;);
+    System.out.println(&quot;[info] use collection&quot;);
+
+    collection.drop();//删除集合原有数据
+    /*
+    * 检索所有文档
+    * 1. 获取迭代器
+    * 2. 获取游标
+    * 3. 用游标检索文档
+    * */
+    int count = (int) collection.count();
+    System.out.println(&quot;[info] total doc after delete: &quot; + count);
+
+    FindIterable&lt;Document&gt; findIterable = collection.find();
+    MongoCursor&lt;Document&gt; mongoCursor = findIterable.iterator();
+    while (mongoCursor.hasNext()) {
+        Document doc = mongoCursor.next();
+        System.out.println(&quot;[info] selected doc: &quot; + doc.get(&quot;name&quot;));
+    }
+
+    /*增加一个数据*/
+    Document newDoc = new Document(&quot;id&quot;, 1).append(&quot;name&quot;, &quot;zhangsan1&quot;).append(&quot;text&quot;, &quot;可以用map或append建doc&quot;);
+    collection.insertOne(newDoc);
+    /*增加一个数据*/
+    Map&lt;String, Object&gt; newMap = new HashMap&lt;&gt;();
+    newMap.put(&quot;id&quot;, 2);
+    newMap.put(&quot;name&quot;, &quot;name2&quot;);
+    Document document = new Document(newMap);
+    collection.insertOne(document);
+
+    /*增加多个数据*/
+    Document doc1 = new Document(&quot;name&quot;, &quot;tom&quot;).append(&quot;raid&quot;, Arrays.asList(10, 10)).append(&quot;gps&quot;, new Point(new Position(10, 10)));
+    Document doc2 = new Document(&quot;name&quot;, &quot;jone&quot;).append(&quot;raid&quot;, Arrays.asList(10.1, 10)).append(&quot;gps&quot;, new Point(new Position(10.1, 10)));
+    Document doc3 = new Document(&quot;name&quot;, &quot;john&quot;).append(&quot;raid&quot;, Arrays.asList(10, 10.1)).append(&quot;gps&quot;, new Point(new Position(10, 10.1)));
+    Document doc4 = new Document(&quot;name&quot;, &quot;jack&quot;).append(&quot;raid&quot;, Arrays.asList(9.9, 10)).append(&quot;gps&quot;, new Point(new Position(9.9, 10)));
+    Document doc5 = new Document(&quot;name&quot;, &quot;mary&quot;).append(&quot;raid&quot;, Arrays.asList(10, 9.9)).append(&quot;gps&quot;, new Point(new Position(10, 9.9)));
+    Document doc6 = new Document(&quot;name&quot;, &quot;abby&quot;).append(&quot;raid&quot;, Arrays.asList(10.2, 10)).append(&quot;gps&quot;, new Point(new Position(10.2, 10)));
+    Document doc7 = new Document(&quot;name&quot;, &quot;adam&quot;).append(&quot;raid&quot;, Arrays.asList(10.3, 10)).append(&quot;gps&quot;, new Point(new Position(10.3, 10)));
+    Document doc8 = new Document(&quot;name&quot;, &quot;barry&quot;).append(&quot;raid&quot;, Arrays.asList(10.4, 10)).append(&quot;gps&quot;, new Point(new Position(10.4, 10)));
+    Document doc9 = new Document(&quot;name&quot;, &quot;anne&quot;).append(&quot;raid&quot;, Arrays.asList(10.5, 10)).append(&quot;gps&quot;, new Point(new Position(10.5, 10)));
+    collection.insertMany(Arrays.asList(doc1, doc2, doc3, doc4, doc5, doc6, doc7, doc8, doc9));
+
+    /*条件查询*/
+    findIterable = collection.find(new Document(&quot;id&quot;, 2));
+    Iterator&lt;Document&gt; iteSelect = findIterable.iterator();
+    while (iteSelect.hasNext()) {
+        System.out.println(&quot;[info] 条件查找id为2的：&quot; + iteSelect.next().getString(&quot;name&quot;));
+    }
+
+    /*查询并修改*/
+    collection.findOneAndReplace(new Document(&quot;id&quot;, 2), new Document(&quot;name&quot;, &quot;name2&quot;));//repalce是替换一个
+    //3.4版本中的过滤词在Filters，更改词在Updates
+    collection.findOneAndUpdate(Filters.eq(&quot;id&quot;, 1), Updates.set(&quot;raid&quot;, &quot;这是使用updates设置的值&quot;));
+    //collection.updateOne(new Document(&quot;id&quot;,1),set(&quot;rank&quot;, 100));
+
+    //$geoWithinPolygon 在多边形内搜索
+    List&lt;Double&gt; p1 = new ArrayList&lt;&gt;();
+    List&lt;Double&gt; p2 = new ArrayList&lt;&gt;();
+    List&lt;Double&gt; p3 = new ArrayList&lt;&gt;();
+    p1.add(10d);
+    p1.add(10d);
+    p2.add(10.1);
+    p2.add(10.16);
+    p3.add(10.2);
+    p3.add(10d);
+    List&lt;List&lt;Double&gt;&gt; polygon = Arrays.asList(p1, p2, p3);
+    findIterable = collection.find(Filters.geoWithinPolygon(&quot;raid&quot;, polygon));
+    Iterator&lt;Document&gt; iteSelGeo = findIterable.iterator();
+    while (iteSelGeo.hasNext()) {
+        System.out.println(&quot;[info] 多边形内查找到：&quot; + iteSelGeo.next().getString(&quot;name&quot;));
+    }
+
+    /*使用Filters删除多个数据*/
+    collection.deleteMany(Filters.or(Filters.eq(&quot;name&quot;, &quot;tom&quot;), Filters.eq(&quot;name&quot;, &quot;jack&quot;)));
+
+    System.out.println(&quot;[info] total doc finally: &quot; + collection.count());
+    System.out.println(&quot;[info] over!!!&quot;);
+
+    mongoClient.close();
+}
+</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 问题与解决</div><div class="line">---</div><div class="line">### 模糊查询速度太慢</div><div class="line">* Mongodb自带的模糊检索可能效率很低。</div><div class="line">	* 一种解决方案是使用mongodb存储全文，然后将需要查找的内容使用Lucene建立索引，利用Lucene进行模糊查询并返回结果，也就是说不使用mongodb进行检索业务。</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"># Redis</div><div class="line">--------------------------------------------------------------------------------------------------------</div><div class="line">参考文章：[Redis的三种启动方式](http://www.tuicool.com/articles/aQbQ3u)</div><div class="line"></div><div class="line">## 简介</div><div class="line">* 内存数据库，cs架构，服务器将数据存到文件，运行时读入内容，采用键值对。</div><div class="line"></div><div class="line">### redis与memcached的比较</div><div class="line">* memcached仅支持key-value数据，且不能数据持久化，redis支持key-value、list、set、hash等结构，支持数据持久化，二者擅长点不同</div><div class="line"></div><div class="line">##  server安装</div><div class="line">---</div><div class="line">### Linux下</div><div class="line"></div><div class="line">* 安装：</div><div class="line">	* 下载源码并解压cd src，make，（是否安装build-essential，make MALLOC=jemalloc等问题）make all等命令，主要看运行中的提示信息。不推荐make insatll成service。</div><div class="line">	* 使用源安装</div><div class="line">* 源安装的服务命令：service redisd start | stop | restart...</div><div class="line">* 启动server：</div><div class="line">	* ./redis-server &amp;，默认端口6379，&amp;是为了后台运行，不使用配置文件（无密码等配置）</div><div class="line">	* ./redis-server path/redis.conf &amp; ，指定使用的配置文件</div><div class="line">* 查看服务：</div><div class="line">	* ps -ef |grep redis</div><div class="line">	* ps -aux |grep redis</div><div class="line">* 停止server：</div><div class="line">	* redis-cli -a passwd shutdown</div><div class="line">	* redis-cli -h 127.0.0.1 -p 6379 shutdown</div><div class="line">	* ps -aux |grep redis 然后运行： kill -9 pid</div><div class="line"></div><div class="line"></div><div class="line">###  Windows下</div><div class="line"></div><div class="line">* 下载压缩包进行解压。</div><div class="line">* 作为服务：在目录下运行命令`redis-server --service-install redis.windows.conf` 注意修改相应的redis.config</div><div class="line">* 卸载服务`redis-server --service-uninstall`</div><div class="line"></div><div class="line">## server 配置</div><div class="line">* 设置server密码：</div><div class="line">	* 打开redis.conf配置文件，找到requirepass，然后修改requirepass一行为:requirepass yourpassword</div><div class="line">	* 然后使用./redis-server path/redis.conf &amp; ，指定使用的配置文件启动server</div><div class="line">* 配置tomcat的session共享</div><div class="line">	* 由于redis存在安全漏洞，应确保redis server启用密码。</div><div class="line">	* tomcat的lib中添加相应的jar包，如tomcat-redis-session-manager-2.0.0.jar、commons-pool-1.6.jar、jedis-2.1.0.jar</div><div class="line">	* 在tomcat的conf/context.xml中配置&lt;Context&gt;添加如下内容。</div></pre></td></tr></table></figure>
+<pre><code>&lt;WatchedResource&gt;WEB-INF/web.xml&lt;/WatchedResource&gt;  
+&lt;Valve className=&quot;com.orangefunction.tomcat.redissessions.RedisSessionHandlerValve&quot; /&gt;
+&lt;Manager className=&quot;com.orangefunction.tomcat.redissessions.RedisSessionManager&quot;
+       host=&quot;10.15.82.57&quot;
+       port=&quot;6379&quot;
+       password=&quot;password&quot;
+       database=&quot;0&quot;
+       maxInactiveInterval=&quot;60&quot; /&gt;
+</code></pre><p>```</p>
+<h2 id="client使用"><a href="#client使用" class="headerlink" title="client使用"></a>client使用</h2><hr>
+<h3 id="client-连接server"><a href="#client-连接server" class="headerlink" title="client 连接server"></a>client 连接server</h3><ul>
+<li>运行./redis-cli，默认连接本地的server端口</li>
+<li>使用可视化管理工具RedisDesktopManager等</li>
+</ul>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><h3 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h3><h2 id="问题与解决"><a href="#问题与解决" class="headerlink" title="问题与解决"></a>问题与解决</h2><hr>
+<h3 id="密码设置"><a href="#密码设置" class="headerlink" title="密码设置"></a>密码设置</h3><ul>
+<li>修改config文件，使用该配置启动server，上文已详述。</li>
+</ul>
+<h3 id="数据库备份与恢复"><a href="#数据库备份与恢复" class="headerlink" title="数据库备份与恢复"></a>数据库备份与恢复</h3><ul>
+<li>方案：重写所有数据<ul>
+<li>使用程序查询所有数据，写到新的redis</li>
+</ul>
+</li>
+<li>方案：rdb快照<ul>
+<li>关闭server，可将dump.rdb视为数据库备份文件（数据库快照）</li>
+<li>将dump.rdb复制到新的redis下，启动即可，注意会覆盖原有的rdb文件问题。</li>
+<li>也可是使用client连接server，运行auth密码之后，使用SAVE命令生成rdb，存储路径在conf文件的working directory设置。</li>
+</ul>
+</li>
+<li>方案：aof拓展</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java-web/" rel="tag">#Java web</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/Software/Maintenance and monitoring 维护与监控/Nagios/" rel="next" title="Nagios">
+                <i class="fa fa-chevron-left"></i> Nagios
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/12/Software/Revision control and collaborative development 版本控制和协同开发/Bazaar/" rel="prev" title="Bazaar">
+                Bazaar <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/statics/images/avatar.png"
+               alt="gatewayzy" />
+          <p class="site-author-name" itemprop="name">gatewayzy</p>
+          <p class="site-description motion-element" itemprop="description">blog website with hexo and github pages</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/gatewayzy" title="Github-gatewayzy" target="_blank">Github-gatewayzy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://google.com/" title="Goolge" target="_blank">Goolge</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wiki.jikexueyuan.com/" title="Wiki-jike" target="_blank">Wiki-jike</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL"><span class="nav-number">1.</span> <span class="nav-text">MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sql-语法"><span class="nav-number">1.1.</span> <span class="nav-text">sql 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sql-内容"><span class="nav-number">1.1.1.</span> <span class="nav-text">sql 内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用函数"><span class="nav-number">1.2.</span> <span class="nav-text">常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-formate日期格式转换"><span class="nav-number">1.2.1.</span> <span class="nav-text">Date_formate日期格式转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Concat拼接函数"><span class="nav-number">1.2.2.</span> <span class="nav-text">Concat拼接函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中文排序问题"><span class="nav-number">1.2.3.</span> <span class="nav-text">中文排序问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器状态信息"><span class="nav-number">1.2.4.</span> <span class="nav-text">服务器状态信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Explain语句解析"><span class="nav-number">1.2.5.</span> <span class="nav-text">Explain语句解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选取存在重复项的数据"><span class="nav-number">1.2.6.</span> <span class="nav-text">选取存在重复项的数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行操作"><span class="nav-number">1.3.</span> <span class="nav-text">命令行操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell编程"><span class="nav-number">1.3.1.</span> <span class="nav-text">shell编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定时备份"><span class="nav-number">1.3.2.</span> <span class="nav-text">定时备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#client使用"><span class="nav-number">1.4.</span> <span class="nav-text">client使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#client-连接server"><span class="nav-number">1.4.1.</span> <span class="nav-text">client 连接server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.4.2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jedis"><span class="nav-number">1.4.3.</span> <span class="nav-text">Jedis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与解决"><span class="nav-number">1.5.</span> <span class="nav-text">问题与解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#密码设置"><span class="nav-number">1.5.1.</span> <span class="nav-text">密码设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库备份与恢复"><span class="nav-number">1.5.2.</span> <span class="nav-text">数据库备份与恢复</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gatewayzy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
