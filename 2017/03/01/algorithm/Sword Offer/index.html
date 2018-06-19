@@ -460,9 +460,9 @@
 <li>拓展：左旋转字符串，如abcde左旋n=2变为cdeba？  对n位的前后分别用翻转函数，得baedc，然后对整体用翻转函数的cdeab。</li>
 <li>s43 骰子的点数之和：n个骰子对应的点数之和为s，计算s的所有可能值的概率？  基于循环，用一个大的数组存放s可能值，第一个骰子对应的点数和s可能次数统计好，第二个骰子更新s数组：每一个s为k的情况就是上一状态s的k-1、k-2、…k-6的和，递推即可。</li>
 <li>s44 扑克牌是否是顺子：从一幅扑克牌抽5张，输出是否可以作为顺子，其中，A做1，J做11，Q做12，K做13，大小王可以做任意数？  五张牌排序，5减去大小王的个数，从前向后在宽度为5的窗口中必须有剩余数量的扑克出现。注意考虑扑克重复、前后界问题。</li>
-<li>s45 圆圈中最后剩下的数字：n个数字排成一圈，每次删掉第m个数字，求最后一个数字？也称为约瑟夫环问题。<ul>
+<li>s45 圆圈中最后剩下的数字：n个数字排成一圈，从0开始编号，每次删掉第m个数字，求最后一个数字？也称为约瑟夫环问题。<ul>
 <li>naive解法：用list模拟删除过程，到了list尾部时接着从头开始。缺点是时间O(mn)。</li>
-<li>找规律，使用递推：n=1时，f(n,m)=0; n&gt;1, f(n,m)=(f(n-1,m)+m)%n。 使用递归或循环即可。</li>
+<li>找规律，使用递推：i=1时，f(i,m)=0; i&gt;1时, f(i,m)=(f(i-1,m)+m)%i。 使用递归或循环求出f(n,m)即可。</li>
 </ul>
 </li>
 </ul>
@@ -505,8 +505,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/01/language/Java-advanced/Generic 泛型/" rel="prev" title="Generic 泛型">
-                Generic 泛型 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/01/Database/SQL-basic/MYSQL使用/" rel="prev" title="MYSQL使用">
+                MYSQL使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -577,7 +577,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-count">72</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
